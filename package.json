@@ -1,0 +1,51 @@
+{
+  "_args": [
+    [
+      "git+https://github.com/tsecher/easy-gdpr.git",
+      "/Users/thomassecher/Sites/javascript_repos/test/src"
+    ]
+  ],
+  "_from": "git+https://github.com/tsecher/easy-gdpr.git",
+  "_id": "easy-gdpr@git+https://github.com/tsecher/easy-gdpr.git#c4368f284d40397ffc85e5bcdf5e6cce6933210d",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/easy-gdpr",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "git+https://github.com/tsecher/easy-gdpr.git",
+    "rawSpec": "git+https://github.com/tsecher/easy-gdpr.git",
+    "saveSpec": "git+https://github.com/tsecher/easy-gdpr.git",
+    "fetchSpec": "https://github.com/tsecher/easy-gdpr.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/tsecher/easy-gdpr.git#c4368f284d40397ffc85e5bcdf5e6cce6933210d",
+  "_spec": "git+https://github.com/tsecher/easy-gdpr.git",
+  "_where": "/Users/thomassecher/Sites/javascript_repos/test/src",
+  "author": {
+    "name": "Thomas Sécher"
+  },
+  "bugs": {
+    "url": "https://github.com/tsecher/easy-gdpr/issues"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.4"
+  },
+  "description": "Easy GDPR tools",
+  "homepage": "https://github.com/tsecher/easy-gdpr#readme",
+  "keywords": [
+    "gdpr"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "easy-gdpr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsecher/easy-gdpr.git"
+  },
+  "scripts": {},
+  "version": "1.0.0"
+}
