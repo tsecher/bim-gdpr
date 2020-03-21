@@ -2,14 +2,30 @@ import { LocalManager } from "easy-gdpr/src/core/local/LocalManager";
 
 export class LocalizedElementAbstract{
 
-    constructor(){
+    constructor(id){
+        this.id = id
         this.localManager = LocalManager
         this.defaultLanguage = 'fr'
-        this.translationFileList = this.getDefaultTransitionFileList()
+        this.translations = this.getDefaultTransitionFileList()
     }
 
+
+    /**
+     * Load transaltions.
+     */
     init(){
-        this.getTranslationFileList().map( path => this.addTranslation(path))
+        this.getTranslations().map( (data, key) => {
+            let id = `${this.id}-${key}`
+            if( typeof(data) === 'string'){
+                if(this.localManager.hasToLoadTranslation(this.getDefaultLanguage()) ){
+                    this.localManager.addTranslation(id, data)
+                }
+            }
+            else{
+                this.localManager.addTranslation(id, data)
+            }
+        })
+        return this
     }
 
     /**
@@ -39,23 +55,26 @@ export class LocalizedElementAbstract{
     /**
      * Return the translation file list
      */
-    getTranslationFileList(){
-        return this.translationFileList
+    getTranslations(){
+        return this.translations
     }
     
     /**
      * Set the translation file list
      */
-    setTranslationFileList(fileList){
-        return this.translationFileList = fileList
+    setTranslations(fileList){
+        this.translations = fileList
+        return this
     }
 
     /**
      * Add a translation if user language is different of the default language
+     * 
+     * @param {*} data 
+     *   po file path or json data
      */
-    addTranslation(path){
-        if( this.localManager.hasToLoadTranslation(this.getDefaultLanguage()) ){
-            this.localManager.addTranslation(path)
-        }
+    addTranslation(data){
+        this.translations.push(data)
+        return this
     }
 }

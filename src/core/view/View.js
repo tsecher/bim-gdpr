@@ -13,7 +13,7 @@ export const TemplateInterface = {
     getViewMarkup: function(){},
     getServiceMarkup: function(){},
     getGroupMarkup: function(){},
-    defaultLanguage: 'fr',
+    init: function(){},
 }
 
 class ViewClass{
@@ -23,12 +23,11 @@ class ViewClass{
         this.rebuildTimeout = null
         this.template = new DefaultTemplate()
         this.needsRebuild('all')
-        
     }
 
     init(){
         // init template.
-        this.template.init()
+        this.setTemplate(this.template)
 
         // Add listeners for rebuild.
         Wrapper.on(ViewEvents.needsRebuild).subscribe((data)=> {
@@ -117,6 +116,7 @@ class ViewClass{
     setTemplate(template){
         if( checkInterface(TemplateInterface, template, Wrapper.logsAreEnabled()) ){
             this.template = template
+            this.template.init()
             Wrapper.trigger(ViewEvents.needsRebuild, {type:'all'})
         }
         

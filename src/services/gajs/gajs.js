@@ -1,5 +1,7 @@
 import { Service } from "easy-gdpr/src/core/services/Service";
 import { CDN } from "easy-gdpr/src/core/tools/Tools";
+import { Wrapper } from "easy-gdpr/src/core/Wrapper";
+import { bindCallback } from "rxjs";
 
 export class GajsServices extends Service {
 
@@ -9,16 +11,22 @@ export class GajsServices extends Service {
     }
 
     getTranslationFileList(){
-        return [CDN + `src/services/gajs/translations/${this.localManager.token}.po`]
+        return [
+            CDN + `src/services/gajs/translations/${this.localManager.token}.po`,
+        ]
     }
 
     getCookiePatterns(){
         return [/_gid/ ,/_ga/, /_gat/, /__utma/, /__utmb/, /__utmc/, /__utmt/, /__utmz/]
     }
     
-    start(){
-        Wrapper.addScript(`https://www.googletagmanager.com/gtag/js?id=${this.guaid}`)
+    getRelatedScripts(){
+        return [
+            `https://www.googletagmanager.com/gtag/js?id=${this.guaid}`,
+        ]
+    }
 
+    start(){
         // GA script
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

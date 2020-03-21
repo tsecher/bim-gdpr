@@ -2,34 +2,78 @@ import { ID, PREFIX, CDN } from "easy-gdpr/src/core/tools/Tools";
 import { Group } from "easy-gdpr/src/core/groups/Group";
 import { html } from "easy-gdpr/src/core/local/LocalManager";
 import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElementAbstract";
+import { Wrapper } from "easy-gdpr/src/core/Wrapper";
 
 export class DefaultTemplate extends LocalizedElementAbstract{
+
+    constructor(){
+        super('default-template')
+        this.css = [
+            CDN + 'src/templates/default/css/default-template.css'
+        ];
+    }
+
+    /**
+     * Init the template with css and language.
+     *
+     */
+    init(){
+        this.getCss().map( (url) => {
+            Wrapper.addCss(url)
+        })
+        super.init()
+    }
+
+    /**
+     * Return css urls.
+     */
+    getCss(){
+        return this.css
+    }
+
+    /**
+     * Update css urls list.
+     *
+     * @param {*} css 
+     */
+    setCss(css){
+        this.css = css
+        return this
+    }
 
     /**
      * Return the default list of translation files.
      */
     getDefaultTransitionFileList(){
-        return [CDN + `templates/default/translations/${this.localManager.token}.po`]
+        return [CDN + `src/templates/default/translations/${this.localManager.token}.po`]
     }
 
+    /**
+     * Wrap the content
+     * @param {*} content 
+     */
+    wrapper(content){
+        return `
+        <div class="${ID}-view-wrapper">
+            <div class="${ID}-view">
+                <button ${PREFIX}view-hide>Close</button>
+                <div class="${ID}-view-content">
+                    <div class="title">${html('Vos données personnelles')}</div>
+                    ${content}
+                </div>
+            </div>
+        </div>`
+    }
     /**
      * Return the content when no service is declared.
      */
     getNoServiceMarkup(){
-        return `
-            <div class="${ID}-view-wrapper">
-                <div class="${ID}-view">
-                    <div class="${ID}-view-head">
-                        <div class="title">${html('Vos données personnelles')}</div>
-                        <div class="intro">${html(`Nous utilisons des cookies sur ce site pour améliorer votre expérience utilisateur. Certains de ces services.`)}</div>
-                    </div>
-                    <div class="${ID}-view-content">
-                        <div class="${ID}-view-quick">
-                            <button ${PREFIX}view-hide>Close</button>
-                        </div>
-                    </div>
+        return this.wrapper(`
+            <div class="${ID}-view-main">
+                <div class="${ID}-view-head">        
+                    ${html(`Ce site ne déclare pas de services qui pourraient recquérir et exploiter des données personnelles.`)}
                 </div>
-            </div>`
+            </div>`)
     }
     
      /**
@@ -47,31 +91,23 @@ export class DefaultTemplate extends LocalizedElementAbstract{
                 break
         }
 
-        return `
-            <div class="${ID}-view-wrapper">
-                <div class="${ID}-view">
-                    <button ${PREFIX}view-hide>Close</button>
-                    <div class="${ID}-view-content">
-                        <div class="${ID}-view-main">
-                            <div class="${ID}-view-head">
-                                <div class="title">${html('Vos données personnelles')}</div>
-                                <div class="intro">${html(`Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
-                                Certains de ces services peuvent recquérir et exploiter des données personnelles. 
-                                Vous pouvez gérer leur activation via ce panneau accessible à tout moment.<br/>Vous pouvez également accéder et gérer en détail l'ensemble des services que le site propose`)}</div>
-                            </div>
-
-                            <div class="${ID}-view-quick">
-                                <button ${PREFIX}all-enable="accept_all">${html('Tout accépter')}</button>
-                                <button ${PREFIX}all-disable="deny_all">${html('Tout refuser')}</button>
-                                <button ${PREFIX}view-toggle-detail>${html('Voir le détail')}</button>
-                            </div>
-                        </div>
-                        <div class="${ID}-view-detail">
-                            ${markup}
-                        </div>
-                    </div>
+        return this.wrapper(`
+            <div class="${ID}-view-main">
+                <div class="${ID}-view-head">        
+                    ${html(`Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
+                    Certains de ces services peuvent recquérir et exploiter des données personnelles. 
+                    Vous pouvez gérer leur activation via ce panneau accessible à tout moment.<br/>Vous pouvez également accéder et gérer en détail l'ensemble des services que le site propose.`)}
                 </div>
-            </div>`
+
+                <div class="${ID}-view-quick">
+                    <button ${PREFIX}all-enable="accept_all">${html('Tout accépter')}</button>
+                    <button ${PREFIX}all-disable="deny_all">${html('Tout refuser')}</button>
+                    <button ${PREFIX}view-toggle-detail>${html('Voir le détail')}</button>
+                </div>
+            </div>
+            <div class="${ID}-view-detail">
+                ${markup}
+            </div>`)
     }
 
     

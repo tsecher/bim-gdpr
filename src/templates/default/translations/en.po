@@ -1,5 +1,7 @@
 # File translation of holidev
 #
+msgid ""
+msgstr ""
 "Project-Id-Version: Drupal core (8.3.3)\n"
 "POT-Creation-Date: 2017-06-07 18:46+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
@@ -11,3 +13,8 @@
 
 msgid "Vos données personnelles"
 msgstr "Your personal data"
+
+msgid "Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
+                    Certains de ces services peuvent recquérir et exploiter des données personnelles. 
+                    Vous pouvez gérer leur activation via ce panneau accessible à tout moment.<br/>Vous pouvez également accéder et gérer en détail l'ensemble des services que le site propose."
+msgstr "This site uses services that enhance ..."

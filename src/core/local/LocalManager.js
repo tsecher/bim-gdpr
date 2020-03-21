@@ -5,6 +5,7 @@ import {po} from 'gettext-parser'
 class LocalManagerClass{
 
     constructor(){
+        this.enableCache = false
         this.token = '%'
         this.tryRegionalisation = false
         this.gt = new Gettext()
@@ -56,15 +57,41 @@ class LocalManagerClass{
     /**
      * Adds a transaltion file
      *
-     * @param {*} path 
+     * @param {*} data 
      */
-    addTranslation(path){
-        // Check if path can replace {this.token} by the language id.
-        if(path.indexOf(this.token) > -1 ){
-            this.loadPOFile(path)
-            return this
+    addTranslation(id, data){
+        if( typeof(data) === 'string' ){
+            // Check if path can replace {this.token} by the language id.
+            if(data.indexOf(this.token) > -1 ){
+                this.loadPOFile(data)
+                return this
+            }
+            throw 'The translation path does not have a "@" to replace'        
         }
-        throw 'The translation path does not have a "@" to replace'        
+        else{            
+            this._doAddTranslation(id, this.getPoDataFromArray(data), true)
+        }
+    }
+
+    /**
+     * Return a PO object from simple translation.
+     * @param {*} data 
+     */
+    getPoDataFromArray(data = {}){
+        let values = {};
+        for(let item in data){
+            values[item] = {
+                    'msgid': item,
+                    'msgstr':[
+                        data[item]
+                    ],
+            }
+        }
+        return {
+            'translations': {
+                '':values
+            }
+        }
     }
 
     /**
@@ -79,7 +106,6 @@ class LocalManagerClass{
      * Load the PO File.
      */
     loadPOFile(_path){
-
         let userLanguage = this.getUserLanguage()
         userLanguage = this.tryRegionalisation ? userLanguage : userLanguage.split('-')[0]
         const path = _path.split(this.token).join(userLanguage)
@@ -143,11 +169,36 @@ class LocalManagerClass{
      * Enable a translation from po.
      * @param {string} translation 
      */
-    _doAddTranslation(path, translation){
-        this.gt.addTranslations(this.getUserLanguage(), 'messages', translation)
+    _doAddTranslation(path, translation, force=false){
+        // hack gt to add and not replace...
+        this._appendTranslation(this.getUserLanguage(), 'messages', translation, force)
+        
         this.gt.setLocale(this.getUserLanguage())
         this.alreadyLoaded.push(path)
         this.onLoadString()
+    }
+
+    /**
+     * Hack this.gt.addTranslation to append translations.
+     */
+    _appendTranslation(locale, domain, translations, force = false){
+        if (!this.gt.catalogs[locale]) {
+            this.gt.catalogs[locale] = {};
+        }
+        if( !this.gt.catalogs[locale][domain] ){
+            this.gt.catalogs[locale][domain] = {}   
+        }
+        if( this.gt.catalogs[locale][domain]['translations'] ){
+            if( force ){
+                this.gt.catalogs[locale][domain]['translations'][''] = {...this.gt.catalogs[locale][domain]['translations'][''], ...translations['translations'][''] }
+            }
+            else{
+                this.gt.catalogs[locale][domain]['translations'][''] = {...translations['translations'][''], ...this.gt.catalogs[locale][domain]['translations'][''] }
+            }
+        }
+        else{
+            this.gt.catalogs[locale][domain] = translations
+        }
     }
 
     /**
@@ -157,6 +208,9 @@ class LocalManagerClass{
      * @param {*} translation 
      */
     storeLanguage(path, translation){
+        if( !this.enableCache ){
+            return
+        }
         const storedLanguages = this.getStoredLanguages()
         if( storedLanguages ){
             storedLanguages[path] = translation

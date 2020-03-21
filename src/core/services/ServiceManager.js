@@ -204,6 +204,21 @@ class ServiceManagerClass{
      * @param {Service} service 
      */
     startService(service){
+        service.getRelatedScripts().map(script => {
+            if( typeof(script) === 'string'){
+                Wrapper.addScript(script)
+            }
+            else{
+                try {
+                    if( script.path ){
+                        Wrapper.addScript(script.path, script.callback)
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        })
+
         service.start()
         Wrapper.trigger(ServiceEvents.serviceStart, {service: service})
     }
@@ -265,7 +280,17 @@ class ServiceManagerClass{
                 .map( cookieName => {
                     Cookies.remove(cookieName)
                 })
-        }        
+        }    
+        
+        // Delete scripts.
+        service.getRelatedScripts().map(script => { 
+            if( typeof(script) === 'string'){
+                Wrapper.removeScript(script)
+            }
+            else if( script.path ){
+                Wrapper.removeScript(script.path)
+            }
+        })
         
         Wrapper.trigger(ServiceEvents.serviceStop, {service: service})
     }

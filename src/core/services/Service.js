@@ -6,7 +6,7 @@ import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElem
 export class Service extends LocalizedElementAbstract{
     
     constructor(id, name, description){
-        super()
+        super(id)
         this._id = id
         this._name = name
         this._description = description
@@ -50,6 +50,20 @@ export class Service extends LocalizedElementAbstract{
      * when service will stop.
      */
     getCookiePatterns(){
+        return []
+    }
+
+    /**
+     * Return the list of scripts path to add.
+     */
+    getRelatedScripts(){
+        return []
+    }
+
+    /**
+     * Return the list of css path to add.
+     */
+    getRelatedCss(){
         return []
     }
 

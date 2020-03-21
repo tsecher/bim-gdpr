@@ -211,6 +211,40 @@ class WrapperClass{
     }
 
     /**
+     * Remove script
+     * @param {string} script 
+     */
+    removeScript(script){
+        document.querySelectorAll('script[src="' + script +'"]').forEach(item=> item.remove())
+    }
+
+    /**
+     * Add a css script.
+     *
+     * @param {string} url 
+     * @param {string} media 
+     */
+    addCss(url, media){
+        const head  = document.querySelector('head');
+        const link  = document.createElement('link');
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
+        link.href = url;
+        link.media = media || 'all';
+        head.appendChild(link);
+    }
+
+    /**
+     * Add a css script.
+     *
+     * @param {string} url 
+     * @param {string} media 
+     */
+    removeCss(url){
+        document.querySelectorAll('link[href="' + url +'"]').forEach(item=> item.remove())
+    }
+
+    /**
      * Init dom attributes.
      */
     initDomData(){        
