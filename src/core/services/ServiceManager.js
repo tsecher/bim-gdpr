@@ -93,6 +93,7 @@ class ServiceManagerClass{
         if( !this.getServiceById(service.id) ){
             // Add weight to service
             service.weight = typeof(serviceData.weight) !== 'undefined'  ? service.weight : this.services.length
+            service.init()
             this.services.push(service)
 
             // Init mandatory services.

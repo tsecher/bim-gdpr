@@ -1,6 +1,7 @@
 import { Service } from "easy-gdpr/src/core/services/Service";
+import { CDN } from "easy-gdpr/src/core/tools/Tools";
 
-export class GTMService extends Service {
+export class GajsServices extends Service {
 
     constructor(guaid, id, name, description){
         super(id || 'gajs', name || 'Google Analytics', description || 'Les services de suivi des utilisateurs par Google')
@@ -8,7 +9,7 @@ export class GTMService extends Service {
     }
 
     getTranslationFileList(){
-        return [CDN + `services/gajs/${this.localManager.token}.po`]
+        return [CDN + `src/services/gajs/translations/${this.localManager.token}.po`]
     }
 
     getCookiePatterns(){
@@ -16,7 +17,7 @@ export class GTMService extends Service {
     }
     
     start(){
-        // Wrapper.addScript(`https://www.googletagmanager.com/gtag/js?id=${this.guaid}`)
+        Wrapper.addScript(`https://www.googletagmanager.com/gtag/js?id=${this.guaid}`)
 
         // GA script
         window.dataLayer = window.dataLayer || [];

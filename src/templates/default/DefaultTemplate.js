@@ -6,6 +6,13 @@ import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElem
 export class DefaultTemplate extends LocalizedElementAbstract{
 
     /**
+     * Return the default list of translation files.
+     */
+    getDefaultTransitionFileList(){
+        return [CDN + `src/templates/default/translations/${this.localManager.token}.po`]
+    }
+
+    /**
      * Return the content when no service is declared.
      */
     getNoServiceMarkup(){
@@ -125,12 +132,5 @@ export class DefaultTemplate extends LocalizedElementAbstract{
         return new Promise((resolve) => {
             window.setTimeout(() => {resolve()}, 1000)
         })
-    }
-
-    /**
-     * Return the default list of translation files.
-     */
-    getDefaultTransitionFileList(){
-        return [CDN + `translations/default/${this.localManager.token}.po`]
     }
 }
