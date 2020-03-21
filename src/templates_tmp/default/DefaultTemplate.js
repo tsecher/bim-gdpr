@@ -9,7 +9,7 @@ export class DefaultTemplate extends LocalizedElementAbstract{
      * Return the default list of translation files.
      */
     getDefaultTransitionFileList(){
-        return [CDN + `src/templates/default/translations/${this.localManager.token}.po`]
+        return [CDN + `templates/default/translations/${this.localManager.token}.po`]
     }
 
     /**
