@@ -1,11 +1,11 @@
-import { Wrapper } from "easy-gdpr/src/class/Wrapper";
-import { ViewEvents } from "easy-gdpr/src/class/View/ViewEvents";
-import { Group } from "easy-gdpr/src/class/Groups/Group";
-import { ServiceEvents } from "easy-gdpr/src/class/Services/ServiceEvents";
-import { Service } from 'easy-gdpr/src/class/Services/Service';
-import { GroupEvents } from "easy-gdpr/src/class/Groups/GroupEvents";
-import { PREFIX, checkInterface } from "easy-gdpr/src/class/Tools/Tools";
-import { DefaultTemplate } from "easy-gdpr/src/Templates/Default/DefaultTemplate";
+import { Wrapper } from "easy-gdpr/src/core/Wrapper";
+import { ViewEvents } from "easy-gdpr/src/core/view/ViewEvents";
+import { Group } from "easy-gdpr/src/core/groups/Group";
+import { ServiceEvents } from "easy-gdpr/src/core/services/ServiceEvents";
+import { Service } from 'easy-gdpr/src/core/services/Service';
+import { GroupEvents } from "easy-gdpr/src/core/groups/GroupEvents";
+import { PREFIX, checkInterface } from "easy-gdpr/src/core/tools/Tools";
+import { DefaultTemplate } from "easy-gdpr/src/templates/default/DefaultTemplate";
 
 
 export const TemplateInterface = {
@@ -21,12 +21,15 @@ class ViewClass{
     constructor(){
         this.timeoutValue = 200
         this.rebuildTimeout = null
+        this.template = new DefaultTemplate()
         this.needsRebuild('all')
+        
     }
 
     init(){
-        this.setTemplate(new DefaultTemplate())
-        
+        // init template.
+        this.template.init()
+
         // Add listeners for rebuild.
         Wrapper.on(ViewEvents.needsRebuild).subscribe((data)=> {
             this.needsRebuild( data.data ? data.data.type : 'all', data.data ? data.data.data: {} )
@@ -114,9 +117,9 @@ class ViewClass{
     setTemplate(template){
         if( checkInterface(TemplateInterface, template, Wrapper.logsAreEnabled()) ){
             this.template = template
-            Wrapper.setDefaultLanguage(this.template.defaultLanguage)
             Wrapper.trigger(ViewEvents.needsRebuild, {type:'all'})
         }
+        
         return this
     }
 

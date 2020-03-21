@@ -1,10 +1,10 @@
-import { Wrapper } from "./class/Wrapper";
-import { WrapperEvents } from "./class/Events/Events";
-import { Service } from "easy-gdpr/src/class/Services/Service";
-import { ServiceAbstract } from "easy-gdpr/src/class/Services/ServiceAbstract";
+import { Wrapper } from "easy-gdpr/src/core/Wrapper";
+import { WrapperEvents } from "easy-gdpr/src/core/events/Events";
+import { Service } from "easy-gdpr/src/core/services/Service";
+import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElementAbstract";
 
 window.eGDPR = Wrapper
 export const eGDPR = Wrapper
 export const eGDPREvents = WrapperEvents
 export const eGDPRService = Service
-export const eGDPRServiceAbstract = ServiceAbstract
+export const eGDPRLocalizedElements = LocalizedElementAbstract

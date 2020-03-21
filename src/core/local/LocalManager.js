@@ -1,13 +1,13 @@
 import Gettext from 'node-gettext'
-import {PREFIX, ID} from 'easy-gdpr/src/class/Tools/Tools'
-import { po } from 'gettext-parser'
+import {PREFIX, ID} from 'easy-gdpr/src/core/tools/Tools'
+import {po} from 'gettext-parser'
 
 class LocalManagerClass{
 
     constructor(){
+        this.token = '%'
         this.tryRegionalisation = false
         this.gt = new Gettext()
-        this.languageBaseUrl = `/translations/${ID}.@.po` 
         this.alreadyLoaded = []
     }   
     
@@ -15,13 +15,16 @@ class LocalManagerClass{
      * Init the localizer.
      */
     init(){
+    }
+
+    /**
+     * Return true if defaultLanguage passed is different of the user language.
+     * @param {*} defaultLanguage 
+     */
+    hasToLoadTranslation(defaultLanguage){
         const userLanguage = this.getUserLanguage()
-        if( 
-            ( this.tryRegionalisation && this.defaultLanguage !== userLanguage)
-            || (!this.tryRegionalisation && this.defaultLanguage.split('-')[0] !== userLanguage.split('-')[0])
-             ){
-            this.loadUserLanguageData()
-        }
+        return ( this.tryRegionalisation && defaultLanguage !== userLanguage)
+                 || (!this.tryRegionalisation && defaultLanguage.split('-')[0] !== userLanguage.split('-')[0])
     }
 
     /**
@@ -37,15 +40,6 @@ class LocalManagerClass{
     allowTryRegionalisation(){
         this.tryRegionalisation = true
         return this
-    }
-
-    /**
-     * Set the translations path.
-     * 
-     * @param {string} path 
-     */
-    setLanguagePath(path = '/translations/@.po'){
-        this.languageBaseUrl = path
     }
 
     /**
@@ -65,8 +59,8 @@ class LocalManagerClass{
      * @param {*} path 
      */
     addTranslation(path){
-        // Check if path can replace @ by the language id.
-        if(path.indexOf('@') > -1 ){
+        // Check if path can replace {this.token} by the language id.
+        if(path.indexOf(this.token) > -1 ){
             this.loadPOFile(path)
             return this
         }
@@ -88,7 +82,7 @@ class LocalManagerClass{
 
         let userLanguage = this.getUserLanguage()
         userLanguage = this.tryRegionalisation ? userLanguage : userLanguage.split('-')[0]
-        const path = _path.split('@').join(userLanguage)
+        const path = _path.split(this.token).join(userLanguage)
 
         if( this.alreadyLoaded.indexOf(path) > -1){
             return
@@ -205,7 +199,6 @@ class LocalManagerClass{
     loadTranslationFile(path, language){
         return new Promise ((resolve, reject) => {
             let xhr = new XMLHttpRequest();
-            alert('xhr '+ path)
             const data = {
                 path: path,
                 language: language,

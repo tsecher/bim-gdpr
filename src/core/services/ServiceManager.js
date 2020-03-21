@@ -1,8 +1,8 @@
-import { Service } from "easy-gdpr/src/class/Services/Service";
-import { ServiceEvents } from "easy-gdpr/src/class/Services/ServiceEvents";
-import { sortByWeight, checkInterface } from "easy-gdpr/src/class/Tools/Tools";
-import { Wrapper } from "easy-gdpr/src/class/Wrapper";
-import { ServiceStatusManager, ServiceStatus, Cookies} from "easy-gdpr/src/class/Services/ServiceStatusManager";
+import { Service } from "easy-gdpr/src/core/services/Service";
+import { ServiceEvents } from "easy-gdpr/src/core/services/ServiceEvents";
+import { sortByWeight, checkInterface } from "easy-gdpr/src/core/tools/Tools";
+import { Wrapper } from "easy-gdpr/src/core/Wrapper";
+import { ServiceStatusManager, ServiceStatus, Cookies} from "easy-gdpr/src/core/services/ServiceStatusManager";
 
 /**
  * The service interface.

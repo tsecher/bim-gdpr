@@ -1,11 +1,11 @@
-import { GroupManager } from './Groups/GroupManager'
-import { ServiceManager } from 'easy-gdpr/src/class/Services/ServiceManager';
-import { ViewManager } from 'easy-gdpr/src/class/View/ViewManager';
+import { GroupManager } from './groups/GroupManager'
+import { ServiceManager } from 'easy-gdpr/src/core/services/ServiceManager';
+import { ViewManager } from 'easy-gdpr/src/core/view/ViewManager';
 import { Subject } from 'rxjs';
-import { Service } from 'easy-gdpr/src/class/Services/Service';
-import { Group } from 'easy-gdpr/src/class/Groups/Group';
-import { ServiceEvents } from 'easy-gdpr/src/class/Services/ServiceEvents';
-import { LocalManager } from 'easy-gdpr/src/class/Local/LocalManager';
+import { Service } from 'easy-gdpr/src/core/services/Service';
+import { Group } from 'easy-gdpr/src/core/groups/Group';
+import { ServiceEvents } from 'easy-gdpr/src/core/services/ServiceEvents';
+import { LocalManager } from 'easy-gdpr/src/core/local/LocalManager';
 
 const $scriptjs = require('scriptjs')
 
@@ -22,9 +22,7 @@ class WrapperClass{
         this.groupManager = GroupManager
         this.localManager = LocalManager
 
-        this.autoShowCallback = () => {
-            console.log('pending', this.serviceManager.getPendingServices());
-            
+        this.autoShowCallback = () => {            
             if( this.testMode || this.serviceManager.getPendingServices().length ){
                 this.showView()
             }
@@ -51,15 +49,6 @@ class WrapperClass{
 
         this.on(ServiceEvents.serviceStatusHasChanged).subscribe((data)=>this.initDomData());
 
-        return this
-    }
-
-    /**
-     * Set default language.
-     * This language
-     */
-    setDefaultLanguage(language='en-UK'){
-        this.localManager.setDefaultLanguage(language)
         return this
     }
 

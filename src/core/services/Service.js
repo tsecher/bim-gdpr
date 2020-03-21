@@ -1,10 +1,12 @@
-import { Wrapper } from "easy-gdpr/src/class/Wrapper";
-import { ServiceEvents } from "easy-gdpr/src/class/Services/ServiceEvents";
-import { ServiceStatusManager, ServiceStatus } from "easy-gdpr/src/class/Services/ServiceStatusManager";
+import { Wrapper } from "easy-gdpr/src/core/Wrapper";
+import { ServiceEvents } from "easy-gdpr/src/core/services/ServiceEvents";
+import { ServiceStatusManager, ServiceStatus } from "easy-gdpr/src/core/services/ServiceStatusManager";
+import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElementAbstract";
 
-export class Service{
+export class Service extends LocalizedElementAbstract{
     
     constructor(id, name, description){
+        super()
         this._id = id
         this._name = name
         this._description = description

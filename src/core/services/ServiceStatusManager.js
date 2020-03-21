@@ -1,4 +1,4 @@
-import {ID} from '../Tools/Tools';
+import {ID} from '../tools/Tools';
 export const Cookies = require('js-cookie');
 
 export const ServiceStatus = {

@@ -1,10 +1,9 @@
-import { Service } from "easy-gdpr/src/class/Services/Service";
-
 /**
  * Data prefix.
  */
 export const ID = 'egdpr'
 export const PREFIX = 'data-' + ID + '-'
+export const CDN = 'https://cdn.jsdelivr.net/gh/tsecher/easy-gdpr@develop/'
 
 /**
  * Sort callback

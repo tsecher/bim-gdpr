@@ -1,12 +1,9 @@
-import { ID, PREFIX } from "easy-gdpr/src/class/Tools/Tools";
-import { Group } from "easy-gdpr/src/class/Groups/Group";
-import { html } from "easy-gdpr/src/class/Local/LocalManager";
+import { ID, PREFIX, CDN } from "easy-gdpr/src/core/tools/Tools";
+import { Group } from "easy-gdpr/src/core/groups/Group";
+import { html } from "easy-gdpr/src/core/local/LocalManager";
+import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElementAbstract";
 
-export class DefaultTemplate{
-
-    constructor(){
-        this.defaultLanguage = 'fr'
-    }
+export class DefaultTemplate extends LocalizedElementAbstract{
 
     /**
      * Return the content when no service is declared.
@@ -128,5 +125,12 @@ export class DefaultTemplate{
         return new Promise((resolve) => {
             window.setTimeout(() => {resolve()}, 1000)
         })
+    }
+
+    /**
+     * Return the default list of translation files.
+     */
+    getDefaultTransitionFileList(){
+        return [CDN + `translations/default/${this.localManager.token}.po`]
     }
 }

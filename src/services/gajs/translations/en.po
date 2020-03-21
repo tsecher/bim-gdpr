@@ -1,7 +1,5 @@
 # File translation of holidev
 #
-msgid ""
-msgstr ""
 "Project-Id-Version: Drupal core (8.3.3)\n"
 "POT-Creation-Date: 2017-06-07 18:46+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
@@ -11,5 +9,5 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
 
-msgid "Vos données personnelles"
-msgstr "Your personal data"
+msgid "Les services de suivi des utilisateurs par Google"
+msgstr "Google user tracking service "

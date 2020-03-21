@@ -1,8 +1,8 @@
-import { Group } from "easy-gdpr/src/class/Groups/Group";
-import { sortByWeight } from "easy-gdpr/src/class/Tools/Tools";
-import { Wrapper } from "easy-gdpr/src/class/Wrapper";
-import { GroupEvents } from "easy-gdpr/src/class/Groups/GroupEvents";
-import { ViewEvents } from "easy-gdpr/src/class/View/ViewEvents";
+import { Group } from "easy-gdpr/src/core/groups/Group";
+import { sortByWeight } from "easy-gdpr/src/core/tools/Tools";
+import { Wrapper } from "easy-gdpr/src/core/Wrapper";
+import { GroupEvents } from "easy-gdpr/src/core/groups/GroupEvents";
+import { ViewEvents } from "easy-gdpr/src/core/view/ViewEvents";
 
 
 /**
