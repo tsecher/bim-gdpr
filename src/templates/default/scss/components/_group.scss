@@ -1,0 +1,26 @@
+.#{$ID}{
+    &-view-group{
+
+        margin-bottom: 2rem;
+
+        &-head{
+            display: flex;
+        }
+        
+        &-services{
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            
+            margin-left: 2rem;
+
+            transition: max-height .3s ease, opacity .3s ease;
+
+            .#{$ID}-detail[data-#{$ID}-view-group] &{
+                opacity: 1;
+                max-height: 100vh;
+                overflow: auto;
+            }
+        }
+    }
+}

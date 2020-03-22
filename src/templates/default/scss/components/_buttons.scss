@@ -1,0 +1,16 @@
+.#{$ID}-view{
+    button{
+        border: 1px solid $color-main;
+        padding: .5rem 1rem;
+        outline: none;
+        background: none;
+        margin: 1rem;
+
+        transition: background .3s ease, color .3s ease;
+
+        &:hover{
+            background: $color-main;
+            color: white;
+        }
+    }
+}

@@ -10,6 +10,11 @@ export class DefaultTemplate extends TemplateAbstract{
         super('default-template')
     }
 
+    getDefaultCssList(){
+        return [
+            CDN + `src/templates/default/css/default-template.css`
+        ]
+    }
     /**
      * Return the default list of translation files.
      */
