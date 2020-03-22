@@ -13,7 +13,7 @@ const $scriptjs = require('scriptjs')
 class WrapperClass{
 
     constructor(){
-        this.logs = true
+        this.logs = false
         this.testMode = false
         this.autoShow = true
         this.observables = []
@@ -159,12 +159,22 @@ class WrapperClass{
     }
 
     /**
-     * Add a service
+     * Create and a service and return it
      * 
      * @returns {Service}
      */
     createService(service){
         return this.serviceManager.createService(service)
+    }
+
+    /**
+     * Add a service
+     * 
+     * @returns {Service}
+     */
+    addService(service){
+        this.serviceManager.createService(service)
+        return this
     }
 
     /**
@@ -185,6 +195,7 @@ class WrapperClass{
      */
     showView(){
         this.viewManager.show()
+        return this
     }
 
     /**
@@ -192,6 +203,7 @@ class WrapperClass{
      */
     hideView(){
         this.viewManager.hide()
+        return this
     }
 
     /**
@@ -201,6 +213,7 @@ class WrapperClass{
      */
     setTemplate(template){
         this.viewManager.getView().setTemplate(template)
+        return this
     }
 
     /**
@@ -208,6 +221,7 @@ class WrapperClass{
      */
     addScript(url, callback){
         $scriptjs(url, callback)
+        return this
     }
 
     /**
@@ -216,6 +230,7 @@ class WrapperClass{
      */
     removeScript(script){
         document.querySelectorAll('script[src="' + script +'"]').forEach(item=> item.remove())
+        return this
     }
 
     /**
@@ -232,6 +247,8 @@ class WrapperClass{
         link.href = url;
         link.media = media || 'all';
         head.appendChild(link);
+
+        return this
     }
 
     /**
@@ -242,6 +259,7 @@ class WrapperClass{
      */
     removeCss(url){
         document.querySelectorAll('link[href="' + url +'"]').forEach(item=> item.remove())
+        return this
     }
 
     /**
@@ -249,6 +267,17 @@ class WrapperClass{
      */
     initDomData(){        
         this.viewManager.initDomData()
+        return this
+    }
+
+    /**
+     * Add translation
+     *
+     * @param {obj} translation 
+     */
+    addTranslation(translation){
+        this.getViewManager().getView().getTemplate().addTranslation(translation)
+        return this
     }
 }
 

@@ -1,18 +1,16 @@
 import { Service } from "easy-gdpr/src/core/services/Service";
 import { CDN } from "easy-gdpr/src/core/tools/Tools";
-import { Wrapper } from "easy-gdpr/src/core/Wrapper";
-import { bindCallback } from "rxjs";
 
-export class GajsServices extends Service {
+export class GTAGService extends Service {
 
     constructor(guaid, id, name, description){
-        super(id || 'gajs', name || 'Google Analytics', description || 'Les services de suivi des utilisateurs par Google')
+        super(id || 'gtag', name || 'Google Analytics', description || 'Les services de suivi des utilisateurs par Google')
         this.guaid = guaid
     }
 
-    getTranslationFileList(){
+    getDefaultTranslations(){
         return [
-            CDN + `src/services/gajs/translations/${this.localManager.token}.po`,
+            CDN + `src/services/gtag/translations/${this.localManager.token}.json`,
         ]
     }
 

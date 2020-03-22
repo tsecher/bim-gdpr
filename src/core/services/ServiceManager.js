@@ -12,7 +12,6 @@ const ServiceInterface = {
     name: 'Name',
     description: 'description',
     start: function(){},
-    getCookiePatterns: function(){},
 }
 
 /**
@@ -157,7 +156,7 @@ class ServiceManagerClass{
      * Sort services
      */
     sortServices(){
-        if( this.services.length > 1 ){            
+        if( this.services.length > 1 ){
             this.services = this.services.sort((a,b) => sortByWeight(a,b))            
         }
         return this
@@ -265,22 +264,26 @@ class ServiceManagerClass{
         service.stop()
 
         // Delete cookies.
-        const listOfCookies = Object.keys(Cookies.get())
-        const cookiesPatterns = service.getCookiePatterns()
-        if( listOfCookies.length && cookiesPatterns.length ){
-            listOfCookies
-                .filter( cookieName => {
-                    for( let i in cookiesPatterns){
-                        if( cookieName.match(cookiesPatterns[i]) ){
-                            return true
+        try {
+            const listOfCookies = Object.keys(Cookies.get())
+            const cookiesPatterns = service.getCookiePatterns()
+            if( listOfCookies.length && cookiesPatterns.length ){
+                listOfCookies
+                    .filter( cookieName => {
+                        for( let i in cookiesPatterns){
+                            if( cookieName.match(cookiesPatterns[i]) ){
+                                return true
+                            }
                         }
-                    }
-                    return false
-                }) 
-                .map( cookieName => {
-                    Cookies.remove(cookieName)
-                })
-        }    
+                        return false
+                    }) 
+                    .map( cookieName => {
+                        Cookies.remove(cookieName)
+                    })
+            }   
+        } catch (error) {
+            
+        }
         
         // Delete scripts.
         service.getRelatedScripts().map(script => { 

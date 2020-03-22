@@ -1,14 +1,14 @@
-import Gettext from 'node-gettext'
 import {PREFIX, ID} from 'easy-gdpr/src/core/tools/Tools'
-import {po} from 'gettext-parser'
 
 class LocalManagerClass{
 
     constructor(){
-        this.enableCache = false
+        this.enableCache = true
         this.token = '%'
         this.tryRegionalisation = false
-        this.gt = new Gettext()
+        const userLanguage = this.getUserLanguage()
+        this.translations = {}
+        this.translations[userLanguage] = {}
         this.alreadyLoaded = []
     }   
     
@@ -63,34 +63,13 @@ class LocalManagerClass{
         if( typeof(data) === 'string' ){
             // Check if path can replace {this.token} by the language id.
             if(data.indexOf(this.token) > -1 ){
-                this.loadPOFile(data)
+                this.loadFile(data)
                 return this
             }
-            throw 'The translation path does not have a "@" to replace'        
+            throw `The translation path does not have a "${this.token}" to replace`
         }
         else{            
-            this._doAddTranslation(id, this.getPoDataFromArray(data), true)
-        }
-    }
-
-    /**
-     * Return a PO object from simple translation.
-     * @param {*} data 
-     */
-    getPoDataFromArray(data = {}){
-        let values = {};
-        for(let item in data){
-            values[item] = {
-                    'msgid': item,
-                    'msgstr':[
-                        data[item]
-                    ],
-            }
-        }
-        return {
-            'translations': {
-                '':values
-            }
+            this._doAddTranslation(id, data, true)
         }
     }
 
@@ -103,9 +82,9 @@ class LocalManagerClass{
     }
 
     /**
-     * Load the PO File.
+     * Load the File.
      */
-    loadPOFile(_path){
+    loadFile(_path){
         let userLanguage = this.getUserLanguage()
         userLanguage = this.tryRegionalisation ? userLanguage : userLanguage.split('-')[0]
         const path = _path.split(this.token).join(userLanguage)
@@ -119,21 +98,18 @@ class LocalManagerClass{
             this._doAddTranslation(path, translation)
         }
         else{
-            this._doLoadPOFile(path, userLanguage)
+            this._doLoadFile(path, userLanguage)
         }
     }
 
     /**
-     * Load PO file.
+     * Load file.
      *
      * @param {string} path 
      */
-    _doLoadPOFile(path, language){
+    _doLoadFile(path, language){
         const success = (data) => {
-            // If the file is a po file, then load the translation.
-            if( data.path.indexOf('.po') > -1 ){
-                this.loadPOContent(data)
-            }
+            this.loadFileContent(data)
         }
         const error  = (data)=> {
             console.error(`Cannot load translation file ${data.path}`)
@@ -144,7 +120,7 @@ class LocalManagerClass{
                 .catch((data)=>{
                     // On test en mode pas de regionalisation.
                     if( data.language.indexOf('-') > -1 && this.tryRegionalisation ){
-                        this.loadPOFile(path)
+                        this.loadFile(path)
                     }
                     else{
                         error(data)
@@ -155,13 +131,13 @@ class LocalManagerClass{
     /**
      * Add the po to storage.
      */
-    loadPOContent(data){
+    loadFileContent(data){
         try {
-            const parsedTranslations = po.parse(data.result) 
-            this.storeLanguage(data.path, parsedTranslations)
-            this._doAddTranslation(data.path, parsedTranslations)
+            const translation = JSON.parse(data.result)
+            this.storeLanguage(data.path, translation)
+            this._doAddTranslation(data.path, translation)
         } catch (error) {
-            console.error( `PO translation file is not correct (${data.path})` )
+            console.error( `translation file is not correct (${data.path})` )
         }
     }
 
@@ -171,9 +147,7 @@ class LocalManagerClass{
      */
     _doAddTranslation(path, translation, force=false){
         // hack gt to add and not replace...
-        this._appendTranslation(this.getUserLanguage(), 'messages', translation, force)
-        
-        this.gt.setLocale(this.getUserLanguage())
+        this._appendTranslation(this.getUserLanguage(), translation, force)
         this.alreadyLoaded.push(path)
         this.onLoadString()
     }
@@ -181,23 +155,17 @@ class LocalManagerClass{
     /**
      * Hack this.gt.addTranslation to append translations.
      */
-    _appendTranslation(locale, domain, translations, force = false){
-        if (!this.gt.catalogs[locale]) {
-            this.gt.catalogs[locale] = {};
+    _appendTranslation(language, translations, force = false){
+        if (!this.translations[language]) {
+            this.translations[language] = translations;
         }
-        if( !this.gt.catalogs[locale][domain] ){
-            this.gt.catalogs[locale][domain] = {}   
-        }
-        if( this.gt.catalogs[locale][domain]['translations'] ){
-            if( force ){
-                this.gt.catalogs[locale][domain]['translations'][''] = {...this.gt.catalogs[locale][domain]['translations'][''], ...translations['translations'][''] }
-            }
-            else{
-                this.gt.catalogs[locale][domain]['translations'][''] = {...translations['translations'][''], ...this.gt.catalogs[locale][domain]['translations'][''] }
-            }
+    
+        // If force, the translation is priority
+        if( force ){
+            this.translations[language] = {...this.translations[language], ...translations }
         }
         else{
-            this.gt.catalogs[locale][domain] = translations
+            this.translations[language] = {...translations, ...this.translations[language] }
         }
     }
 
@@ -301,7 +269,7 @@ class LocalManagerClass{
      */
     translate(id, replaceData){
         // Result
-        let result = this.gt.gettext(id)
+        let result = this.translations[this.getUserLanguage()][id] || id
 
         // Replace
         if (replaceData){

@@ -85,13 +85,24 @@ class ViewManagerClass{
      * Show interface
      */
     show(){
-        if( !this.isDisplayed() ){  
+        if( !this.isDisplayed() ){
             this.body.append(this.view.getViewElement())
             Wrapper.trigger(ViewEvents.showView, {})
-            window.setTimeout(()=>{
-                this.body.classList.add(ID+'-on')
-            }, 1)
+            try {
+                this.getView().getTemplate().getShowPromise().then(() => {
+                    this._doShow()
+                })
+            } catch (error) {
+                this._doShow()
+            }
         }
+    }
+
+    /**
+     * Add class that show the element.
+     */
+    _doShow(){
+        this.body.classList.add(ID+'-on')
     }
 
     /**
@@ -99,16 +110,23 @@ class ViewManagerClass{
      */
     hide(){
         if( this.isDisplayed() ){
-            window.setTimeout(()=>{
-                this.body.classList.remove(ID+'-on')
-                this.body.classList.remove(ID + '-detail')
-                this.body.querySelectorAll('.'+ID + '-detail').forEach( item => {
-                    item.classList.remove(ID + '-detail')
-                })
+
+            // Considering that pending elements are now disabled, because no explicit consentment but 
+            // user has been prompted.
+            if( !Wrapper.testMode ){
+                Wrapper.getServiceManager().disableService(Wrapper.getServiceManager().getPendingServices())
+            }
+            Wrapper.trigger(ViewEvents.hideView, {})
+
+            // Remove classes
+            this.body.classList.remove(ID+'-on')
+            this.body.classList.remove(ID + '-detail')
+            this.body.querySelectorAll('.'+ID + '-detail').forEach( item => {
+                item.classList.remove(ID + '-detail')
             })
 
             try {
-                this.getView().getTemplate().getClosePromise().then(() => {
+                this.getView().getTemplate().getHidePromise().then(() => {
                     this._doHide()
                 })
             } catch (error) {
@@ -121,12 +139,6 @@ class ViewManagerClass{
      * Remove view from dom.
      */
     _doHide(){
-        // Considering that pending elements are now disabled, because no explicit consentment but 
-        // user has been prompted.
-        if( !Wrapper.testMode ){
-            Wrapper.getServiceManager().disableService(Wrapper.getServiceManager().getPendingServices())
-        }
-        Wrapper.trigger(ViewEvents.hideView, {})
         this.body.removeChild(this.view.getViewElement())
     }
 

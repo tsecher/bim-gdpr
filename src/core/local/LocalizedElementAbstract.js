@@ -6,7 +6,7 @@ export class LocalizedElementAbstract{
         this.id = id
         this.localManager = LocalManager
         this.defaultLanguage = 'fr'
-        this.translations = this.getDefaultTransitionFileList()
+        this.translations = this.getDefaultTranslations()
     }
 
 
@@ -48,7 +48,7 @@ export class LocalizedElementAbstract{
     /**
      * Return the default translation file list.
      */
-    getDefaultTransitionFileList(){
+    getDefaultTranslations(){
         return []
     }
 
