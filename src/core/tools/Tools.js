@@ -3,8 +3,8 @@
  */
 export const ID = 'egdpr'
 export const PREFIX = 'data-' + ID + '-'
-// export const CDN = 'https://cdn.jsdelivr.net/gh/tsecher/easy-gdpr@develop/'
-export const CDN = '/src/node_modules/easy-gdpr/'
+export const CDN = 'https://cdn.jsdelivr.net/gh/tsecher/easy-gdpr@develop/'
+// export const CDN = '/src/node_modules/easy-gdpr/'
 export const LANGUAGE_TOKEN = '%'
 
 /**
