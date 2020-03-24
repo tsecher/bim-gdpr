@@ -92,6 +92,7 @@ class ServiceManagerClass{
         if( !this.getServiceById(service.id) ){
             // Add weight to service
             service.weight = typeof(serviceData.weight) !== 'undefined'  ? service.weight : this.services.length
+            debugger
             service.init()
             this.services.push(service)
 
@@ -129,11 +130,14 @@ class ServiceManagerClass{
                 service[i] = serviceData[i]
             }
 
-            for( let i in ServiceInterface){
-                if(serviceData.__proto__[i]){
-                    service[i] = serviceData.__proto__[i]
+            // Proto
+            Object.getOwnPropertyNames(Object.getPrototypeOf(serviceData)).map(
+                propertyName => {
+                    service[propertyName] = serviceData[propertyName]
                 }
-            }
+            )
+
+            service.setTranslations( serviceData.getDefaultTranslations() )
         }
         
         return service

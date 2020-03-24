@@ -1,10 +1,9 @@
-import {PREFIX, ID} from 'easy-gdpr/src/core/tools/Tools'
+import {PREFIX, ID, LANGUAGE_TOKEN} from 'easy-gdpr/src/core/tools/Tools'
 
 class LocalManagerClass{
 
     constructor(){
         this.enableCache = true
-        this.token = '%'
         this.tryRegionalisation = false
         const userLanguage = this.getUserLanguage()
         this.translations = {}
@@ -61,12 +60,12 @@ class LocalManagerClass{
      */
     addTranslation(id, data){
         if( typeof(data) === 'string' ){
-            // Check if path can replace {this.token} by the language id.
-            if(data.indexOf(this.token) > -1 ){
+            // Check if path can replace {LANGUAGE_TOKEN} by the language id.
+            if(data.indexOf(LANGUAGE_TOKEN) > -1 ){
                 this.loadFile(data)
                 return this
             }
-            throw `The translation path does not have a "${this.token}" to replace`
+            throw `The translation path does not have a "${LANGUAGE_TOKEN}" to replace`
         }
         else{            
             this._doAddTranslation(id, data, true)
@@ -87,7 +86,7 @@ class LocalManagerClass{
     loadFile(_path){
         let userLanguage = this.getUserLanguage()
         userLanguage = this.tryRegionalisation ? userLanguage : userLanguage.split('-')[0]
-        const path = _path.split(this.token).join(userLanguage)
+        const path = _path.split(LANGUAGE_TOKEN).join(userLanguage)
 
         if( this.alreadyLoaded.indexOf(path) > -1){
             return

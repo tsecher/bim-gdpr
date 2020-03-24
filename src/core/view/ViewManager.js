@@ -52,6 +52,7 @@ class ViewManagerClass{
         // View
         this.addAction('view-toggle-detail', () => this.toggleDetailPanel())
         this.addAction('view-hide', () => this.hide())
+        this.addAction('view-show', () => this.show())
 
         // Group
         this.addAction('group-toggle-detail', (data) => {

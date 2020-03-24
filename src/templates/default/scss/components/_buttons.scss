@@ -5,12 +5,21 @@
         outline: none;
         background: none;
         margin: 1rem;
+        cursor: pointer;
+        box-shadow: 0 0 0rem 0rem rgba(0,0,0,.2);
+        transform: scale(1);
 
-        transition: background .3s ease, color .3s ease;
+        @include transitionIn(background, color, box-shadow, transform);
 
         &:hover{
             background: $color-main;
-            color: white;
+            color: $color-secondary;
+            box-shadow: 0 0 1rem 0rem rgba(0,0,0,.2);
+            transform: scale(1.1);
         }
+    }
+
+    .mandatory button{
+        display: none;
     }
 }

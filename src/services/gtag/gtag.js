@@ -1,16 +1,21 @@
-import { Service } from "easy-gdpr/src/core/services/Service";
-import { CDN } from "easy-gdpr/src/core/tools/Tools";
+// import { Service } from "easy-gdpr/src/core/services/Service";
+import { CDN, ID, LANGUAGE_TOKEN } from "easy-gdpr/src/core/tools/Tools";
 
-export class GTAGService extends Service {
+export class GTAGService {
 
     constructor(guaid, id, name, description){
-        super(id || 'gtag', name || 'Google Analytics', description || 'Les services de suivi des utilisateurs par Google')
+
+        // Init
+        this.id = id || 'gtag'
+        this.name =  name || 'Google Analytics'
+        this.description = description || 'Les services de suivi des utilisateurs par Google'
+
         this.guaid = guaid
     }
 
     getDefaultTranslations(){
         return [
-            CDN + `src/services/gtag/translations/${this.localManager.token}.json`,
+            CDN + `src/services/gtag/translations/${LANGUAGE_TOKEN}.json`,
         ]
     }
 
@@ -32,3 +37,8 @@ export class GTAGService extends Service {
         gtag('config', this.guaid);
     }
 }
+
+// Accessibility out of webpack
+window[ID] = window[ID] || {}
+window[ID]['services'] = window[ID]['services'] || {};
+window[ID]['services']['GTAGService'] = GTAGService;

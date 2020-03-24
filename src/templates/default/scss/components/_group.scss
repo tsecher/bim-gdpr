@@ -3,18 +3,30 @@
 
         margin-bottom: 2rem;
 
-        &-head{
-            display: flex;
+        &-name{
+            font-size: 1.4rem;
+        }
+
+        &-detail{
+            .more{
+                color: $color-tertiary;
+                font-style: italic;
+                margin: .2rem 0;
+                display: inline-block;
+            }
         }
         
         &-services{
             opacity: 0;
             max-height: 0;
             overflow: hidden;
-            
-            margin-left: 2rem;
+            margin:  1rem 0 1rem 2rem;
 
-            transition: max-height .3s ease, opacity .3s ease;
+            @include transitionInOut( max-height, opacity);
+
+            @include less-than($widthPhone){
+                margin: 1rem 0 1rem 1rem;
+            }
 
             .#{$ID}-detail[data-#{$ID}-view-group] &{
                 opacity: 1;

@@ -53,9 +53,13 @@ export class TemplateAbstract extends LocalizedElementAbstract{
         return `
         <div class="${ID}-view-wrapper">
             <div class="${ID}-view">
-                <button ${PREFIX}view-hide>Close</button>
+                <svg class="${ID}-view-hide" ${PREFIX}view-hide viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <rect transform="rotate(135 50,50.45312118530273) " id="svg_2" height="8" width="70" y="46.45312" x="15" stroke-width="1.5" fill="#000"/>
+                        <rect transform="rotate(45 50.00000000000001,50.453125) " id="svg_1" height="8" width="70" y="46.45313" x="15" stroke-width="1.5" fill="#000"/>
+                    </g>
+                </svg>
                 <div class="${ID}-view-content">
-                    <div class="title">${html('Vos données personnelles')}</div>
                     ${content}
                 </div>
             </div>
@@ -68,10 +72,37 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     getNoServiceMarkup(){
         return this.wrapper(`
             <div class="${ID}-view-main">
-                <div class="${ID}-view-head">        
+                <div class="title">${html('Vos données personnelles')}</div>
+                <div class="${ID}-view-head">
                     ${html(`Ce site ne déclare pas de services qui pourraient recquérir et exploiter des données personnelles.`)}
                 </div>
             </div>`)
+    }
+
+    /**
+     * Return the wrapper content.
+     *
+     * @param {string} content 
+     */
+    getContent(markup){
+        return `
+        <div class="${ID}-view-main">
+            <div class="title">${html('Vos données personnelles')}</div>
+            <div class="${ID}-view-head">        
+                ${html(`Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
+                Certains de ces services peuvent recquérir et exploiter des données personnelles. 
+                Vous pouvez gérer leur activation via ce panneau accessible à tout moment.<br/>Vous pouvez également accéder et gérer en détail l'ensemble des services que le site propose.`)}
+            </div>
+
+            <div class="${ID}-view-quick">
+                <button ${PREFIX}all-enable="accept_all">${html('Tout accepter')}</button>
+                <button ${PREFIX}all-disable="deny_all">${html('Tout refuser')}</button>
+                <button ${PREFIX}view-toggle-detail>${html('Voir le détail')}</button>
+            </div>
+        </div>
+        <div class="${ID}-view-detail">
+            ${markup}
+        </div>`
     }
     
      /**
@@ -89,23 +120,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
                 break
         }
 
-        return this.wrapper(`
-            <div class="${ID}-view-main">
-                <div class="${ID}-view-head">        
-                    ${html(`Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
-                    Certains de ces services peuvent recquérir et exploiter des données personnelles. 
-                    Vous pouvez gérer leur activation via ce panneau accessible à tout moment.<br/>Vous pouvez également accéder et gérer en détail l'ensemble des services que le site propose.`)}
-                </div>
-
-                <div class="${ID}-view-quick">
-                    <button ${PREFIX}all-enable="accept_all">${html('Tout accepter')}</button>
-                    <button ${PREFIX}all-disable="deny_all">${html('Tout refuser')}</button>
-                    <button ${PREFIX}view-toggle-detail>${html('Voir le détail')}</button>
-                </div>
-            </div>
-            <div class="${ID}-view-detail">
-                ${markup}
-            </div>`)
+        return this.wrapper(this.getContent(markup))
     }
 
     
@@ -119,11 +134,14 @@ export class TemplateAbstract extends LocalizedElementAbstract{
         return `
             <div class="${ID}-view-service line"  ${PREFIX}service="${service.id}" ${PREFIX}status="${service.status}">
                 <div>
-                    <div class="service-name">${html(service.name)}</div>
-                    <div class="service-description">${html(service.description)}</div>
+                    <div class="${ID}-view-service-name">${html(service.name)}</div>
+                    <div class="${ID}-view-service-description">${html(service.description)}</div>
                 </div>
                 <div>
-                    <button data-egdpr-service-toggle="${service.id}">${html('Toggle')}</button>  
+                    <button data-egdpr-service-toggle="${service.id}">
+                        <span class="enable">${html('Activer')}</span>
+                        <span class="disable">${html('Désactiver')}</span>
+                    </button>  
                 </div>
             </div>
         `
@@ -139,15 +157,17 @@ export class TemplateAbstract extends LocalizedElementAbstract{
         <div class="${ID}-view-group">
             <div class="${ID}-view-group-head line" ${PREFIX}group="${group.id}" ${PREFIX}status="${group.status}">
                 <div>
-                    <div class="${ID}-view-group-title">${group.name}</div>
+                    <div class="${ID}-view-group-name">${group.name} ${group.isMandatory() ? `<span class='mandatory'>${html(`(nécessaire au fonctionnement du site)`)}</span>` : ''}</div>
                     <div class="${ID}-view-group-description">${group.description}</div>
-                    <div>Is Mandatory : ${group.isMandatory()}</div>
                     <div class="${ID}-view-group-detail">
-                        <a href="Javascript:void();" data-egdpr-group-toggle-detail="${group.id}">Detail</a>  
+                        <a class="more" href="Javascript:void();" data-egdpr-group-toggle-detail="${group.id}">Detail</a>  
                     </div>
                 </div>
                 <div class="${ID}-view-group-quick question">
-                    <button data-egdpr-group-toggle="${group.id}">Toggle all</button>
+                    <button data-egdpr-group-toggle="${group.id}">
+                        <span class="enable">${html('Tout activer')}</span>
+                        <span class="disable">${html('Tout désactiver')}</span>
+                    </button>
                 </div>
             </div>
 
