@@ -194,18 +194,23 @@ class ViewClass{
      */
     getViewData(){
         const data = {}
-        const groups = Wrapper.getGroupManager().getGroupsList();
+        const groupManager = Wrapper.getGroupManager()
+        const serviceManager = Wrapper.getServiceManager()
+        const groups = groupManager.getGroupsList();
         if(groups.length){
             data.type = 'group'
             data.data = {}
             data.data.groups = groups
-            data.data.ungrouped_services = Wrapper.getGroupManager().getUnGroupedServices()
+            data.data.ungrouped_services = groupManager.getUnGroupedServices()
+            if( data.data.ungrouped_services.length !== serviceManager.getServicesList().length ){
+                return data;
+            }
         }
-        else{
-            data.type = 'services'
-            data.data = {}
-            data.data.services = Wrapper.getServiceManager().getServicesList()
-        }
+        
+        // If no groups or no service in group :
+        data.type = 'services'
+        data.data = {}
+        data.data.services = Wrapper.getServiceManager().getServicesList()
 
         return data
     }
@@ -278,7 +283,7 @@ class ViewClass{
      * Get the markup of un^ped services using a pseudo Group 'other'
      */
     getUngroupedMarkup(ungroupedServicesList){
-        const pseudoGroup = Wrapper.createGroup('default', 'Other', '')
+        const pseudoGroup = Wrapper.createGroup('default', this.template.getUngroupedTitle(), '')
         ungroupedServicesList.map( service => pseudoGroup.addService(service))
         return this.getGroupMarkup(pseudoGroup, this.getServicesMarkupList(ungroupedServicesList))
     }

@@ -3,6 +3,7 @@ import { Group } from "easy-gdpr/src/core/groups/Group";
 import { html } from "easy-gdpr/src/core/local/LocalManager";
 import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElementAbstract";
 import { Wrapper } from "easy-gdpr/src/core/Wrapper";
+import { VirtualTimeScheduler } from "rxjs";
 
 export class TemplateAbstract extends LocalizedElementAbstract{
 
@@ -53,12 +54,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
         return `
         <div class="${ID}-view-wrapper">
             <div class="${ID}-view">
-                <svg class="${ID}-view-hide" ${PREFIX}view-hide viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <rect transform="rotate(135 50,50.45312118530273) " id="svg_2" height="8" width="70" y="46.45312" x="15" stroke-width="1.5" fill="#000"/>
-                        <rect transform="rotate(45 50.00000000000001,50.453125) " id="svg_1" height="8" width="70" y="46.45313" x="15" stroke-width="1.5" fill="#000"/>
-                    </g>
-                </svg>
+                <span class="${ID}-view-hide" ${PREFIX}view-hide>close</span>
                 <div class="${ID}-view-content">
                     ${content}
                 </div>
@@ -176,6 +172,10 @@ export class TemplateAbstract extends LocalizedElementAbstract{
             </div>
         </div>
         `
+    }
+
+    getUngroupedTitle(){
+        return html('Autre')
     }
 
     /**

@@ -92,7 +92,6 @@ class ServiceManagerClass{
         if( !this.getServiceById(service.id) ){
             // Add weight to service
             service.weight = typeof(serviceData.weight) !== 'undefined'  ? service.weight : this.services.length
-            debugger
             service.init()
             this.services.push(service)
 
@@ -131,13 +130,19 @@ class ServiceManagerClass{
             }
 
             // Proto
-            Object.getOwnPropertyNames(Object.getPrototypeOf(serviceData)).map(
-                propertyName => {
-                    service[propertyName] = serviceData[propertyName]
-                }
-            )
+            if(  Object.getOwnPropertyNames(Object.getPrototypeOf(serviceData)).indexOf('start') > -1 ){
+                Object.getOwnPropertyNames(Object.getPrototypeOf(serviceData)).map(
+                    propertyName => {
+                        service[propertyName] = serviceData[propertyName]
+                    }
+                )
 
-            service.setTranslations( serviceData.getDefaultTranslations() )
+                if( 'function' === typeof(serviceData.getDefaultTranslations) ){
+                    service.setTranslations( serviceData.getDefaultTranslations() )
+                }
+            }
+            
+            
         }
         
         return service

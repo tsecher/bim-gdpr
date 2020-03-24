@@ -5,8 +5,7 @@ import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElem
 import { ID } from "easy-gdpr/src/core/tools/Tools";
 
 // Accessibility out of webpack
-window[ID] = window[ID] || {}
-window[ID].core = Wrapper;
+window[ID] = window[ID] || Wrapper
 
 export const eGDPR = Wrapper
 export const eGDPREvents = WrapperEvents
