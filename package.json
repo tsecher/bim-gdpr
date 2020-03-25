@@ -31,6 +31,9 @@
     },
     "devDependencies": {
         "laravel-mix-easy-structure": "git+https://thomasse@bitbucket.org/thomasse/laravel-mix-easy-structure.git#1.0-dev",
+        "resolve-url-loader": "^3.1.0",
+        "sass": "^1.26.3",
+        "sass-loader": "^8.0.2",
         "vue-template-compiler": "^2.6.11"
     }
 }

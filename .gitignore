@@ -4,3 +4,4 @@ webpack.mix.local.js
 # Do not version dev build of services.
 /dev
 src/services/*/dev
+src/templates/*/dev

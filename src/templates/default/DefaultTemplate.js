@@ -12,7 +12,6 @@ export class DefaultTemplate extends TemplateAbstract{
         } catch (error) {
             document.addEventListener('DOMContentLoaded', () => this.persistentButton())
         }
-        
     }
 
     /**

@@ -1,3 +1,4 @@
 {
-    "/dist/egdpr.js": "/dist/egdpr.js"
+    "/src/templates/default/dist/default.js": "/src/templates/default/dist/default.js",
+    "/src/templates/default/dist/default-template.scss": "/src/templates/default/dist/default-template.scss"
 }
