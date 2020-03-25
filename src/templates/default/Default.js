@@ -1,12 +1,15 @@
 import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "../../core/tools/Tools";
-import { html } from "../../core/local/LocalManager";
-import { TemplateAbstract } from "../../core/view/TemplateAbstract";
 
-export class DefaultTemplate extends TemplateAbstract{
+export class Default{
 
     constructor(){
-        super('default-template')
+        this.id = 'default-template'
+    }
 
+    /**
+     * Init the template when loaded.
+     */
+    init(){
         try {
             this.persistentButton()
         } catch (error) {
@@ -19,7 +22,6 @@ export class DefaultTemplate extends TemplateAbstract{
      */
     persistentButton(){
         const button = document.createElement('div')
-        button.innerHTML = html('Vos données personnelles')
         button.classList.add( `${ID}-persistent`)
         button.setAttribute(`${PREFIX}view-show`, '')
         button.innerHTML = `<svg class="${ID}-persistent-logo" viewBox="0 0 100 100" x="0" y="0" xmlns="http://www.w3.org/2000/svg">
@@ -104,12 +106,17 @@ export class DefaultTemplate extends TemplateAbstract{
         </div>`
     }
 
+    /**
+     * Return the content of the view.
+     *
+     * @param {string} markup 
+     */
     getContent(markup){
         return `
         <div class="${ID}-view-main">
-            <div class="title">${html('Vos données personnelles')}</div>
+            <div class="title">${this.html('Vos données personnelles')}</div>
             <div class="${ID}-view-head">        
-                ${html(`Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
+                ${this.html(`Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
                 Certains de ces services peuvent recquérir et exploiter des données personnelles. 
                 Vous pouvez gérer leur activation via ce panneau accessible à tout moment.<br/>Vous pouvez également accéder et gérer en détail l'ensemble des services que le site propose.`)}
             </div>
@@ -122,10 +129,10 @@ export class DefaultTemplate extends TemplateAbstract{
                         <rect stroke="null" transform="rotate(45 30.14121246337889,65.61316680908203) " id="svg_1" height="8" width="31.10913" y="61.61317" x="14.58665" stroke-width="1.5" fill="#000"/>
                     </g>
                 </svg>
-                    ${html('Tout accepter')}
+                    ${this.html('Tout accepter')}
                 </button>
-                <button ${PREFIX}all-disable="deny_all">${html('Tout refuser')}</button>
-                <button ${PREFIX}view-toggle-detail>${html('Voir le détail')}</button>
+                <button ${PREFIX}all-disable="deny_all">${this.html('Tout refuser')}</button>
+                <button ${PREFIX}view-toggle-detail>${this.html('Voir le détail')}</button>
             </div>
         </div>
         <div class="${ID}-view-detail">
@@ -147,13 +154,13 @@ export class DefaultTemplate extends TemplateAbstract{
                     </svg>
                 </div>
                 <div class="line-content">
-                    <div class="${ID}-view-service-name">${html(service.name)}${this.getMandatoryText(service)}</div>
-                    <div class="${ID}-view-service-description">${html(service.description)}</div>
+                    <div class="${ID}-view-service-name">${this.html(service.name)}${this.getMandatoryText(service)}</div>
+                    <div class="${ID}-view-service-description">${this.html(service.description)}</div>
                 </div>
                 <div>
                     <button ${PREFIX}service-toggle="${service.id}">
-                        <span class="enable">${html('Activer')}</span>
-                        <span class="disable">${html('Désactiver')}</span>
+                        <span class="enable">${this.html('Activer')}</span>
+                        <span class="disable">${this.html('Désactiver')}</span>
                     </button>  
                 </div>
             </div>
@@ -183,8 +190,8 @@ export class DefaultTemplate extends TemplateAbstract{
                 </div>
                 <div class="${ID}-view-group-quick question">
                     <button ${PREFIX}group-toggle="${group.id}">
-                        <span class="enable">${html('Tout activer')}</span>
-                        <span class="disable">${html('Tout désactiver')}</span>
+                        <span class="enable">${this.html('Tout activer')}</span>
+                        <span class="disable">${this.html('Tout désactiver')}</span>
                     </button>
                 </div>
             </div>
@@ -196,7 +203,17 @@ export class DefaultTemplate extends TemplateAbstract{
         `
     }
 
+    /**
+     * Return the mandatory text.
+     *
+     * @param {*} element 
+     */
     getMandatoryText(element){
-        return element.isMandatory() ? ` <span class='mandatory-mention'>${html(`(nécessaire au fonctionnement du site)`)}</span>` : ''
+        return element.isMandatory() ? ` <span class='mandatory-mention'>${this.html(`(nécessaire au fonctionnement du site)`)}</span>` : ''
     }
 }
+
+// Accessibility out of webpack
+window[ID] = window[ID] || {}
+window[ID]['template_class'] = window[ID]['template_class'] || {};
+window[ID]['template_class']['Default'] = Default;

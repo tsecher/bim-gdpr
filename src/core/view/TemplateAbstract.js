@@ -14,7 +14,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     /**
      * Init the template.
      */
-    init(){
+    initTemplate(){
         super.init()
         this.getCssList().map( css => Wrapper.addCss(css) )
         
@@ -173,6 +173,19 @@ export class TemplateAbstract extends LocalizedElementAbstract{
         `
     }
 
+    /**
+     * Element to translate.
+     *
+     * @param {string} id 
+     * @param {*} data 
+     */
+    html(id, data){
+        return html(id, data)
+    }
+
+    /**
+     * Return the pseudo group text.
+     */
     getUngroupedTitle(){
         return html('Autre')
     }
@@ -187,5 +200,5 @@ export class TemplateAbstract extends LocalizedElementAbstract{
      * Temp dom remove.
      */
     getHidePromise(){
-    }    
+    }
 }

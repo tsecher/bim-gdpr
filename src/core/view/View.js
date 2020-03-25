@@ -5,14 +5,10 @@ import { ServiceEvents } from "../services/ServiceEvents";
 import { Service } from '../services/Service';
 import { GroupEvents } from "../groups/GroupEvents";
 import { PREFIX, checkInterface } from "../tools/Tools";
-import { DefaultTemplate } from "../../templates/default/DefaultTemplate";
+import { Default } from "../../templates/default/Default";
 
 
 export const TemplateInterface = {
-    getNoServiceMarkup: function(){},
-    getViewMarkup: function(){},
-    getServiceMarkup: function(){},
-    getGroupMarkup: function(){},
     init: function(){},
 }
 
@@ -21,7 +17,8 @@ class ViewClass{
     constructor(){
         this.timeoutValue = 200
         this.rebuildTimeout = null
-        this.template = new DefaultTemplate()
+        this.template = this.overrideTemplate(new Default())
+        this.template.force = true
         this.needsRebuild('all')
     }
 
@@ -111,16 +108,74 @@ class ViewClass{
 
     /**
      * Update the template.
-     * @param {Template} template 
+     * @param {*} templateData
      */
-    setTemplate(template){
-        if( checkInterface(TemplateInterface, template, Wrapper.logsAreEnabled()) ){
+    setTemplate(templateData){
+        let template = templateData
+        if( !this.isTemplate(templateData) ){
+            template = this.overrideTemplate(templateData, Wrapper.logsAreEnabled())
+            if( !template ){
+                if( Wrapper.logsAreEnabled() ){
+                    console.error('Bad template')
+                }
+                return this
+            }
+        }
+
+        if( this.template != template || template.force){
+            // Init template.
             this.template = template
+            this.template.initTemplate()
             this.template.init()
             Wrapper.trigger(ViewEvents.needsRebuild, {type:'all'})
         }
+
+        
         
         return this
+    }
+
+    /**
+     * Return a template from obj that match Template Interface
+     * @param {*} templateData
+     */
+    overrideTemplate(templateData, logs=false){
+        let template = null
+        if( checkInterface( TemplateInterface, templateData, logs) ){
+            template = new TemplateAbstract()
+            // Pseudo extension from object.
+            for( let i in templateData){
+                template[i] = templateData[i]
+            }
+
+            // Proto
+            if(  Object.getOwnPropertyNames(Object.getPrototypeOf(templateData)).indexOf('init') > -1 ){
+                Object.getOwnPropertyNames(Object.getPrototypeOf(templateData)).map(
+                    propertyName => {
+                        template[propertyName] = templateData[propertyName]
+                    }
+                )
+
+                
+
+                if( 'function' === typeof(templateData.getDefaultTranslations) ){
+                    template.setTranslations( templateData.getDefaultTranslations() )
+                }
+                if( 'function' === typeof(templateData.getDefaultCssList) ){
+                    template.setCssList( templateData.getDefaultCssList() )
+                }
+            }            
+        }
+        
+        return template
+    }
+
+    /**
+     * Check if data is an eligible tempalte
+     * @param {*} templateData 
+     */
+    isTemplate(templateData){
+        return templateData instanceof TemplateAbstract
     }
 
     /**
