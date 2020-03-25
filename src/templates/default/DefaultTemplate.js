@@ -1,6 +1,6 @@
-import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "easy-gdpr/src/core/tools/Tools";
-import { html } from "easy-gdpr/src/core/local/LocalManager";
-import { TemplateAbstract } from "easy-gdpr/src/core/view/TemplateAbstract";
+import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "../../core/tools/Tools";
+import { html } from "../../core/local/LocalManager";
+import { TemplateAbstract } from "../../core/view/TemplateAbstract";
 
 export class DefaultTemplate extends TemplateAbstract{
 

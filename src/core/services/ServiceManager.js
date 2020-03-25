@@ -1,8 +1,8 @@
-import { Service } from "Service";
-import { ServiceEvents } from "ServiceEvents";
+import { Service } from "./Service";
+import { ServiceEvents } from "./ServiceEvents";
 import { sortByWeight, checkInterface } from "../tools/Tools";
 import { Wrapper } from "../Wrapper";
-import { ServiceStatusManager, ServiceStatus, Cookies} from "ServiceStatusManager";
+import { ServiceStatusManager, ServiceStatus, Cookies} from "./ServiceStatusManager";
 
 /**
  * The service interface.

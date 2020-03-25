@@ -1,6 +1,6 @@
 import { Wrapper } from "../Wrapper";
 import { sortByWeight } from "../tools/Tools";
-import { GroupEvents } from "GroupEvents";
+import { GroupEvents } from "./GroupEvents";
 import { ServiceStatus } from "../services/ServiceStatusManager";
 
 export class Group{

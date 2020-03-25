@@ -1,7 +1,7 @@
 import { Wrapper } from "../Wrapper";
 import { PREFIX, ID } from "../tools/Tools";
-import { View } from "View";
-import { ViewEvents } from "ViewEvents";
+import { View } from "./View";
+import { ViewEvents } from "./ViewEvents";
 
 class ViewManagerClass{
 

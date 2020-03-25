@@ -1,4 +1,4 @@
-import { LocalManager } from "LocalManager";
+import { LocalManager } from "./LocalManager";
 
 export class LocalizedElementAbstract{
 

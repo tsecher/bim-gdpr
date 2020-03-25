@@ -1,7 +1,7 @@
-import { Group } from "Group";
+import { Group } from "./Group";
 import { sortByWeight } from "../tools/Tools";
 import { Wrapper } from "../Wrapper";
-import { GroupEvents } from "GroupEvents";
+import { GroupEvents } from "./GroupEvents";
 import { ViewEvents } from "../view/ViewEvents";
 
 

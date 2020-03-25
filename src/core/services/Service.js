@@ -1,6 +1,6 @@
 import { Wrapper } from "../Wrapper";
-import { ServiceEvents } from "ServiceEvents";
-import { ServiceStatusManager, ServiceStatus } from "ServiceStatusManager";
+import { ServiceEvents } from "./ServiceEvents";
+import { ServiceStatusManager, ServiceStatus } from "./ServiceStatusManager";
 import { LocalizedElementAbstract } from "../local/LocalizedElementAbstract";
 
 export class Service extends LocalizedElementAbstract{
