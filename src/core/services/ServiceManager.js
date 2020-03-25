@@ -1,8 +1,8 @@
-import { Service } from "easy-gdpr/src/core/services/Service";
-import { ServiceEvents } from "easy-gdpr/src/core/services/ServiceEvents";
-import { sortByWeight, checkInterface } from "easy-gdpr/src/core/tools/Tools";
-import { Wrapper } from "easy-gdpr/src/core/Wrapper";
-import { ServiceStatusManager, ServiceStatus, Cookies} from "easy-gdpr/src/core/services/ServiceStatusManager";
+import { Service } from "Service";
+import { ServiceEvents } from "ServiceEvents";
+import { sortByWeight, checkInterface } from "../tools/Tools";
+import { Wrapper } from "../Wrapper";
+import { ServiceStatusManager, ServiceStatus, Cookies} from "ServiceStatusManager";
 
 /**
  * The service interface.

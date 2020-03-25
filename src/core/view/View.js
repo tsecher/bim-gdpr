@@ -1,11 +1,11 @@
-import { Wrapper } from "easy-gdpr/src/core/Wrapper";
-import { ViewEvents } from "easy-gdpr/src/core/view/ViewEvents";
-import { Group } from "easy-gdpr/src/core/groups/Group";
-import { ServiceEvents } from "easy-gdpr/src/core/services/ServiceEvents";
-import { Service } from 'easy-gdpr/src/core/services/Service';
-import { GroupEvents } from "easy-gdpr/src/core/groups/GroupEvents";
-import { PREFIX, checkInterface } from "easy-gdpr/src/core/tools/Tools";
-import { DefaultTemplate } from "easy-gdpr/src/templates/default/DefaultTemplate";
+import { Wrapper } from "../Wrapper";
+import { ViewEvents } from "../view/ViewEvents";
+import { Group } from "../groups/Group";
+import { ServiceEvents } from "../services/ServiceEvents";
+import { Service } from '../services/Service';
+import { GroupEvents } from "../groups/GroupEvents";
+import { PREFIX, checkInterface } from "../tools/Tools";
+import { DefaultTemplate } from "../../templates/default/DefaultTemplate";
 
 
 export const TemplateInterface = {

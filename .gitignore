@@ -1,0 +1,5 @@
+# Ignore local configuration files.
+webpack.mix.local.js
+
+# Do not version dev build of services.
+src/services/*/dev

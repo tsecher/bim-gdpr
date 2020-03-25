@@ -1,9 +1,8 @@
-import { ID, PREFIX, CDN } from "easy-gdpr/src/core/tools/Tools";
-import { Group } from "easy-gdpr/src/core/groups/Group";
-import { html } from "easy-gdpr/src/core/local/LocalManager";
-import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElementAbstract";
-import { Wrapper } from "easy-gdpr/src/core/Wrapper";
-import { VirtualTimeScheduler } from "rxjs";
+import { ID, PREFIX, CDN } from "../tools/Tools";
+import { Group } from "../groups/Group";
+import { html } from "../local/LocalManager";
+import { LocalizedElementAbstract } from "../local/LocalizedElementAbstract";
+import { Wrapper } from "../Wrapper";
 
 export class TemplateAbstract extends LocalizedElementAbstract{
 

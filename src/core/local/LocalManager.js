@@ -1,4 +1,4 @@
-import {PREFIX, ID, LANGUAGE_TOKEN} from 'easy-gdpr/src/core/tools/Tools'
+import {PREFIX, ID, LANGUAGE_TOKEN} from '../tools/Tools'
 
 class LocalManagerClass{
 

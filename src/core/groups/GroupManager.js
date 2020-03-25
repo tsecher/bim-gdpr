@@ -1,8 +1,8 @@
-import { Group } from "easy-gdpr/src/core/groups/Group";
-import { sortByWeight } from "easy-gdpr/src/core/tools/Tools";
-import { Wrapper } from "easy-gdpr/src/core/Wrapper";
-import { GroupEvents } from "easy-gdpr/src/core/groups/GroupEvents";
-import { ViewEvents } from "easy-gdpr/src/core/view/ViewEvents";
+import { Group } from "Group";
+import { sortByWeight } from "../tools/Tools";
+import { Wrapper } from "../Wrapper";
+import { GroupEvents } from "GroupEvents";
+import { ViewEvents } from "../view/ViewEvents";
 
 
 /**

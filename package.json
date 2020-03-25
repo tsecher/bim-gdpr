@@ -1,51 +1,36 @@
 {
-  "_args": [
-    [
-      "git+https://github.com/tsecher/easy-gdpr.git",
-      "/Users/thomassecher/Sites/javascript_repos/test/src"
-    ]
-  ],
-  "_from": "git+https://github.com/tsecher/easy-gdpr.git",
-  "_id": "easy-gdpr@git+https://github.com/tsecher/easy-gdpr.git#c4368f284d40397ffc85e5bcdf5e6cce6933210d",
-  "_inBundle": false,
-  "_integrity": "",
-  "_location": "/easy-gdpr",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "git",
-    "raw": "git+https://github.com/tsecher/easy-gdpr.git",
-    "rawSpec": "git+https://github.com/tsecher/easy-gdpr.git",
-    "saveSpec": "git+https://github.com/tsecher/easy-gdpr.git",
-    "fetchSpec": "https://github.com/tsecher/easy-gdpr.git",
-    "gitCommittish": null
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "git+https://github.com/tsecher/easy-gdpr.git#c4368f284d40397ffc85e5bcdf5e6cce6933210d",
-  "_spec": "git+https://github.com/tsecher/easy-gdpr.git",
-  "_where": "/Users/thomassecher/Sites/javascript_repos/test/src",
-  "author": {
-    "name": "Thomas Sécher"
-  },
-  "bugs": {
-    "url": "https://github.com/tsecher/easy-gdpr/issues"
-  },
-  "dependencies": {
-    "rxjs": "^6.5.4"
-  },
-  "description": "Easy GDPR tools",
-  "homepage": "https://github.com/tsecher/easy-gdpr#readme",
-  "keywords": [
-    "gdpr"
-  ],
-  "license": "ISC",
-  "main": "index.js",
-  "name": "easy-gdpr",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tsecher/easy-gdpr.git"
-  },
-  "scripts": {},
-  "version": "1.0.0"
+    "name": "easy-gdpr",
+    "version": "1.0.0",
+    "description": "Easy GDPR tools",
+    "main": "index.js",
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tsecher/easy-gdpr.git"
+    },
+    "keywords": [
+        "gdpr"
+    ],
+    "author": "Thomas Sécher",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/tsecher/easy-gdpr/issues"
+    },
+    "homepage": "https://github.com/tsecher/easy-gdpr#readme",
+    "dependencies": {
+        "rxjs": "^6.5.4",
+        "scriptjs": "^2.5.9",
+        "js-cookie": "^2.2.1"
+    },
+    "devDependencies": {
+        "laravel-mix-easy-structure": "git+https://thomasse@bitbucket.org/thomasse/laravel-mix-easy-structure.git#1.0-dev",
+        "vue-template-compiler": "^2.6.11"
+    }
 }

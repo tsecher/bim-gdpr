@@ -1,10 +1,9 @@
-// import { Service } from "easy-gdpr/src/core/services/Service";
-import { CDN, ID, LANGUAGE_TOKEN } from "easy-gdpr/src/core/tools/Tools";
+import { CDN, ID, LANGUAGE_TOKEN } from "../../core/tools/Tools";
+
 
 export class GTAGService {
 
     constructor(guaid, id, name, description){
-
         // Init
         this.id = id || 'gtag'
         this.name =  name || 'Google Analytics'

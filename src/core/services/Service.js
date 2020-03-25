@@ -1,7 +1,7 @@
-import { Wrapper } from "easy-gdpr/src/core/Wrapper";
-import { ServiceEvents } from "easy-gdpr/src/core/services/ServiceEvents";
-import { ServiceStatusManager, ServiceStatus } from "easy-gdpr/src/core/services/ServiceStatusManager";
-import { LocalizedElementAbstract } from "easy-gdpr/src/core/local/LocalizedElementAbstract";
+import { Wrapper } from "../Wrapper";
+import { ServiceEvents } from "ServiceEvents";
+import { ServiceStatusManager, ServiceStatus } from "ServiceStatusManager";
+import { LocalizedElementAbstract } from "../local/LocalizedElementAbstract";
 
 export class Service extends LocalizedElementAbstract{
     

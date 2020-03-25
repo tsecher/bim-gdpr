@@ -1,11 +1,11 @@
 import { GroupManager } from './groups/GroupManager'
-import { ServiceManager } from 'easy-gdpr/src/core/services/ServiceManager';
-import { ViewManager } from 'easy-gdpr/src/core/view/ViewManager';
+import { ServiceManager } from './services/ServiceManager';
+import { ViewManager } from './view/ViewManager';
 import { Subject } from 'rxjs';
-import { Service } from 'easy-gdpr/src/core/services/Service';
-import { Group } from 'easy-gdpr/src/core/groups/Group';
-import { ServiceEvents } from 'easy-gdpr/src/core/services/ServiceEvents';
-import { LocalManager } from 'easy-gdpr/src/core/local/LocalManager';
+import { Service } from './services/Service';
+import { Group } from './groups/Group';
+import { ServiceEvents } from './services/ServiceEvents';
+import { LocalManager } from './local/LocalManager';
 
 const $scriptjs = require('scriptjs')
 

@@ -1,4 +1,4 @@
-import { LocalManager } from "easy-gdpr/src/core/local/LocalManager";
+import { LocalManager } from "LocalManager";
 
 export class LocalizedElementAbstract{
 

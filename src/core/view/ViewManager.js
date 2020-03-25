@@ -1,7 +1,7 @@
-import { Wrapper } from "easy-gdpr/src/core/Wrapper";
-import { View } from "easy-gdpr/src/core/view/View";
-import { PREFIX, ID } from "easy-gdpr/src/core/tools/Tools";
-import { ViewEvents } from "easy-gdpr/src/core/view/ViewEvents";
+import { Wrapper } from "../Wrapper";
+import { PREFIX, ID } from "../tools/Tools";
+import { View } from "View";
+import { ViewEvents } from "ViewEvents";
 
 class ViewManagerClass{
 
