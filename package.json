@@ -11,7 +11,7 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "egdpr": "node ./contrib/forge/forge.js",
-        "postinstall": "node ./src/contrib/post_install.js"
+        "postinstall": "node ./contrib/post_install.js"
     },
     "repository": {
         "type": "git",
