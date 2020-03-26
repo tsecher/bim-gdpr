@@ -1,4 +1,4 @@
-import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "../../core/tools/Tools";
+import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "{ImportPath}core/tools/Tools";
 
 export class {TemplateClass}{
 
@@ -33,7 +33,7 @@ export class {TemplateClass}{
      */
     getDefaultCssList(){
         return [
-            CDN + `src/templates/{TemplateId}/dist/{TemplateId}.css`
+            {CommentCDN}CDN + `src/templates/{TemplateId}/dist/{TemplateId}.css`
         ]
     }
     /**
@@ -41,7 +41,7 @@ export class {TemplateClass}{
      */
     getDefaultTranslations(){
         return [
-            CDN + `src/templates/{TemplateId}/translations/${LANGUAGE_TOKEN}.json`
+            {CommentCDN}CDN + `src/templates/{TemplateId}/translations/${LANGUAGE_TOKEN}.json`
         ]
     }
 

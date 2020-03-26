@@ -1,4 +1,4 @@
-import { CDN, ID, LANGUAGE_TOKEN } from "../../core/tools/Tools";
+import { CDN, ID, LANGUAGE_TOKEN } from "{ImportPath}core/tools/Tools";
 
 /**
  * class {ServiceClass}
@@ -23,7 +23,7 @@ export class {ServiceClass} {
      */
     getDefaultTranslations(){
         return [
-            CDN + `src/services/{ServiceId}/translations/${LANGUAGE_TOKEN}.json`,
+            {CommentCDN}CDN + `src/services/{ServiceId}/translations/${LANGUAGE_TOKEN}.json`,
         ]
     }
 

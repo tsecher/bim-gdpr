@@ -67,7 +67,12 @@ class TemplateForge{
             .run(
                 from,
                 to,
-                data
+                {...{
+                    '{ImportPath}': this.sharedType ? '../../' : 'easy-gdpr/src/',
+                    '{CommentCDN}': this.sharedType ? '' : '//',
+                    },
+                    ...data
+                }
             );
     }
 }
