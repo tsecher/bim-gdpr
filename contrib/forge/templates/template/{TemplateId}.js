@@ -33,7 +33,7 @@ export class {TemplateClass}{
      */
     getDefaultCssList(){
         return [
-            CDN + `src/templates/{TemplateId}/css/{TemplateId}.css`
+            CDN + `src/templates/{TemplateId}/dist/{TemplateId}.css`
         ]
     }
     /**
@@ -73,6 +73,7 @@ export class {TemplateClass}{
         <div class="${ID}-view-overlay">
             <div class="${ID}-view-wrapper">
                 <div class="${ID}-view">
+                    <span class="${ID}-view-hide" ${PREFIX}view-hide>${this.html('Fermer')}</span>
                     <div class="${ID}-view-content">
                         ${content}
                     </div>

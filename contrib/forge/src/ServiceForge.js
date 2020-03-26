@@ -3,6 +3,10 @@ const prompts = require('prompts')
 
 class ServiceForge{
 
+    constructor(sharedType){
+        this.sharedType = sharedType
+    }
+
     /**
      * Start process.
      */
@@ -56,15 +60,21 @@ class ServiceForge{
      * Write files.
      */
     process(data){
-        const to =  `./src/services/${data['{ServiceId}']}/`
+        let from = `./contrib/forge/templates/service/`
+        let to =  `./src/services/${data['{ServiceId}']}/`
+
+        if( !this.sharedType ){
+            to = to.replace('/src/', '/easy-gdpr/')
+            from = './node_modules/easy-gdpr/' + from
+        }       
 
         this.tpl = new TplManager()
             .run(
-                './contrib/forge/templates/service/',
+                from,
                 to,
                 data
             );
     }
 }
 
-module.exports = new ServiceForge()
+module.exports = ServiceForge

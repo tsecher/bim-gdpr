@@ -3,6 +3,10 @@ const prompts = require('prompts')
 
 class TemplateForge{
 
+    constructor(sharedType){
+        this.sharedType = sharedType
+    }
+
     /**
      * Start process.
      */
@@ -51,15 +55,21 @@ class TemplateForge{
      * Write files.
      */
     process(data){
-        const to =  `./src/templates/${data['{TemplateId}']}/`
+        let from = `./contrib/forge/templates/template/`
+        let to =  `./src/templates/${data['{TemplateId}']}/`
+
+        if( !this.sharedType ){
+            to = to.replace('/src/', '/easy-gdpr/')
+            from = './node_modules/easy-gdpr/' + from
+        }
 
         this.tpl = new TplManager()
             .run(
-                './contrib/forge/templates/template/',
+                from,
                 to,
                 data
             );
     }
 }
 
-module.exports = new TemplateForge()
+module.exports = TemplateForge

@@ -6,6 +6,7 @@ import { Service } from '../services/Service';
 import { GroupEvents } from "../groups/GroupEvents";
 import { PREFIX, checkInterface } from "../tools/Tools";
 import { Default } from "../../templates/default/Default";
+import { TemplateAbstract } from "./TemplateAbstract";
 
 
 export const TemplateInterface = {
