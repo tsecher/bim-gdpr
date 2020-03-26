@@ -1,0 +1,55 @@
+.#{$ID}-view{
+
+    // overlay
+    &-overlay{
+        position: fixed;
+        z-index: 99999;
+        background: rgba($color-bg, 0);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        @include transition(background);
+
+        .#{$ID}-on &{
+            background: rgba($color-bg, .7)
+        }
+    }
+
+    &-wrapper{
+        $width: 4rem;
+
+        background: $color-bg;
+        z-index: 999;
+        max-width: $width;
+        max-height: $width;
+        width: auto;
+        height: 100%;
+        right:calc( -#{$width}/2 );
+        top:calc( 100% - #{$width}/2 );
+        border-radius: 100vw 0 0 0;
+
+        overflow: auto;
+        
+        position: absolute;
+        opacity: 1;
+        box-shadow: 0 0 10rem 1rem rgba(0,0,0,.2);
+        
+        @include transitionInOut(right, top, border-radius, max-width, max-height);
+
+        .#{$ID}-on &{
+            right: 0;
+            top: 0;
+            opacity: 1;
+            border-radius: 0;
+            max-width: 100%;
+            max-height: 100%;
+
+            @include less-than($widthPhone){
+                top: 30%;
+                max-height: 70%;
+            }
+        }
+    }
+}

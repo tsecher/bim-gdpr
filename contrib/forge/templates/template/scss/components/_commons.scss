@@ -1,0 +1,18 @@
+// Enable / Disable
+[data-egdpr-group], [data-egdpr-service]{
+    &[data-egdpr-status="1"]{
+        .enable{
+            display: none;
+        }
+        .disable{
+            display: inline;
+        }
+    }
+
+    .enable{
+        display: inline;
+    }
+    .disable{
+        display: none;
+    }
+}

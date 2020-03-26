@@ -1,3 +1,4 @@
 {
-    "/src/services/patate/dev/patate.js": "/src/services/patate/dev/patate.js"
+    "/src/templates/popup/dev/popup.js": "/src/templates/popup/dev/popup.js",
+    "/src/templates/popup/dev/popup.css": "/src/templates/popup/dev/popup.css"
 }
