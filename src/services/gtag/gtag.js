@@ -39,5 +39,5 @@ export class GTAGService {
 
 // Accessibility out of webpack
 window[ID] = window[ID] || {}
-window[ID]['services_class'] = window[ID]['services'] || {};
+window[ID]['services_class'] = window[ID]['services_class'] || {};
 window[ID]['services_class']['GTAGService'] = GTAGService;
