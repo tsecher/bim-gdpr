@@ -8,7 +8,6 @@ import { CDN, ID, LANGUAGE_TOKEN } from "{ImportPath}core/tools/Tools";
 export class {ServiceClass} {
 
     constructor(id, name, description){
-        // Init
         this.id = id || '{ServiceId}'
         this.name =  name || "{ServiceName}"
         this.description = description || "{ServiceDescription}"
