@@ -170,8 +170,8 @@ export class {TemplateClass}{
                 </div>
 
                 <div class="${ID}-view-quick">
-                    <button ${PREFIX}all-enable="accept_all">${this.html('Tout accepter')}</button>
-                    <button ${PREFIX}all-disable="deny_all">${this.html('Tout refuser')}</button>
+                    <button ${PREFIX}all-enable="accept_all">${this.html('Tout activer')}</button>
+                    <button ${PREFIX}all-disable="deny_all">${this.html('Tout désactiver')}</button>
                     <button ${PREFIX}view-toggle-detail>${this.html('Détail')}</button>
                 </div>
             </div>
