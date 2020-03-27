@@ -115,6 +115,7 @@ class ViewManagerClass{
             // Considering that pending elements are now disabled, because no explicit consentment but 
             // user has been prompted.
             if( !Wrapper.testMode ){
+                Wrapper.getServiceManager().enableService(Wrapper.getServiceManager().getMandatoryServicesList())
                 Wrapper.getServiceManager().disableService(Wrapper.getServiceManager().getPendingServices())
             }
             Wrapper.trigger(ViewEvents.hideView, {})

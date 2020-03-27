@@ -95,10 +95,6 @@ class ServiceManagerClass{
             service.init()
             this.services.push(service)
 
-            // Init mandatory services.
-            if(!service.isEnabled() && service.isMandatory()){
-                this.enableService(service)
-            }
             // Init enabled services.
             if( service.isEnabled() ){
                 this.startService(service)
@@ -140,11 +136,8 @@ class ServiceManagerClass{
                 if( 'function' === typeof(serviceData.getDefaultTranslations) ){
                     service.setTranslations( serviceData.getDefaultTranslations() )
                 }
-            }
-            
-            
+            }            
         }
-        
         return service
     }
 
