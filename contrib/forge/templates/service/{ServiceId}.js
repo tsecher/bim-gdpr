@@ -11,14 +11,17 @@ export class {ServiceClass} {
         this.id = id || '{ServiceId}'
         this.name =  name || "{ServiceName}"
         this.description = description || "{ServiceDescription}"
+        this.defaultLanguage = 'fr'
     }
 
     /**
-     * Return the list of translation files. 
+     * Return the default list of translation files.
      * 
-     * Each path should contain the {LANGUAGE_TOKEN} that will be replaced
-     * by the user language.
-     * Please, try to use CDN.
+     * Must return a list of translations files url. Each url should contain a ${LANGUAGE_TOKEN} char, that 
+     * will be replaced by the user language. For instance, a french user will load the file
+     *  'CDN + `src/templates/{TemplateId}/translations/fr-FR.json`'
+     * 
+     * @returns {Array}
      */
     getDefaultTranslations(){
         return [
@@ -28,6 +31,11 @@ export class {ServiceClass} {
 
     /**
      * Return the list of pattern that match the possible service cookie name.
+     * 
+     * All the cookies which name matches any of these pattern will be removed, when
+     * service is disabled.
+     * 
+     * @returns {Array}
      */
     getCookiePatterns(){
         return [/{ServiceId}/]
@@ -35,6 +43,8 @@ export class {ServiceClass} {
     
     /**
      * Return the list of related external scripts
+     * 
+     * @returns {Array}
      */
     getRelatedScripts(){
         return [
@@ -43,7 +53,7 @@ export class {ServiceClass} {
     }
 
     /**
-     * What to do when the service is enabled and starts up.
+     * What to do when the service is enabled and is startings.
      */
     start(){
         // @todo

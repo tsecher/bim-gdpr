@@ -53,6 +53,7 @@ export class {TemplateClass}{
             {CommentCDN}CDN + `src/templates/{TemplateId}/dist/{TemplateId}.css`
         ]
     }
+    
     /**
      * Return the default list of translation files.
      * 
