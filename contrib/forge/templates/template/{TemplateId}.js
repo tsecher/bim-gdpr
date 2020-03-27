@@ -153,12 +153,12 @@ export class {TemplateClass}{
         let markup = ''   
 
         // Handle different case of render, in case of group or not.
-        switch(content.type){
+        switch(contentData.type){
             case 'groups':
-                markup = content.groups.join('')
+                markup = contentData.groups.join('')
                 break
             case 'services':
-                markup = content.services.join('')
+                markup = contentData.services.join('')
                 break
         }
 

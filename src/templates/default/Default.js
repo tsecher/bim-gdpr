@@ -52,7 +52,7 @@ export class Default{
      */
     getDefaultCssList(){
         return [
-            CDN + `src/templates/default/css/default-template.css`
+            CDN + `src/templates/default/dist/default.css`
         ]
     }
     /**

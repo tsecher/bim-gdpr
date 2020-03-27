@@ -1,0 +1,14 @@
+.#{$ID}{
+    // Group markup.
+    &-view-group{
+        // Services of the group are hidden by default.
+        &-services{
+            display: none;
+
+            // Display services when detail is on.
+            .#{$ID}-detail[data-#{$ID}-view-group] &{
+                display: block;
+            }
+        }
+    }
+}

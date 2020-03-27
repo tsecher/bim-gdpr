@@ -1,6 +1,6 @@
 .#{$ID}-view{
 
-    // overlay
+    // Overlay.
     &-overlay{
         position: fixed;
         z-index: 99999;
@@ -17,6 +17,7 @@
         }
     }
 
+    // Wrapper of the view.
     &-wrapper{
         background: $color-bg;
         z-index: 999;
@@ -24,8 +25,6 @@
         height: 40vh;
         top: 30vh;
         left: 30vw;
-
-        overflow: auto;
         position: absolute;
         opacity: 0;
         box-shadow: 0 0 10rem 1rem rgba(0,0,0,.2);
@@ -41,32 +40,39 @@
 
     // View
     &{
-        margin: 3rem;
         opacity: 0;
         transition: opacity .3s ease;
         transition-delay: 0s;
+        position: relative;
+        padding: 3rem 1rem 1rem;
+        height: calc( 100% - 4rem );
         .#{$ID}-on &{
             transition-delay: .3s;
             opacity: 1;
         }
-
-        @include less-than($widthPhone){
-            margin: 0;
-        }
     }
 
-    // Detail
-    &-detail{
-        height: 0;
-        overflow: hidden;
-        opacity: 0;
+    // Content.
+    &-content{
+        height: 100%;
+        overflow: auto;
+        margin: 0;
+    }
 
+    // Hide button.
+    &-hide{
+        position: absolute;
+        right: 1rem;
+        top: 1rem;       
+    }
+
+    // Detail.
+    &-detail{
+        display: none;
+
+        // Display the detail pannel.
         .#{$ID}-detail &{
-            height: auto;
-            opacity: 1;
-            
-            padding-left: 3rem;
-            position: relative;
+            display: block;
         }
     }
 }
