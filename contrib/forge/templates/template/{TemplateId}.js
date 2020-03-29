@@ -166,7 +166,7 @@ export class {TemplateClass}{
         const content = `
             <div class="${ID}-view-main">
                 <div class="${ID}-view-head">        
-                    ${this.html(`This site uses some services that enhance your user experience or add some external content. Some of these can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage theme by clicking on \"Detail\".`)}
+                    ${this.html(`This site uses some services that enhance your user experience or add some external content. Some of these can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage theme by clicking on <strong>Detail</strong>.`)}
                 </div>
 
                 <div class="${ID}-view-quick">
