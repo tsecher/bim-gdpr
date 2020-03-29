@@ -21,7 +21,13 @@ switch( action ){
                 new forge(sharedType).run()
                 break;
             default:
-                console.log('no forge for ' + type )
+                console.log(`no forge ${action} for ${type}` )
         }
+        break;
+    case 'translate':
+        forge = require('./src/TranslationForge')
+        new forge(sharedType).run(type)
     break;
+    default:
+        console.log(`no forge ${action}` )
 }

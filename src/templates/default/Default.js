@@ -1,26 +1,37 @@
 import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "../../core/tools/Tools";
 
-export class Default{
+/**
+ * Class for the default template.
+ */
+export class DefaultTemplate{
 
     constructor(){
-        this.id = 'default-template'
+        this.id = 'default'
+        // Indicates the default language of the template.
+        this.defaultLanguage = 'en'
     }
 
     /**
      * Init the template when loaded.
+     * 
+     * @returns {DefaultTemplate}
      */
     init(){
         try {
-            this.persistentButton()
+            this.initPersistentButton()
         } catch (error) {
-            document.addEventListener('DOMContentLoaded', () => this.persistentButton())
+            document.addEventListener('DOMContentLoaded', () => this.initPersistentButton())
         }
+
+        return this
     }
 
     /**
      * Add a persistent button
+     * 
+     * @returns {DefaultTemplate}
      */
-    persistentButton(){
+    initPersistentButton(){
         const button = document.createElement('div')
         button.classList.add( `${ID}-persistent`)
         button.setAttribute(`${PREFIX}view-show`, '')
@@ -45,18 +56,31 @@ export class Default{
             </g>
       </svg>`
         document.querySelector('body').append(button)
+
+        return this
     }
 
     /**
-     * Add the default css list.
+     * Return the default css list.
+     * 
+     * Must return a list of css files that will be loaded on initTemplate
+     * 
+     * @returns {Array}.
      */
     getDefaultCssList(){
         return [
             CDN + `src/templates/default/dist/default.css`
         ]
     }
+    
     /**
      * Return the default list of translation files.
+     * 
+     * Must return a list of translations files url. Each url should contain a ${LANGUAGE_TOKEN} char, that 
+     * will be replaced by the user language. For instance, a french user will load the file
+     *  'CDN + `src/templates/default/translations/fr-FR.json`'
+     * 
+     * @returns {Array}.
      */
     getDefaultTranslations(){
         return [
@@ -65,7 +89,16 @@ export class Default{
     }
 
     /**
-     * Tempp dom add
+     * Return a promise that allow you to differ the view visibility.
+     * 
+     * When the ViewManager.show() function is called:
+     *  - first, the template is added in dom.
+     *  - second, the `${ID}-on` class is added to the body.
+     * 
+     * Return a promise that resolves after a particular time allows you to defer these
+     * two steps, and easily add css transitions.
+     *
+     * @returns {Promise}
      */
     getShowPromise(){
         return new Promise((resolve) => {
@@ -73,18 +106,30 @@ export class Default{
         })
     }
 
-    /**
-     * Temp dom remove.
+     /**
+     * Return a promise that allow you to differ the view invisibility.
+     * 
+     * When the ViewManager.hide() function is called:
+     *  - first, the `${ID}-on` class is removed from the body.
+     *  - second, the view is removed from the dom.
+     * 
+     * Return a promise that resolves after a particular time allows you to defer these
+     * two steps, and easily add css transitions.
+     * 
+     * @returns {Promise}
      */
     getHidePromise(){
         return new Promise((resolve) => {
             window.setTimeout(() => {resolve()}, 300)
         })
-    } 
+    }
 
     /**
-     * Wrap the content
-     * @param {*} content 
+     * Wrap the content of the view.
+     *
+     * @param {string} content 
+     * 
+     * @return {string}
      */
     wrapper(content){
         return `
@@ -107,43 +152,107 @@ export class Default{
     }
 
     /**
-     * Return the content of the view.
-     *
-     * @param {string} markup 
+     * Return the content when no service is declared.
+     * 
+     * @returns {string}
      */
-    getContent(markup){
-        return `
-        <div class="${ID}-view-main">
-            <div class="title">${this.html('Vos données personnelles')}</div>
-            <div class="${ID}-view-head">        
-                ${this.html(`Ce site utilise des services pour améliorer votre expérience utilisateur et vous proposer certains contenus externes. 
-                Certains de ces services peuvent recquérir et exploiter des données personnelles. 
-                Vous pouvez gérer leur activation via ce panneau accessible à tout moment.<br/>Vous pouvez également accéder et gérer en détail l'ensemble des services que le site propose.`)}
-            </div>
+    getNoServiceMarkup(){
+        const content = `
+            <div class="${ID}-view-main">
+                <div class="title">${this.html('Your personal data')}</div>
+                <div class="${ID}-view-head">
+                    ${this.html(`This site does not declare any service that could use your personal data`)}
+                </div>
+            </div>`
 
-            <div class="${ID}-view-quick">
-                <button ${PREFIX}all-enable="accept_all">
-                <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <g id="valid">
-                        <rect transform="rotate(135 60.709205627441406,52.107933044433594) " id="svg_2" height="8" width="70" y="48.10793" x="25.70921" stroke-width="1.5" fill="#000"/>
-                        <rect stroke="null" transform="rotate(45 30.14121246337889,65.61316680908203) " id="svg_1" height="8" width="31.10913" y="61.61317" x="14.58665" stroke-width="1.5" fill="#000"/>
-                    </g>
-                </svg>
-                    ${this.html('Tout accepter')}
-                </button>
-                <button ${PREFIX}all-disable="deny_all">${this.html('Tout refuser')}</button>
-                <button ${PREFIX}view-toggle-detail>${this.html('Voir le détail')}</button>
-            </div>
-        </div>
-        <div class="${ID}-view-detail">
-            ${markup}
-        </div>`
+        return this.wrapper(content)
     }
 
-     /**
+    /**
+     * Return the content when services are declared.
+     *
+     * @param {*} contentData
+     *      The list of elements that has been populated from getServiceMarkup and/or getGroupMarkup.
+     * 
+     * @returns {string}
+     */
+    getViewMarkup(contentData){
+        let markup = ''   
+
+        // Handle different case of render, in case of group or not.
+        switch(contentData.type){
+            case 'groups':
+                markup = contentData.groups.join('')
+                break
+            case 'services':
+                markup = contentData.services.join('')
+                break
+        }
+
+        // Create the whole content of the view.
+        const content = `
+            <div class="${ID}-view-main">
+                <div class="title">${this.html('Your personal data')}</div>
+                <div class="${ID}-view-head">        
+                    ${this.html(`This site uses some services that enhance your user experience or add some external content. Some of these can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage theme by clicking on \"Detail\".`)}
+                </div>
+
+                <div class="${ID}-view-quick">
+                    <button ${PREFIX}all-enable="accept_all">${this.html('Enable all')}</button>
+                    <button ${PREFIX}all-disable="deny_all">${this.html('Disable all')}</button>
+                    <button ${PREFIX}view-toggle-detail>${this.html('Detail')}</button>
+                </div>
+            </div>
+            <div class="${ID}-view-detail">
+                ${markup}
+            </div>`
+
+        return this.wrapper(content)
+    }
+
+    /**
+     * Return the markup of a single group
+     *
+     * @param {Group} group
+     *      The group to render.
+     * @param {Array} serviceMarkupList
+     *      The list of markups of the group's service 
+     */
+    getGroupMarkup(group, serviceMarkupList){
+        return `
+            <div class="${ID}-view-group">
+                <div class="${ID}-view-group-head line" ${PREFIX}group="${group.id}" ${PREFIX}status="${group.status}">
+                    <div class="line-accept" ${PREFIX}group-toggle="${group.id}">
+                        <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <use xlink:href="#valid"></use>
+                        </svg>
+                    </div>
+                    <div class="line-content">
+                        <div class="${ID}-view-group-name">${group.name}${this.getMandatoryText(group)}</div>
+                        <div class="${ID}-view-group-description">${group.description}</div>
+                        <div class="${ID}-view-group-detail">
+                            <a class="more" href="Javascript:void(0);" data-egdpr-group-toggle-detail="${group.id}">${this.html('Detail')}</a>  
+                        </div>
+                    </div>
+                    <div class="${ID}-view-group-quick question">
+                        <button data-egdpr-group-toggle="${group.id}">
+                            <span class="enable">${this.html('Enable all')}</span>
+                            <span class="disable">${this.html('Disable all')}</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="${ID}-view-group-services">
+                    ${serviceMarkupList.join('')}
+                </div>
+            </div>
+        `
+    }
+
+    /**
      * Return the markup of a single service.
      *
-     * @param {*} service 
+     * @param {Service} service 
      */
     getServiceMarkup(service){        
         return `
@@ -158,48 +267,12 @@ export class Default{
                     <div class="${ID}-view-service-description">${this.html(service.description)}</div>
                 </div>
                 <div>
-                    <button ${PREFIX}service-toggle="${service.id}">
-                        <span class="enable">${this.html('Activer')}</span>
-                        <span class="disable">${this.html('Désactiver')}</span>
+                    <button data-egdpr-service-toggle="${service.id}">
+                        <span class="enable">${this.html('Enable')}</span>
+                        <span class="disable">${this.html('Disable')}</span>
                     </button>  
                 </div>
             </div>
-        `
-    }
-
-    /**
-     * Return the markup of a group
-     *
-     * @param {Group} group 
-     */
-    getGroupMarkup(group, serviceMarkupList){
-        return `
-        <div class="${ID}-view-group">
-            <div class="${ID}-view-group-head line ${( group.isMandatory() ? 'mandatory':'')}" ${PREFIX}group="${group.id}" ${PREFIX}status="${group.status}">
-                <div class="line-accept" ${PREFIX}group-toggle="${group.id}">
-                    <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <use xlink:href="#valid"></use>
-                    </svg>
-                </div>
-                <div class="line-content">
-                    <div class="${ID}-view-group-name">${group.name}${this.getMandatoryText(group)}</div>
-                    <div class="${ID}-view-group-description">${group.description}</div>
-                    <div class="${ID}-view-group-detail">
-                        <a class="more" href="Javascript:void();" ${PREFIX}group-toggle-detail="${group.id}">Détail</a>  
-                    </div>
-                </div>
-                <div class="${ID}-view-group-quick question">
-                    <button ${PREFIX}group-toggle="${group.id}">
-                        <span class="enable">${this.html('Tout activer')}</span>
-                        <span class="disable">${this.html('Tout désactiver')}</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="${ID}-view-group-services">
-                ${serviceMarkupList.join('')}
-            </div>
-        </div>
         `
     }
 
@@ -209,11 +282,11 @@ export class Default{
      * @param {*} element 
      */
     getMandatoryText(element){
-        return element.isMandatory() ? ` <span class='mandatory-mention'>${this.html(`(nécessaire au fonctionnement du site)`)}</span>` : ''
+        return element.isMandatory() ? ` <span class='mandatory-mention'>${this.html(`(mandatory for the basic features)`)}</span>` : ''
     }
 }
 
 // Accessibility out of webpack
 window[ID] = window[ID] || {}
 window[ID]['template_class'] = window[ID]['template_class'] || {};
-window[ID]['template_class']['Default'] = Default;
+window[ID]['template_class']['DefaultTemplate'] = DefaultTemplate;

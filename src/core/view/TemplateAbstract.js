@@ -63,15 +63,19 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     
     /**
      * Return the content when no service is declared.
+     * 
+     * @returns {string}
      */
     getNoServiceMarkup(){
-        return this.wrapper(`
+        const content = `
             <div class="${ID}-view-main">
-                <div class="title">${html('Vos données personnelles')}</div>
+                <div class="title">${this.html('Vos données personnelles')}</div>
                 <div class="${ID}-view-head">
-                    ${html(`Ce site ne déclare pas de services qui pourraient recquérir et exploiter des données personnelles.`)}
+                    ${this.html(`Ce site ne déclare pas de services qui pourraient recquérir et exploiter des données personnelles.`)}
                 </div>
-            </div>`)
+            </div>`
+
+        return this.wrapper(content)
     }
 
     /**
