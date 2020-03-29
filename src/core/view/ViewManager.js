@@ -163,33 +163,40 @@ class ViewManagerClass{
      */
     initBehaviors(attribute, callback){
         document.addEventListener('click', (evt)=>{    
-            evt.path.map( item => {
-                // Parse all attributes
-                for (let att, i = 0, atts = item.attributes, n = (atts ? atts.length : 0 ); i < n; i++){
-                    att = atts[i];
-                    // If attributes has matching prefix
-                    if( att.nodeName.indexOf(PREFIX) === 0 ){
-                        let attrData = att.nodeName.split('-'),
-                            type = attrData.slice(2).join('-')
-
-                        switch( attrData[2] ){
-                            case 'service':
-                                const service = Wrapper.getServiceManager().getServiceById(att.nodeValue)
-                                this.callAction(type, {service:service, elemId:att.nodeValue})
-                                break
-                            case 'group':
-                                const group = Wrapper.getGroupManager().getGroupById(att.nodeValue)
-                                this.callAction(type, {group:group, elemId:att.nodeValue})
-                                break
-                            case 'view':
-                            case 'all':
-                                this.callAction(type, {} )
-                                break
-                        }
-                    }
-                } 
-            } )  
+            this.initEventOnItem(evt.target, attribute, callback)
         })
+    }
+
+    initEventOnItem(item, attribute, callback){
+        // Parse all attributes
+        for (let att, i = 0, atts = item.attributes, n = (atts ? atts.length : 0 ); i < n; i++){
+            att = atts[i];
+            // If attributes has matching prefix
+            if( att.nodeName.indexOf(PREFIX) === 0 ){
+                let attrData = att.nodeName.split('-'),
+                    type = attrData.slice(2).join('-')
+
+                switch( attrData[2] ){
+                    case 'service':
+                        const service = Wrapper.getServiceManager().getServiceById(att.nodeValue)
+                        this.callAction(type, {service:service, elemId:att.nodeValue})
+                        break
+                    case 'group':
+                        const group = Wrapper.getGroupManager().getGroupById(att.nodeValue)
+                        this.callAction(type, {group:group, elemId:att.nodeValue})
+                        break
+                    case 'view':
+                    case 'all':
+                        this.callAction(type, {} )
+                        break
+                }
+            }
+        }
+
+        // Look up into fathers.
+        if( item.parentNode ){
+            this.initEventOnItem(item.parentNode, attribute, callback)
+        }
     }
 
     /**
