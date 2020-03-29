@@ -285,7 +285,8 @@ class LocalManagerClass{
      * @param {*} id 
      */
     html(id, replaceData){
-        const result = `<span ${PREFIX}l="${id}" ${PREFIX}l-data="${encodeURIComponent(JSON.stringify(replaceData))}">${this.translate(id, replaceData)}</span>`
+        const replaceDataAttr = encodeURIComponent(JSON.stringify(replaceData)) 
+        const result = `<span ${PREFIX}l="${id}" ${replaceData ? `${PREFIX}l-data="${replaceDataAttr}"` : ``}>${this.translate(id, replaceData)}</span>`
         return result
     }
 }
