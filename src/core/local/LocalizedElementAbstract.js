@@ -5,7 +5,7 @@ export class LocalizedElementAbstract{
     constructor(id){
         this.id = id
         this.localManager = LocalManager
-        this.defaultLanguage = 'fr'
+        this.defaultLanguage = 'en'
         this.translations = this.getDefaultTranslations()
     }
 

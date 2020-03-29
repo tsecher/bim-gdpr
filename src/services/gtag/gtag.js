@@ -7,7 +7,7 @@ export class GTAGService {
         // Init
         this.id = id || 'gtag'
         this.name =  name || 'Google Analytics'
-        this.description = description || 'Les services de suivi des utilisateurs par Google'
+        this.description = description || 'Google user tracking services'
 
         this.guaid = guaid
     }
