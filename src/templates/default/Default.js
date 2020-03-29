@@ -198,7 +198,14 @@ export class DefaultTemplate{
                 </div>
 
                 <div class="${ID}-view-quick">
-                    <button ${PREFIX}all-enable="accept_all">${this.html('Enable all')}</button>
+                    <button ${PREFIX}all-enable="accept_all">
+                        <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <g id="valid">
+                                <rect transform="rotate(135 60.709205627441406,52.107933044433594) " id="svg_2" height="8" width="70" y="48.10793" x="25.70921" stroke-width="1.5" fill="#000"/>
+                                <rect stroke="null" transform="rotate(45 30.14121246337889,65.61316680908203) " id="svg_1" height="8" width="31.10913" y="61.61317" x="14.58665" stroke-width="1.5" fill="#000"/>
+                            </g>
+                        </svg>
+                        ${this.html('Enable all')}</button>
                     <button ${PREFIX}all-disable="deny_all">${this.html('Disable all')}</button>
                     <button ${PREFIX}view-toggle-detail>${this.html('Detail')}</button>
                 </div>
@@ -221,7 +228,7 @@ export class DefaultTemplate{
     getGroupMarkup(group, serviceMarkupList){
         return `
             <div class="${ID}-view-group">
-                <div class="${ID}-view-group-head line" ${PREFIX}group="${group.id}" ${PREFIX}status="${group.status}">
+                <div class="${ID}-view-group-head line ${( group.isMandatory() ? 'mandatory':'')}" ${PREFIX}group="${group.id}" ${PREFIX}status="${group.status}">
                     <div class="line-accept" ${PREFIX}group-toggle="${group.id}">
                         <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <use xlink:href="#valid"></use>
