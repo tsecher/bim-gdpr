@@ -5,7 +5,7 @@ import { ServiceEvents } from "../services/ServiceEvents";
 import { Service } from '../services/Service';
 import { GroupEvents } from "../groups/GroupEvents";
 import { PREFIX, checkInterface } from "../tools/Tools";
-import { Default } from "../../templates/default/Default";
+import { DefaultTemplate } from "../../templates/default/Default";
 import { TemplateAbstract } from "./TemplateAbstract";
 
 
@@ -18,7 +18,7 @@ class ViewClass{
     constructor(){
         this.timeoutValue = 200
         this.rebuildTimeout = null
-        this.template = this.overrideTemplate(new Default())
+        this.template = this.overrideTemplate(new DefaultTemplate())
         this.template.force = true
         this.needsRebuild('all')
     }
