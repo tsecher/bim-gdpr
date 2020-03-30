@@ -4,8 +4,7 @@ import { Group } from "../groups/Group";
 import { ServiceEvents } from "../services/ServiceEvents";
 import { Service } from '../services/Service';
 import { GroupEvents } from "../groups/GroupEvents";
-import { PREFIX, checkInterface } from "../tools/Tools";
-import { DefaultTemplate } from "../../templates/default/Default";
+import { PREFIX, checkInterface, ID } from "../tools/Tools";
 import { TemplateAbstract } from "./TemplateAbstract";
 
 
@@ -18,12 +17,14 @@ class ViewClass{
     constructor(){
         this.timeoutValue = 200
         this.rebuildTimeout = null
-        this.template = this.overrideTemplate(new DefaultTemplate())
-        this.template.force = true
         this.needsRebuild('all')
     }
 
     init(){
+        if( !this.template ){
+            throw `${ID} :  No template defined`
+        }
+
         // init template.
         this.setTemplate(this.template)
 
