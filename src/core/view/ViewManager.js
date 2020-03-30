@@ -38,15 +38,11 @@ class ViewManagerClass{
         // All
         this.addAction('all-enable', () => { 
             Wrapper.getServiceManager().enableAll()
-            if( !this.detailPanelIsOpen()){
-                this.hide()
-            }            
+            this.hide()
         })
         this.addAction('all-disable', () => { 
             Wrapper.getServiceManager().disableAll()
-            if( !this.detailPanelIsOpen()){
-                this.hide()
-            }            
+            this.hide()
         })
 
         // View
