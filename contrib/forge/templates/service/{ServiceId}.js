@@ -7,6 +7,14 @@ import { CDN, ID, LANGUAGE_TOKEN } from "{ImportPath}core/tools/Tools";
  */
 export class {ServiceClass} {
 
+    /**
+     * @param {string} id 
+     *      The id of the service
+     * @param {string} name 
+     *      The name of the service
+     * @param {string} description 
+     *      The description of the service
+     */
     constructor(id, name, description){
         this.id = id || '{ServiceId}'
         this.name =  name || "{ServiceName}"
@@ -53,7 +61,7 @@ export class {ServiceClass} {
     }
 
     /**
-     * What to do when the service is enabled and is startings.
+     * What to do when the service is enabled and is starting.
      */
     start(){
         // @todo
