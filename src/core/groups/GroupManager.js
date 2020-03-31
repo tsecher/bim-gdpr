@@ -1,6 +1,6 @@
 import { Group } from "./Group";
 import { sortByWeight } from "../tools/Tools";
-import { Wrapper } from "../Wrapper";
+import { Core } from "../Core";
 import { GroupEvents } from "./GroupEvents";
 import { ViewEvents } from "../view/ViewEvents";
 
@@ -18,8 +18,8 @@ class GroupManagerClass{
      * Init behaviors when group or grouplist has changed.
      */
     init(){
-        Wrapper.on(GroupEvents.groupListHasChanged).subscribe( (name, data) => this.sortGroups() )
-        Wrapper.on(GroupEvents.groupHasChanged).subscribe( (name, data) => this.sortGroups() )
+        Core.on(GroupEvents.groupListHasChanged).subscribe( (name, data) => this.sortGroups() )
+        Core.on(GroupEvents.groupHasChanged).subscribe( (name, data) => this.sortGroups() )
     }
 
     /**
@@ -37,7 +37,7 @@ class GroupManagerClass{
 
             this.sortGroups()
 
-            Wrapper.trigger(GroupEvents.groupListHasChanged, {groupManager:this})
+            Core.trigger(GroupEvents.groupListHasChanged, {groupManager:this})
             return group;
         }
         else{
@@ -71,7 +71,7 @@ class GroupManagerClass{
         this.groups = this.groups.sort((a,b) => sortByWeight(a,b))
 
         // Needs rebuild.
-        Wrapper.trigger(ViewEvents.needsRebuild)
+        Core.trigger(ViewEvents.needsRebuild)
 
         return this
     }
@@ -92,9 +92,9 @@ class GroupManagerClass{
 
         // unGroupedServices
         let unGroupedServices = 
-            Wrapper.getServiceManager().getServicesList().map( service => {return service.id})
+            Core.getServiceManager().getServicesList().map( service => {return service.id})
                  .filter( id => { return groupedServices.indexOf(id) === -1 })
-                .map( id => { return Wrapper.getServiceManager().getServiceById(id)})
+                .map( id => { return Core.getServiceManager().getServiceById(id)})
 
         return unGroupedServices
     }

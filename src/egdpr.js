@@ -1,6 +1,5 @@
 import { Core } from "./core/Core";
 import { Service } from "./core/services/Service";
-import { ID } from "./core/tools/Tools";
 
 export const eGDPR = Core
 export const eGDPRService = Service
