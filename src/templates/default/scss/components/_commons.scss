@@ -1,10 +1,14 @@
 .line{
     display: flex;
-    color: $color-tertiary;
+    color: $color-text-disabled;
     @include transition(color);
     @include less-than($widthPhone){
         margin: 1rem;
         flex-direction: row-reverse;
+    }
+
+    &.mandatory{
+        color: $color-text-mandatory;
     }
 
     &-accept{
@@ -36,6 +40,11 @@
             width: 0rem;
             @include transitionInOut(width);
             z-index: 1;
+            cursor: pointer;
+
+            path{
+                fill: $color-text;
+            }
         }
 
 
@@ -88,7 +97,7 @@
 
 
     &[data-#{$ID}-status="1"]{
-        color: $color-secondary;
+        color: $color-text;
         
         .line-accept{
             width: 2rem;
@@ -117,7 +126,7 @@
 .mandatory-mention{
     font-style: italic;
     font-size: 1rem;
-    color: $color-tertiary;
+    color: $color-text-mandatory;
 }
 
 // Enable / Disable

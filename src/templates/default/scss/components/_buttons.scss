@@ -1,5 +1,6 @@
 .#{$ID}-view{
     button{
+        color: $color-text;
         border: 1px solid $color-main;
         padding: .5rem 1rem;
         outline: none;
@@ -13,9 +14,10 @@
 
         &:hover{
             background: $color-main;
-            color: $color-secondary;
+            color: $color-text-on;
             box-shadow: 0 0 1rem 0rem rgba(0,0,0,.2);
             transform: scale(1.1);
+            @include transitionIn(background, color, box-shadow, transform);
         }
     }
 
