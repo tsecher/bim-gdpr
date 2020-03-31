@@ -122,6 +122,31 @@ eGDPR
 
 ### Update texts and translations
 You can easily redefine the default texts. Texts are managed with translations and you can override it easily. Each template use its own translations, such as services.
+So you can override translation with an object according to the text_id : 
+```json
+{
+    "text_id": "Your customized text"
+}
+```
+The text ID can be found in the dom in the attribute `data-egdpr-l`.
+
+So you can override translation using `eGDPR.addTranslation` : 
+```javascript
+import { GTAGService } from "easy-gdpr/src/services/gtag/gtag"
+import { MatomoService } from "easy-gdpr/src/services/matomo/matomo"
+
+// Create services :
+const gta = eGDPR.createService( new GTAGService('U-*******') )
+const matomo = eGDPR.createService( new MatomoService('//matomo.php') )
+
+// Then initialize
+eGDPR
+    .addTranslations({
+        'Your personal data': 'Manage your choice'
+    })
+    .setTemplate( new DefaultTemplate() ) // Initialize the view
+    .init() // Initialize the core
+```
 
 ### Create your service
 

@@ -276,7 +276,7 @@ class CoreClass{
      * @param {obj} translation 
      */
     addTranslation(translation){
-        this.getViewManager().getView().getTemplate().addTranslation(translation)
+        this.localManager.addTranslation('global', translation)
         return this
     }
 }
