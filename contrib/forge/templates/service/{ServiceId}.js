@@ -11,7 +11,7 @@ export class {ServiceClass} {
         this.id = id || '{ServiceId}'
         this.name =  name || "{ServiceName}"
         this.description = description || "{ServiceDescription}"
-        this.defaultLanguage = 'fr'
+        this.defaultLanguage = 'en'
     }
 
     /**
