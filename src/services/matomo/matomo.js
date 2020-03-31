@@ -24,7 +24,7 @@ export class MatomoService {
         this.siteId = siteId || 1
         this.id = serviceId || 'matomo'
         this.name =  name || "Matomo"
-        this.description = description || "Matomo tracking service.<br/><a href=\"//matomo.org/\">matomo.org</a>"
+        this.description = description || "Matomo tracking service.<br/><a href=\"//matomo.org/\" target=\"_blank\">matomo.org</a>"
         this.defaultLanguage = 'en'
     }
 

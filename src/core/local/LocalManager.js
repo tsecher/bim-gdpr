@@ -247,7 +247,17 @@ class LocalManagerClass{
      * When a translation is loaded.
      */
     onLoadString(){
-        document.querySelectorAll(`[${PREFIX}l]`).forEach(
+        // Parse each translation.
+        const translationList = this.translations[this.getUserLanguage()];
+        if( translationList ){
+            for( let id in translationList){
+                this.replaceTranslationInDOM(id, translationList[id] );
+            }
+        }
+    }
+
+    replaceTranslationInDOM(id, translation){
+        document.querySelectorAll(`[${PREFIX}l="${this.getTranslationId(id)}"]`).forEach(
             element => {
                 let replaceData = null
                 try {
@@ -255,7 +265,7 @@ class LocalManagerClass{
                 } catch (error) {
                     replaceData = null
                 }
-                element.innerHTML = this.translate(element.getAttribute(PREFIX+'l'), replaceData)
+                element.innerHTML = this.translate(id, replaceData)
             }
         )
     }
@@ -286,8 +296,15 @@ class LocalManagerClass{
      */
     html(id, replaceData){
         const replaceDataAttr = encodeURIComponent(JSON.stringify(replaceData)) 
-        const result = `<span ${PREFIX}l="${id}" ${replaceData ? `${PREFIX}l-data="${replaceDataAttr}"` : ``}>${this.translate(id, replaceData)}</span>`
+        const result = `<span ${PREFIX}l="${this.getTranslationId(id)}" ${replaceData ? `${PREFIX}l-data="${replaceDataAttr}"` : ``}>${this.translate(id, replaceData)}</span>`
         return result
+    }
+
+    /**
+     * Returns the translation id, for attribute value.
+     */
+    getTranslationId(translation){
+        return translation.replace(/(<([^>]+)>)/ig,"");
     }
 }
 
