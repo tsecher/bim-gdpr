@@ -194,7 +194,7 @@ export class DefaultTemplate{
             <div class="${ID}-view-main">
                 <div class="title">${this.html('Your personal data')}</div>
                 <div class="${ID}-view-head">        
-                    ${this.html(`This site uses some services that enhance your user experience or add some external content. Some of these can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage theme by clicking on <strong>Detail</strong>.`)}
+                    ${this.html(`This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage them by clicking on <strong>Detail</strong>.`)}
                 </div>
 
                 <div class="${ID}-view-quick">

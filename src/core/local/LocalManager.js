@@ -256,6 +256,10 @@ class LocalManagerClass{
         }
     }
 
+
+    /**
+     * Replace the translation in the DOM according to id.
+     */
     replaceTranslationInDOM(id, translation){
         document.querySelectorAll(`[${PREFIX}l="${this.getTranslationId(id)}"]`).forEach(
             element => {
