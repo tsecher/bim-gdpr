@@ -15,7 +15,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
      * Init the template.
      */
     initTemplate(){
-        super.init()
+        super.initTranslations()
         this.getCssList().map( css => Core.addCss(css) )
         
     }

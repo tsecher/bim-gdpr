@@ -103,6 +103,8 @@ class ViewClass{
 
     /**
      * Return the template
+     * 
+     * @returns {TemplateAbstract}
      */
     getTemplate(){
         return this.template

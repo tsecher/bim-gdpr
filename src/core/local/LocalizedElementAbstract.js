@@ -13,7 +13,7 @@ export class LocalizedElementAbstract{
     /**
      * Load transaltions.
      */
-    init(){
+    initTranslations(){
         this.getTranslations().map( (data, key) => {
             let id = `${this.id}-${key}`
             if( typeof(data) === 'string'){
@@ -75,6 +75,7 @@ export class LocalizedElementAbstract{
      */
     addTranslation(data){
         this.translations.push(data)
+        this.initTranslations()
         return this
     }
 }

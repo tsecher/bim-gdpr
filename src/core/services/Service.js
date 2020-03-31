@@ -44,6 +44,14 @@ export class Service extends LocalizedElementAbstract{
     }
 
     /**
+     * Init the element
+     */
+    init(){
+        super.initTranslations()
+        return this;
+    }
+
+    /**
      * Return the cookie patterns.
      * 
      * Cookies with an id matching with this pattern will be removed when

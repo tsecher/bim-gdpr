@@ -66,6 +66,8 @@ class ViewManagerClass{
 
     /**
      * Return the template manager
+     * 
+     * @returns {View}
      */
     getView(){
         return this.view
