@@ -1,4 +1,3 @@
 {
-    "/src/templates/default/dist/default.js": "/src/templates/default/dist/default.js",
-    "/src/templates/default/dist/default.css": "/src/templates/default/dist/default.css"
+    "/src/services/matomo/dist/matomo.js": "/src/services/matomo/dist/matomo.js"
 }
