@@ -2,7 +2,7 @@ import { ID, PREFIX, CDN } from "../tools/Tools";
 import { Group } from "../groups/Group";
 import { html } from "../local/LocalManager";
 import { LocalizedElementAbstract } from "../local/LocalizedElementAbstract";
-import { Wrapper } from "../Wrapper";
+import { Core } from "../Core";
 
 export class TemplateAbstract extends LocalizedElementAbstract{
 
@@ -16,7 +16,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
      */
     initTemplate(){
         super.init()
-        this.getCssList().map( css => Wrapper.addCss(css) )
+        this.getCssList().map( css => Core.addCss(css) )
         
     }
 

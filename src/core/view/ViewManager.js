@@ -1,4 +1,4 @@
-import { Wrapper } from "../Wrapper";
+import { Core } from "../Core";
 import { PREFIX, ID } from "../tools/Tools";
 import { View } from "./View";
 import { ViewEvents } from "./ViewEvents";
@@ -37,11 +37,11 @@ class ViewManagerClass{
     initActions(){
         // All
         this.addAction('all-enable', () => { 
-            Wrapper.getServiceManager().enableAll()
+            Core.getServiceManager().enableAll()
             this.hide()
         })
         this.addAction('all-disable', () => { 
-            Wrapper.getServiceManager().disableAll()
+            Core.getServiceManager().disableAll()
             this.hide()
         })
 
@@ -59,9 +59,9 @@ class ViewManagerClass{
         })
 
         // Service.
-        this.addAction( 'service-enable', (data) => { Wrapper.getServiceManager().enableService(data.service) })
-        this.addAction( 'service-disable', (data) => { Wrapper.getServiceManager().disableService(data.service) })
-        this.addAction( 'service-toggle', (data) => { Wrapper.getServiceManager().toggleService(data.service) })
+        this.addAction( 'service-enable', (data) => { Core.getServiceManager().enableService(data.service) })
+        this.addAction( 'service-disable', (data) => { Core.getServiceManager().disableService(data.service) })
+        this.addAction( 'service-toggle', (data) => { Core.getServiceManager().toggleService(data.service) })
     }
 
     /**
@@ -84,7 +84,7 @@ class ViewManagerClass{
     show(){
         if( !this.isDisplayed() ){
             this.body.append(this.view.getViewElement())
-            Wrapper.trigger(ViewEvents.showView, {})
+            Core.trigger(ViewEvents.showView, {})
             try {
                 this.getView().getTemplate().getShowPromise().then(() => {
                     this._doShow()
@@ -110,11 +110,11 @@ class ViewManagerClass{
 
             // Considering that pending elements are now disabled, because no explicit consentment but 
             // user has been prompted.
-            if( !Wrapper.testMode ){
-                Wrapper.getServiceManager().enableService(Wrapper.getServiceManager().getMandatoryServicesList())
-                Wrapper.getServiceManager().disableService(Wrapper.getServiceManager().getPendingServices())
+            if( !Core.testMode ){
+                Core.getServiceManager().enableService(Core.getServiceManager().getMandatoryServicesList())
+                Core.getServiceManager().disableService(Core.getServiceManager().getPendingServices())
             }
-            Wrapper.trigger(ViewEvents.hideView, {})
+            Core.trigger(ViewEvents.hideView, {})
 
             // Remove classes
             this.body.classList.remove(ID+'-on')
@@ -174,11 +174,11 @@ class ViewManagerClass{
 
                 switch( attrData[2] ){
                     case 'service':
-                        const service = Wrapper.getServiceManager().getServiceById(att.nodeValue)
+                        const service = Core.getServiceManager().getServiceById(att.nodeValue)
                         this.callAction(type, {service:service, elemId:att.nodeValue})
                         break
                     case 'group':
-                        const group = Wrapper.getGroupManager().getGroupById(att.nodeValue)
+                        const group = Core.getGroupManager().getGroupById(att.nodeValue)
                         this.callAction(type, {group:group, elemId:att.nodeValue})
                         break
                     case 'view':
@@ -232,13 +232,13 @@ class ViewManagerClass{
         // Service
         window.setTimeout( () => {
             document.querySelectorAll(`[${PREFIX}service][${PREFIX}status]`).forEach(item => {
-                const service = Wrapper.getServiceManager().getServiceById(item.getAttribute(PREFIX + 'service'))
+                const service = Core.getServiceManager().getServiceById(item.getAttribute(PREFIX + 'service'))
                 if( service ){
                     item.setAttribute(`${PREFIX}status`, service.status)    
                 }            
             })
             document.querySelectorAll(`[${PREFIX}group][${PREFIX}status]`).forEach(item => {
-                const service = Wrapper.getGroupManager().getGroupById(item.getAttribute(PREFIX + 'group'))
+                const service = Core.getGroupManager().getGroupById(item.getAttribute(PREFIX + 'group'))
                 if( service ){
                     item.setAttribute(`${PREFIX}status`, service.status)    
                 }            

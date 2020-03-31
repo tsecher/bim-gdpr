@@ -1,4 +1,4 @@
-import { Wrapper } from "../Wrapper";
+import { Core } from "../Core";
 import { sortByWeight } from "../tools/Tools";
 import { GroupEvents } from "./GroupEvents";
 import { ServiceStatus } from "../services/ServiceStatusManager";
@@ -37,17 +37,17 @@ export class Group{
 
     set id(id){
         this._id = id
-        Wrapper.trigger(ServiceEvents.groupHasChanged, {group: this})
+        Core.trigger(ServiceEvents.groupHasChanged, {group: this})
     }
 
     set name(name){
         this._name = name
-        Wrapper.trigger(GroupEvents.groupHasChanged, {group: this})
+        Core.trigger(GroupEvents.groupHasChanged, {group: this})
     }
 
     set description(description){
         this._description = description
-        Wrapper.trigger(GroupEvents.groupHasChanged, {group: this})
+        Core.trigger(GroupEvents.groupHasChanged, {group: this})
     }
 
     /**
@@ -91,14 +91,14 @@ export class Group{
      * @returns {Group}
      */
     _doAddService(serviceData){
-        let service = Wrapper.getServiceManager().getServiceById(serviceData.id)
+        let service = Core.getServiceManager().getServiceById(serviceData.id)
         
         if( service ){
             this.services.push(service)
             this.services = this.services.sort((a,b) => sortByWeight(a,b))
 
             // View needs rebuild
-            Wrapper.trigger(GroupEvents.groupHasChanged, {group: this})
+            Core.trigger(GroupEvents.groupHasChanged, {group: this})
         }
 
         return this
@@ -110,7 +110,7 @@ export class Group{
      * @returns {Group}
      */
     enableAll(){
-        Wrapper.getServiceManager().enableService(this.services)
+        Core.getServiceManager().enableService(this.services)
         return this
     }
 
@@ -120,7 +120,7 @@ export class Group{
      * @returns {Group}
      */
     disableAll(){
-        Wrapper.getServiceManager().disableService(this.services)
+        Core.getServiceManager().disableService(this.services)
         return this
     }
 
@@ -146,8 +146,8 @@ export class Group{
      */
     setWeight(weight){
         this.weight = weight
-        if( Wrapper.getGroupManager().getGroupById(this.id) ){
-            Wrapper.trigger(GroupEvents.groupHasChanged, {group:this})
+        if( Core.getGroupManager().getGroupById(this.id) ){
+            Core.trigger(GroupEvents.groupHasChanged, {group:this})
         }
 
         return this

@@ -1,7 +1,7 @@
 import { Service } from "./Service";
 import { ServiceEvents } from "./ServiceEvents";
 import { sortByWeight, checkInterface } from "../tools/Tools";
-import { Wrapper } from "../Wrapper";
+import { Core } from "../Core";
 import { ServiceStatusManager, ServiceStatus, Cookies} from "./ServiceStatusManager";
 
 /**
@@ -70,7 +70,7 @@ class ServiceManagerClass{
      * Init the default behaviors
      */
     init(){
-        Wrapper.on( ServiceEvents.serviceListHasChanged ).subscribe((name, data) => this.sortServices())
+        Core.on( ServiceEvents.serviceListHasChanged ).subscribe((name, data) => this.sortServices())
     }
     
     /**
@@ -101,7 +101,7 @@ class ServiceManagerClass{
             }
 
             // Dispatch event.
-            Wrapper.trigger( ServiceEvents.serviceListHasChanged, {
+            Core.trigger( ServiceEvents.serviceListHasChanged, {
                     services: this.services
                 })
             return service
@@ -118,7 +118,7 @@ class ServiceManagerClass{
      */
     overrideService(serviceData){
         let service = null
-        if( checkInterface( ServiceInterface, serviceData, Wrapper.logsAreEnabled()) ){
+        if( checkInterface( ServiceInterface, serviceData, Core.logsAreEnabled()) ){
             service = new Service()
             // Pseudo extension from object.
             for( let i in serviceData){
@@ -187,14 +187,14 @@ class ServiceManagerClass{
     enableService(service, dispacth=true){
         if(Array.isArray(service)){
             service.map( s => { this.enableService(s, false)})
-            Wrapper.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+            Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
         }
         else if( !service.isEnabled() ){
             ServiceStatusManager.setServiceStatus(service, ServiceStatus.enabled)
             service.onEnable()
             this.startService(service)
             if( dispacth ){
-                Wrapper.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+                Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
             }
         }
     }
@@ -207,12 +207,12 @@ class ServiceManagerClass{
     startService(service){
         service.getRelatedScripts().map(script => {
             if( typeof(script) === 'string'){
-                Wrapper.addScript(script)
+                Core.addScript(script)
             }
             else{
                 try {
                     if( script.path ){
-                        Wrapper.addScript(script.path, script.callback)
+                        Core.addScript(script.path, script.callback)
                     }
                 } catch (error) {
                     console.error(error);
@@ -221,7 +221,7 @@ class ServiceManagerClass{
         })
 
         service.start()
-        Wrapper.trigger(ServiceEvents.serviceStart, {service: service})
+        Core.trigger(ServiceEvents.serviceStart, {service: service})
     }
 
     /**
@@ -239,7 +239,7 @@ class ServiceManagerClass{
     disableService(service, dispatch=true){
         if( Array.isArray(service)){
             service.map(s=>{this.disableService(s, false)})
-            Wrapper.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+            Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
         }
         else{
             const serviceIsEnabled = service.isEnabled()
@@ -250,7 +250,7 @@ class ServiceManagerClass{
                 }
                 ServiceStatusManager.setServiceStatus(service, ServiceStatus.disabled)
                 if( dispatch ){
-                    Wrapper.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+                    Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
                 }
             } 
 
@@ -290,14 +290,14 @@ class ServiceManagerClass{
         // Delete scripts.
         service.getRelatedScripts().map(script => { 
             if( typeof(script) === 'string'){
-                Wrapper.removeScript(script)
+                Core.removeScript(script)
             }
             else if( script.path ){
-                Wrapper.removeScript(script.path)
+                Core.removeScript(script.path)
             }
         })
         
-        Wrapper.trigger(ServiceEvents.serviceStop, {service: service})
+        Core.trigger(ServiceEvents.serviceStop, {service: service})
     }
 
     /**

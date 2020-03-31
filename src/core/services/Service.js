@@ -1,4 +1,4 @@
-import { Wrapper } from "../Wrapper";
+import { Core } from "../Core";
 import { ServiceEvents } from "./ServiceEvents";
 import { ServiceStatusManager, ServiceStatus } from "./ServiceStatusManager";
 import { LocalizedElementAbstract } from "../local/LocalizedElementAbstract";
@@ -30,17 +30,17 @@ export class Service extends LocalizedElementAbstract{
 
     set id(id){
         this._id = id
-        Wrapper.trigger(ServiceEvents.serviceHasChanged, {service: this})
+        Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
     }
 
     set name(name){
         this._name = name
-        Wrapper.trigger(ServiceEvents.serviceHasChanged, {service: this})
+        Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
     }
 
     set description(description){
         this._description = description
-        Wrapper.trigger(ServiceEvents.serviceHasChanged, {service: this})
+        Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
     }
 
     /**
@@ -129,9 +129,9 @@ export class Service extends LocalizedElementAbstract{
 
         // If the service is already in the added services
         // we sort the services list
-        if( Wrapper.getServiceManager().getServiceById(this.id) ){
-            Wrapper.trigger(ServiceEvents.serviceListHasChanged, {
-                    serviceManager: Wrapper.getServiceManager()
+        if( Core.getServiceManager().getServiceById(this.id) ){
+            Core.trigger(ServiceEvents.serviceListHasChanged, {
+                    serviceManager: Core.getServiceManager()
                 })
         }
 

@@ -1,18 +1,18 @@
-import { Wrapper } from "./core/Wrapper";
+import { Core } from "./core/Core";
 import { Service } from "./core/services/Service";
 import { ID } from "./core/tools/Tools";
 
-export const eGDPR = Wrapper
+export const eGDPR = Core
 export const eGDPRService = Service
 
 // Accessibility out of webpack
-if( window[ID] ){
-    const tmp = window[ID]
-    window[ID] = Wrapper
+if( window[eGDPR] ){
+    const tmp = window[eGDPR]
+    window[eGDPR] = Core
     for(let i in tmp){
-        window[ID][i] = tmp[i]
+        window[eGDPR][i] = tmp[i]
     }
 }
 else{
-    window[ID] = Wrapper
+    window[eGDPR] = Core
 }

@@ -1,4 +1,4 @@
-import { Wrapper } from "../Wrapper";
+import { Core } from "../Core";
 import { ViewEvents } from "../view/ViewEvents";
 import { Group } from "../groups/Group";
 import { ServiceEvents } from "../services/ServiceEvents";
@@ -29,17 +29,17 @@ class ViewClass{
         this.setTemplate(this.template)
 
         // Add listeners for rebuild.
-        Wrapper.on(ViewEvents.needsRebuild).subscribe((data)=> {
+        Core.on(ViewEvents.needsRebuild).subscribe((data)=> {
             this.needsRebuild( data.data ? data.data.type : 'all', data.data ? data.data.data: {} )
         });
 
         // Services events
-        Wrapper.on(ServiceEvents.serviceHasChanged).subscribe(data => this.needsRebuild('service', data.data))
-        Wrapper.on(ServiceEvents.serviceListHasChanged).subscribe(data => this.needsRebuild('all', {}))
+        Core.on(ServiceEvents.serviceHasChanged).subscribe(data => this.needsRebuild('service', data.data))
+        Core.on(ServiceEvents.serviceListHasChanged).subscribe(data => this.needsRebuild('all', {}))
 
         // Group events
-        Wrapper.on(GroupEvents.groupHasChanged).subscribe(data => this.needsRebuild('group', data.data))
-        Wrapper.on(GroupEvents.groupListHasChanged).subscribe(data => this.needsRebuild('all', {}))
+        Core.on(GroupEvents.groupHasChanged).subscribe(data => this.needsRebuild('group', data.data))
+        Core.on(GroupEvents.groupListHasChanged).subscribe(data => this.needsRebuild('all', {}))
 
         return this
     }
@@ -115,9 +115,9 @@ class ViewClass{
     setTemplate(templateData){
         let template = templateData
         if( !this.isTemplate(templateData) ){
-            template = this.overrideTemplate(templateData, Wrapper.logsAreEnabled())
+            template = this.overrideTemplate(templateData, Core.logsAreEnabled())
             if( !template ){
-                if( Wrapper.logsAreEnabled() ){
+                if( Core.logsAreEnabled() ){
                     console.error('Bad template')
                 }
                 return this
@@ -129,7 +129,7 @@ class ViewClass{
             this.template = template
             this.template.initTemplate()
             this.template.init()
-            Wrapper.trigger(ViewEvents.needsRebuild, {type:'all'})
+            Core.trigger(ViewEvents.needsRebuild, {type:'all'})
         }
 
         
@@ -187,7 +187,7 @@ class ViewClass{
         if( this._needsRebuildData && this.view ){
             // IF all is needed
             if( this.hasToRebuildAll() ){
-                if( Wrapper.getServiceManager().getServicesList().length ){
+                if( Core.getServiceManager().getServicesList().length ){
                     this.view.innerHTML = this.getViewMarkup()
                 }
                 else{
@@ -218,7 +218,7 @@ class ViewClass{
                 })
             }
 
-            Wrapper.trigger(ViewEvents.hasRebuild)
+            Core.trigger(ViewEvents.hasRebuild)
             this._needsRebuildData = null
         }
 
@@ -251,8 +251,8 @@ class ViewClass{
      */
     getViewData(){
         const data = {}
-        const groupManager = Wrapper.getGroupManager()
-        const serviceManager = Wrapper.getServiceManager()
+        const groupManager = Core.getGroupManager()
+        const serviceManager = Core.getServiceManager()
         const groups = groupManager.getGroupsList();
         if(groups.length){
             data.type = 'group'
@@ -267,7 +267,7 @@ class ViewClass{
         // If no groups or no service in group :
         data.type = 'services'
         data.data = {}
-        data.data.services = Wrapper.getServiceManager().getServicesList()
+        data.data.services = Core.getServiceManager().getServicesList()
 
         return data
     }
@@ -340,7 +340,7 @@ class ViewClass{
      * Get the markup of un^ped services using a pseudo Group 'other'
      */
     getUngroupedMarkup(ungroupedServicesList){
-        const pseudoGroup = Wrapper.createGroup('default', this.template.getUngroupedTitle(), '')
+        const pseudoGroup = Core.createGroup('default', this.template.getUngroupedTitle(), '')
         ungroupedServicesList.map( service => pseudoGroup.addService(service))
         return this.getGroupMarkup(pseudoGroup, this.getServicesMarkupList(ungroupedServicesList))
     }

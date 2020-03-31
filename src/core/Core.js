@@ -10,7 +10,7 @@ import { LocalManager } from './local/LocalManager';
 const $scriptjs = require('scriptjs')
 
 
-class WrapperClass{
+class CoreClass{
 
     constructor(){
         this.logs = false
@@ -281,4 +281,4 @@ class WrapperClass{
     }
 }
 
-export const Wrapper = new WrapperClass();
+export const Core = new CoreClass();
