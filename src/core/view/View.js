@@ -25,9 +25,6 @@ class ViewClass{
             throw `${ID} :  No template defined`
         }
 
-        // init template.
-        this.setTemplate(this.template)
-
         // Add listeners for rebuild.
         Core.on(ViewEvents.needsRebuild).subscribe((data)=> {
             this.needsRebuild( data.data ? data.data.type : 'all', data.data ? data.data.data: {} )
@@ -40,6 +37,9 @@ class ViewClass{
         // Group events
         Core.on(GroupEvents.groupHasChanged).subscribe(data => this.needsRebuild('group', data.data))
         Core.on(GroupEvents.groupListHasChanged).subscribe(data => this.needsRebuild('all', {}))
+
+
+        this.initTemplate()
 
         return this
     }
@@ -126,16 +126,22 @@ class ViewClass{
             }
         }
 
-        if( this.template != template || template.force){
+        this.template = template
+
+        return this
+    }
+
+    /**
+     * Init the template.
+     */
+    initTemplate(){
+        if( this.template ){
             // Init template.
-            this.template = template
             this.template.initTemplate()
             this.template.init()
-            Core.trigger(ViewEvents.needsRebuild, {type:'all'})
+            Core.trigger(ViewEvents.needsRebuild, {type:'all'})    
         }
 
-        
-        
         return this
     }
 

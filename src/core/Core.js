@@ -6,6 +6,7 @@ import { Service } from './services/Service';
 import { Group } from './groups/Group';
 import { ServiceEvents } from './services/ServiceEvents';
 import { LocalManager } from './local/LocalManager';
+import { TemplateAbstract } from 'easy-gdpr/src/core/view/TemplateAbstract';
 
 const $scriptjs = require('scriptjs')
 
@@ -210,10 +211,33 @@ class CoreClass{
      * Set the template of the view.
      *
      * @param {*} template 
+     * 
+     * @returns {CoreClass}
      */
     setTemplate(template){
         this.viewManager.getView().setTemplate(template)
         return this
+    }
+
+    /**
+     * Set the template of the view.
+     *
+     * @param {*} template 
+     * 
+     * @returns {TemplateAbstract}
+     */
+    createTemplate(template){
+        this.viewManager.getView().setTemplate(template)
+        return this.getTemplate()
+    }
+
+    /**
+     * Set the template of the view.
+     *
+     * @returns {TemplateAbstract}
+     */
+    getTemplate(){
+        return this.viewManager.getView().getTemplate()
     }
 
     /**
