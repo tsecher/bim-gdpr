@@ -150,7 +150,7 @@ eGDPR
 
 ### Create your service
 #### Simple service.
-You can create a simple service using the addService or createService with a simple object : 
+You can create a simple service using the `addService` or `createService` with a simple object : 
 ```javascript
 
 // Then initialize
@@ -162,7 +162,7 @@ eGDPR
             name: 'My Service',
             description: 'My own service description',
             start: function(){
-                console.log('My own service is enabled')
+                console.log('My own service is starting')
             }
         }
     )
@@ -171,6 +171,28 @@ eGDPR
     .init() // Initialize the core
 ```
 
+#### Reusable service
+You can also create a service class. This class will be added in a single file and will be totally independant to easy-gdpr and your website as the easy-gdpr philosphy. This modular way allows you to reuse and import the service only when you need it.
+Easy-gdpr brings you some tools to generate this class. To create a new service you can use this command : 
+
+```npm run egdpr new service```
+
+This will create a directory with auto completed elements in ./easy-gdpr/services/{your service id}. Then you only ha to fill the start method. 
 
 
 ### Create your template
+In the same way as the reusable service you can create a reusable template. To generate a new template, you can use the following command : 
+
+```
+npm run egdpr new template
+```
+
+This will generate a class that provides some method that will be used by the view.
+
+
+In addition to the template generation, you can generate translation files with the command :
+```
+npm run egdpr translate {id of the language}
+```
+This will parse your template class and extract the strings called by `this.html()`.
+
