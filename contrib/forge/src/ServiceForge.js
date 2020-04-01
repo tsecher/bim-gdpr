@@ -52,6 +52,11 @@ class ServiceForge{
                 type: 'text',
                 name: '{ServiceDescription}',
                 message: 'What is the public description of the service ?'
+            },
+            {
+                type: 'text',
+                name: '{ServiceDoc}',
+                message: 'Is there a doc introducing the service ?'
             }
         ]
     }

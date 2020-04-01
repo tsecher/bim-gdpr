@@ -261,7 +261,9 @@ export class DefaultTemplate{
      *
      * @param {Service} service 
      */
-    getServiceMarkup(service){        
+    getServiceMarkup(service){  
+        const doc = service.doc ? `<a href="${service.doc}" target="_blank">${service.doc}</a>` : ''
+        
         return `
             <div class="${ID}-view-service line ${( service.isMandatory() ? 'mandatory':'')}" ${PREFIX}service="${service.id}" ${PREFIX}status="${service.status}">
                 <div class="line-accept" ${PREFIX}service-toggle="${service.id}">
@@ -272,6 +274,7 @@ export class DefaultTemplate{
                 <div class="line-content">
                     <div class="${ID}-view-service-name">${this.html(service.name)}${this.getMandatoryText(service)}</div>
                     <div class="${ID}-view-service-description">${this.html(service.description)}</div>
+                    ${doc}
                 </div>
                 <div>
                     <button data-egdpr-service-toggle="${service.id}">

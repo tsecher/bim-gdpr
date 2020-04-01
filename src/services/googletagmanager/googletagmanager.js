@@ -21,7 +21,8 @@ export class GoogleTagManagerService {
         this.gtmId = gtmId
         this.id = id || 'googletagmanager'
         this.name =  name || "Google Tag Manager"
-        this.description = description || "Google Tag tracking service<br/><a href=\"https://tagmanager.google.com/\">tagmanager.google.com/</a>"
+        this.description = description || "Google Tag tracking service."
+        this.doc = "https://tagmanager.google.com"
         this.defaultLanguage = 'en'
     }
 

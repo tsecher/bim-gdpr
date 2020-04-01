@@ -19,6 +19,7 @@ export class {ServiceClass} {
         this.id = id || '{ServiceId}'
         this.name =  name || "{ServiceName}"
         this.description = description || "{ServiceDescription}"
+        this.doc = "{ServiceDoc}"
         this.defaultLanguage = 'en'
     }
 
