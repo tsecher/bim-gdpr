@@ -6,7 +6,7 @@ import { Service } from './services/Service';
 import { Group } from './groups/Group';
 import { ServiceEvents } from './services/ServiceEvents';
 import { LocalManager } from './local/LocalManager';
-import { TemplateAbstract } from 'easy-gdpr/src/core/view/TemplateAbstract';
+import { TemplateAbstract } from './view/TemplateAbstract';
 
 const $scriptjs = require('scriptjs')
 
