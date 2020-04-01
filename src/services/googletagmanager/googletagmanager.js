@@ -1,17 +1,15 @@
 import { CDN, ID, LANGUAGE_TOKEN } from "../../core/tools/Tools";
-const MatomoTracker = require('matomo-tracker');
-
 
 /**
- * class MatomoService
+ * class GoogleTagManagerService
  * 
- * Matomo tracking service
+ * Google Tag tracking service
  */
-export class MatomoService {
-    
+export class GoogleTagManagerService {
+
     /**
-     * @param {string} matomoUrl 
-     *      The url of the matomo service. Do not add '/matomo.php'
+     * @param {string} gtmId
+     *      The GTM Id.
      * @param {string} id 
      *      The id of the service
      * @param {string} name 
@@ -19,12 +17,11 @@ export class MatomoService {
      * @param {string} description 
      *      The description of the service
      */
-    constructor(matomoUrl, siteId, serviceId, name, description){
-        this.matomoUrl = matomoUrl + '/matomo.php'
-        this.siteId = siteId || 1
-        this.id = serviceId || 'matomo'
-        this.name =  name || "Matomo"
-        this.description = description || "Matomo tracking service.<br/><a href=\"//matomo.org/\" target=\"_blank\">matomo.org</a>"
+    constructor(gtmId, id, name, description){
+        this.gtmId = gtmId
+        this.id = id || 'googletagmanager'
+        this.name =  name || "Google Tag Manager"
+        this.description = description || "Google Tag tracking service<br/><a href=\"https://tagmanager.google.com/\">tagmanager.google.com/</a>"
         this.defaultLanguage = 'en'
     }
 
@@ -39,7 +36,7 @@ export class MatomoService {
      */
     getDefaultTranslations(){
         return [
-            CDN + `src/services/matomo/translations/${LANGUAGE_TOKEN}.json`,
+            CDN + `src/services/googletagmanager/translations/${LANGUAGE_TOKEN}.json`,
         ]
     }
 
@@ -52,7 +49,9 @@ export class MatomoService {
      * @returns {Array}
      */
     getCookiePatterns(){
-        return [/_pk_/]
+        return [
+            /_ga/, /_gat/, /__utma/, /__utmb/, /__utmc/, /__utmt/, /__utmz/, /__gads/, /_drt_/, /FLC/, /exchange_uid/, /id/, /fc/, /rrs/, /rds/, /rv/, /uid/, /UIDR/, /UID/, /clid/, /ipinfo/, /acs/
+        ]
     }
     
     /**
@@ -62,7 +61,7 @@ export class MatomoService {
      */
     getRelatedScripts(){
         return [
-            // `https://www.matomo.com/dist/js`,
+            `//www.googletagmanager.com/gtm.js?id=${this.gtmId}`,
         ]
     }
 
@@ -70,29 +69,19 @@ export class MatomoService {
      * What to do when the service is enabled and is starting.
      */
     start(){
-        // Initialize with your site ID and Matomo URL
-        this.matomoTracker = new MatomoTracker(this.siteId, this.matomoUrl);
-        // Optional: Respond to tracking errors
-        this.matomoTracker.on('error', (err) => {
-            console.warn('error tracking request: ', err);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'gtm.start':new Date().getTime(),
+            event:'gtm.js'
         });
-        // Track url.
-        this.track(window.location.href)
     }
 
     /**
-     * Remove matomo tracking tool.
+     * Send push dataLayer if enabled
      */
-    stop(){
-        this.matomoTracker = null
-    }
-
-    /**
-     * Track
-     */
-    track(data){
-        if(this.matomoTracker){
-            this.matomoTracker.track(data);
+    push(data){
+        if( this.isEnabled() ){
+            window.dataLayer.push(data)
         }
     }
 }
@@ -100,4 +89,4 @@ export class MatomoService {
 // Accessibility out of webpack
 window[ID] = window[ID] || {}
 window[ID]['services_class'] = window[ID]['services_class'] || {};
-window[ID]['services_class']['MatomoService'] = MatomoService;
+window[ID]['services_class']['GoogleTagManagerService'] = GoogleTagManagerService;

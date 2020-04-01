@@ -150,7 +150,7 @@ eGDPR
 
 ### Create your service
 #### Simple service.
-You can create a quick service using the addService or createService with simple object : 
+You can create a simple service using the addService or createService with a simple object : 
 ```javascript
 
 // Then initialize
@@ -170,5 +170,7 @@ eGDPR
     .setTemplate( new DefaultTemplate() ) // Initialize the view
     .init() // Initialize the core
 ```
+
+
 
 ### Create your template
