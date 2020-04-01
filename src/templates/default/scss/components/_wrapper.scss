@@ -82,6 +82,10 @@
             transition-delay: .3s;
             opacity: 1;
         }
+
+        @include less-than($widthPhone){
+            margin: 1rem;
+        }
     }
 
     &-hide{

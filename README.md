@@ -149,5 +149,26 @@ eGDPR
 ```
 
 ### Create your service
+#### Simple service.
+You can create a quick service using the addService or createService with simple object : 
+```javascript
+
+// Then initialize
+eGDPR
+    // -------- Add a simple servuce
+    .addService(
+        {
+            id: 'my_own_service',
+            name: 'My Service',
+            description: 'My own service description',
+            start: function(){
+                console.log('My own service is enabled')
+            }
+        }
+    )
+    // ----
+    .setTemplate( new DefaultTemplate() ) // Initialize the view
+    .init() // Initialize the core
+```
 
 ### Create your template
