@@ -1,4 +1,4 @@
-import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "easy-gdpr/src/core/tools/Tools";
+import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "../../core/tools/Tools";
 
 /**
  * Class for the bottom_banner template.
