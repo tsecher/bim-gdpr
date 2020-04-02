@@ -1,0 +1,12 @@
+{
+    "Your personal data": "Sus datos personales",
+    "Close": "Cerrar",
+    "This site does not declare any service that could use your personal data": "Este sitio no declara servicios que puedan recopilar y explotar datos personales.",
+    "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage them by clicking on <strong>Detail</strong>.": "Este sitio utiliza servicios para mejorar su experiencia de usuario u ofrecerle contenido externo. Algunos de ellos pueden recopilar y utilizar datos personales. Puede administrar su activación a través de este panel accesible en cualquier momento. <br/> También puede administrar en detalle todos los servicios que ofrece el sitio haciendo clic en <strong>Detalles</strong>.",
+    "Enable all": "Activar todo",
+    "Disable all": "Deshabilitar todo",
+    "Detail": "Detalle",
+    "Enable": "Activar",
+    "Disable": "Deshabilitar",
+    "(mandatory for the basic features)": "(necesario para el funcionamiento del sitio)"
+  }

@@ -1,0 +1,17 @@
+.#{$ID}{
+    &-view-service{
+        @include transition(background);
+
+        @include more-than($widthPhone){
+            padding: 1rem;
+            &:hover{
+                background: $color-quat;
+            }
+        }
+
+        &-name{
+            font-size: 1.2rem;
+            margin-bottom: .4rem;
+        }
+    }
+}
