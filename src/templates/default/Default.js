@@ -192,9 +192,10 @@ export class DefaultTemplate{
         // Create the whole content of the view.
         const content = `
             <div class="${ID}-view-main">
-                <div class="title">${this.html('Your personal data')}</div>
                 <div class="${ID}-view-head">        
-                    ${this.html(`This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage them by clicking on <strong>Detail</strong>.`)}
+                    <div class="title">${this.html('Your personal data')}</div>
+                    <div>${this.html(`This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage them by clicking on <strong>Detail</strong>.`)}</div>
+                    <button ${PREFIX}view-toggle-detail>${this.html('Detail')}</button>
                 </div>
 
                 <div class="${ID}-view-quick">
@@ -207,7 +208,6 @@ export class DefaultTemplate{
                         </svg>
                         ${this.html('Enable all')}</button>
                     <button ${PREFIX}all-disable="deny_all">${this.html('Disable all')}</button>
-                    <button ${PREFIX}view-toggle-detail>${this.html('Detail')}</button>
                 </div>
             </div>
             <div class="${ID}-view-detail">
