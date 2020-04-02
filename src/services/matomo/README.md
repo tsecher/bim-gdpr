@@ -5,6 +5,9 @@ Matomo tracking service.
 [matomo.org](https://matomo.org/)
 
 
+## Dependencies
+- https://www.npmjs.com/package/matomo-tracker
+
 
 ## Install
 You have to install [www.npmjs.com/package/matomo-tracker](https://www.npmjs.com/package/matomo-tracker) in addition.
