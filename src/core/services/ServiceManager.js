@@ -187,14 +187,14 @@ class ServiceManagerClass{
     enableService(service, dispacth=true){
         if(Array.isArray(service)){
             service.map( s => { this.enableService(s, false)})
-            Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+            Core.trigger(ServiceEvents.serviceStatusHasChanged, {services: service})
         }
         else if( !service.isEnabled() ){
             ServiceStatusManager.setServiceStatus(service, ServiceStatus.enabled)
             service.onEnable()
             this.startService(service)
             if( dispacth ){
-                Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+                Core.trigger(ServiceEvents.serviceStatusHasChanged, {services: [service]})
             }
         }
     }
@@ -239,7 +239,7 @@ class ServiceManagerClass{
     disableService(service, dispatch=true){
         if( Array.isArray(service)){
             service.map(s=>{this.disableService(s, false)})
-            Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+            Core.trigger(ServiceEvents.serviceStatusHasChanged, {services: service})
         }
         else{
             const serviceIsEnabled = service.isEnabled()
@@ -250,7 +250,7 @@ class ServiceManagerClass{
                 }
                 ServiceStatusManager.setServiceStatus(service, ServiceStatus.disabled)
                 if( dispatch ){
-                    Core.trigger(ServiceEvents.serviceStatusHasChanged, {service: service})
+                    Core.trigger(ServiceEvents.serviceStatusHasChanged, {services: [service]})
                 }
             } 
 
