@@ -1,6 +1,6 @@
 {
     "name": "easy-gdpr",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Easy GDPR tools",
     "main": "./src/egdpr.js",
     "scripts": {
@@ -18,7 +18,9 @@
         "url": "git+https://github.com/tsecher/easy-gdpr.git"
     },
     "keywords": [
-        "gdpr"
+        "gdpr",
+        "cookies",
+        "rgpd"
     ],
     "author": "Thomas Sécher",
     "license": "ISC",
