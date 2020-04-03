@@ -14,11 +14,11 @@ Easy-GDPR allows you to use onlty the elements that your website need. So the us
 
 ```html
 <!-- Add the core : -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/gh/tsecher/easy-gdpr@master/dist/egdpr.js">
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/tsecher/easy-gdpr@master/dist/egdpr.js"></script>
 
 <!-- Add the template you want. Here is the default template : -->
-<script type="text/javascript" src="//cdn.jsdelivr.net/gh/tsecher/easy-gdpr@1.x/src/templates/default/dist/default.js">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/tsecher/easy-gdpr@1.x/src/templates/default/dist/default.css">
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/tsecher/easy-gdpr@1.x/src/templates/default/dist/default.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/tsecher/easy-gdpr@1.x/src/templates/default/dist/default.css"/>
 ```
 
 
