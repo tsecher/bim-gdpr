@@ -8,5 +8,7 @@
     "Detail": "Detail",
     "Enable": "Activeren",
     "Disable": "Deactiveren",
-    "(mandatory for the basic features)": "(noodzakelijk voor de werking van de site)"
+    "(mandatory for the basic features)": "(noodzakelijk voor de werking van de site)",
+    "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.":"Voor deze inhoud zijn mogelijk persoonlijke gegevens vereist. U moet de service @serviceName accepteren om deze te gebruiken voordat u toegang krijgt tot die inhoud.",
+    "Enable @serviceName":"Schakel @serviceName in"
 }
