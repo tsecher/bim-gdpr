@@ -27,7 +27,7 @@ You can reinit the css using the `setCssLinks` method.
     import { DefaultTemplate } from "easy-gdpr/templates/default/Default"
 
     const default_template = new DefaultTemplate()
-    default.setCssLinks(['./your_own.css'])
+    default_template.setCssLinks(['./your_own.css'])
 
     // Reinit default css.
     eGDPR
