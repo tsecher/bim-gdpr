@@ -8,5 +8,7 @@
     "Detail": "Detail",
     "Enable": "Aktivieren",
     "Disable": "Deaktivieren",
-    "(mandatory for the basic features)": "(notwendig für den Betrieb der Website)"
+    "(mandatory for the basic features)": "(notwendig für den Betrieb der Website)",
+    "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.":"Für diesen Inhalt sind möglicherweise personenbezogene Daten erforderlich. Sie müssen den Dienst @serviceName akzeptieren, um ihn verwenden zu können, bevor Sie auf diesen Inhalt zugreifen können.",
+    "Enable @serviceName":"@ServiceName aktivieren"
 }

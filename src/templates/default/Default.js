@@ -294,6 +294,20 @@ export class DefaultTemplate{
     getMandatoryText(element){
         return element.isMandatory() ? ` <span class='mandatory-mention'>${this.html(`(mandatory for the basic features)`)}</span>` : ''
     }
+
+    /**
+     * Allows to add a default content for placeholders.
+     *
+     * @param {Element} element 
+     * @param {Service} service 
+     */
+    initDefaultPlaceholder(element, service){
+        element.classList.add('egdpr-placeholder')
+        const stringData = {
+            '@serviceName': this.html(service.name),
+        }
+        return `${this.html('This content may require your personal data. You have to accept the service @serviceName to use it before accessing that content.', stringData)}<br/><button ${PREFIX}service-enable="${service.id}">${this.html('Enable @serviceName', stringData)}</button>`
+    }
 }
 
 // Accessibility out of webpack
