@@ -1,78 +1,184 @@
 .#{$ID}-view{
+    
+    a{
+        color: $color-text-link;
+        &:hover{
+            text-decoration: none;
+        }
+    }
 
-    // Overlay.
-    &-overlay{
+
+    $wrapper-height-min: 11rem;
+    &-wrapper{
+
         position: fixed;
         z-index: 99999;
-        background: rgba($color-bg, 0);
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        max-height: 0;
+        min-height: 0;
+        width: 0;
+        overflow: hidden;
+        right:0;
+        bottom:0;
+        border-radius: 100vw 0 0 0;
 
-        @include transition(background);
-
-        .#{$ID}-on &{
-            background: rgba($color-bg, .7)
-        }
-    }
-
-    // Wrapper of the view.
-    &-wrapper{
+        padding: 2rem 0;
         background: $color-bg;
-        z-index: 999;
-        width: 40vw;
-        height: 40vh;
-        top: 30vh;
-        left: 30vw;
-        position: absolute;
-        opacity: 0;
+        opacity: 1;
         box-shadow: 0 0 10rem 1rem rgba(0,0,0,.2);
         
-        @include transitionInOut(opacity);
+        
+        @include transitionInOut(border-radius, width, max-height, min-height, height);
 
+        // View on
         .#{$ID}-on &{
+            right: 0;
+            bottom: 0;
             opacity: 1;
-            @include less-than($widthPhone){
-            }
+            border-radius: 0;
+            width: 100%;
+            max-height: 30%;
+            min-height: $wrapper-height-min;
         }
+
+        // Detail on
+        .#{$ID}-on.#{$ID}-detail &{
+            min-height: calc( 100% - 4rem );
+            max-height: calc( 100% - 4rem );
+        }
+
     }
 
-    // View
     &{
+        height: calc( 30vh - 4rem );
+        min-height: $wrapper-height-min;
+
+        padding: 0 2rem;
+        width: calc( 100% - 4rem );
+
+        overflow: auto;
+        color: $color-text;
+        background: $color-bg;
+        
         opacity: 0;
-        transition: opacity .3s ease;
+        @include transitionInOut(max-height, opacity);
         transition-delay: 0s;
-        position: relative;
-        padding: 3rem 1rem 1rem;
-        height: calc( 100% - 4rem );
+        
+        // View on.
         .#{$ID}-on &{
             transition-delay: .3s;
             opacity: 1;
         }
-    }
 
-    // Content.
-    &-content{
-        height: 100%;
-        overflow: auto;
-        margin: 0;
-    }
-
-    // Hide button.
-    &-hide{
-        position: absolute;
-        right: 1rem;
-        top: 1rem;       
-    }
-
-    // Detail.
-    &-detail{
-        display: none;
-
-        // Display the detail pannel.
-        .#{$ID}-detail &{
-            display: block;
+        // Detail on
+        .#{$ID}-on.#{$ID}-detail &{
+            max-height: calc( 100vh - 4rem );
+            height: auto;
         }
     }
+    
+
+    &-hide{
+        height: 2rem;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        transform: scale(1);
+        @include transitionInOut(transform, top);
+        cursor: pointer;
+
+        &:hover{
+            transform: scale(1.3);
+        }
+    }
+
+    &-content{
+        max-width: 60rem;
+        margin: 0 auto;
+
+        &-title{
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &-main{
+        display: flex;
+        align-items: center;
+
+        .title{
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            flex-shrink: 0;
+        }
+    }
+
+    &-head{
+        button{
+            display: block;
+            margin: 1rem 0 0 0;
+            white-space: nowrap;
+        }
+    }
+
+    &-quick{
+        margin: 0 2rem;
+        flex-grow: 1;
+
+        button{
+            margin: .5rem 2rem;
+            width: calc( 100% - 4rem );
+            white-space: nowrap;
+        }
+
+        [data-egdpr-all-enable="accept_all"]{
+            font-size: 1rem;
+            padding: 1rem 2rem 1rem 4rem;
+            position: relative;
+            background: $color-main;
+            color: $color-text-on;
+
+            svg{
+                position: absolute;
+                top: calc( 50% - 1rem );
+                left: 1rem;
+                height: 2rem;
+                rect{
+                    fill: $color-text-on;
+                    @include transition(fill);
+                }
+            }
+
+            &:hover{
+                color: $color-text;
+                svg rect{
+                    fill: $color-text;
+                }       
+            }
+        }
+    }
+
+    &-detail{
+        $time: .3s;
+        border-top: 0px solid transparent;
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin: 0rem auto;
+        padding-top: 0rem;
+        max-width: 40rem;
+
+        @include transitionInOut( margin-top, padding-top, border-top, opacity );
+        transition-delay: 0s, 0s, 0s, $time;
+
+
+        .#{$ID}-detail &{
+            border-top: 1px solid $color-text;
+            opacity: 1;
+            height: auto;
+
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
+    }
+
 }
