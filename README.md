@@ -196,3 +196,23 @@ npm run egdpr translate {id of the language}
 ```
 This will parse your template class and extract the strings called by `this.html()`.
 
+
+## Placeholders
+Easy-gdpr allows you to manage the DOM content depending on a service. For example, you want to add an iframe that should be visible only when a specific service has been enabled by the user. In this case, you can use the power of the `noscript` tag and the attribute `data-egdpr-visible-if-enabled`. 
+The content of the noscript tag will not be played because javascript is enabled. Easy-gdpr will turn this tag into a div when the related service will be enabled. Then the content will be display.
+
+In the following example, we add a youtube embed iframe. In this case, the ifram will only be displayed when the `youtube` service will run. : 
+```html
+<body>
+    <!-- the hidden content until the youtube service is not enabled -->
+    <noscript data-egdpr-visible-if-enabled="youtube">
+        <iframe width="90%" height="315" src="https://www.youtube.com/embed/YOUTUBE_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </noscript>
+
+<!-- the visible content used as a placeholder until the youtube service is not enabled -->
+    <div data-egdpr-hidden-if-enabled="youtube">
+        Please enable the youtube service to play this video.
+        <div data-egdpr-service-enable="youtube">Enable</div>
+    </div>
+</body>
+```

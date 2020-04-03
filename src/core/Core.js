@@ -84,10 +84,32 @@ class CoreClass{
     }
 
     /**
+     * Returns the service if exists.
+     *
+     * @param {string} serviceId 
+     * 
+     * @returns {Service}
+     */
+    getServiceById(serviceId){
+        return this.getServiceManager().getServiceById(serviceId)
+    }
+
+    /**
      * Returns the group manager
      */
     getGroupManager(){
         return this.groupManager   
+    }
+
+    /**
+     * Returns the service if exists.
+     *
+     * @param {string} serviceId 
+     * 
+     * @returns {Service}
+     */
+    getGroupById(groupId){
+        return this.getGroupManager().getGroupById(groupId)
     }
 
     /**

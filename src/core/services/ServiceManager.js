@@ -1,8 +1,9 @@
-import { Service } from "./Service";
-import { ServiceEvents } from "./ServiceEvents";
-import { sortByWeight, checkInterface } from "../tools/Tools";
-import { Core } from "../Core";
-import { ServiceStatusManager, ServiceStatus, Cookies} from "./ServiceStatusManager";
+import { Service } from "./Service"
+import { ServiceEvents } from "./ServiceEvents"
+import { ServicePlaceholder } from "./ServicePlaceholder"
+import { sortByWeight, checkInterface, PREFIX } from "../tools/Tools"
+import { Core } from "../Core"
+import { ServiceStatusManager, ServiceStatus, Cookies} from "./ServiceStatusManager"
 
 /**
  * The service interface.
@@ -21,6 +22,7 @@ class ServiceManagerClass{
 
     constructor(){
         this.services = []
+        this.servicePlaceholder = new ServicePlaceholder()
     }
 
     /**
@@ -70,7 +72,8 @@ class ServiceManagerClass{
      * Init the default behaviors
      */
     init(){
-        Core.on( ServiceEvents.serviceListHasChanged ).subscribe((name, data) => this.sortServices())
+        this.servicePlaceholder.init();
+        Core.on( ServiceEvents.serviceListHasChanged ).subscribe( (data) => this.sortServices() )
     }
     
     /**
@@ -252,8 +255,7 @@ class ServiceManagerClass{
                 if( dispatch ){
                     Core.trigger(ServiceEvents.serviceStatusHasChanged, {services: [service]})
                 }
-            } 
-
+            }
         } 
     }
 
