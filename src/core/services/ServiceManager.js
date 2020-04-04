@@ -266,29 +266,13 @@ class ServiceManagerClass{
      */
     stopService(service){
         service.stop()
-
-        // Delete cookies.
-        try {
-            const listOfCookies = Object.keys(Cookies.get())
-            const cookiesPatterns = service.getCookiePatterns()
-            if( listOfCookies.length && cookiesPatterns.length ){
-                listOfCookies
-                    .filter( cookieName => {
-                        for( let i in cookiesPatterns){
-                            if( cookieName.match(cookiesPatterns[i]) ){
-                                return true
-                            }
-                        }
-                        return false
-                    }) 
-                    .map( cookieName => {
-                        Cookies.remove(cookieName)
-                    })
-            }   
-        } catch (error) {
-            
-        }
         
+         // Delete cookies.
+         this.deleteCookies(service)
+
+         // Delete local storage
+         this.deleteLocalStorage(service)
+         
         // Delete scripts.
         service.getRelatedScripts().map(script => { 
             if( typeof(script) === 'string'){
@@ -300,6 +284,66 @@ class ServiceManagerClass{
         })
         
         Core.trigger(ServiceEvents.serviceStop, {service: service})
+    }
+
+
+
+    /**
+     * Delete cookies linked to the service.
+     *
+     * @param {Service} service 
+     */
+    deleteCookies(service){
+        try {
+            const listOfCookies = Object.keys(Cookies.get())
+            const cookiesPatterns = service.getCookiePatterns()
+            if( listOfCookies.length && cookiesPatterns.length ){
+                listOfCookies
+                    .filter( cookieName => this.filterFromPatterns(cookieName, cookiesPatterns)) 
+                    .map( cookieName => Cookies.remove(cookieName) )
+            }   
+        } catch (error) {
+            
+        }
+    }
+
+    /**
+     * Delete localStorage linked to the service.
+     * 
+     * @param {Service} service 
+     */
+    deleteLocalStorage(service){
+        if( window.localStorage ){
+            try {
+                // service.getLocalStoragePatterns()
+                const localStorageNames = Object.keys(window.localStorage)
+                const localStoragePatterns = service.getLocalStoragePatterns()
+                if( localStorageNames.length && localStoragePatterns.length ){
+                    localStorageNames
+                        .filter( storageName => this.filterFromPatterns(storageName, localStoragePatterns)) 
+                        .map( storageName => {
+                            window.localStorage.removeItem(storageName)
+
+                        } )
+                } 
+            } catch (error) {
+            }
+        }
+    }
+
+    /**
+     * Returns the list that matches patterns.
+     * 
+     * @param {string} item 
+     * @param {Array} patternsList 
+     */
+    filterFromPatterns(item, patternsList){
+        for( let i in patternsList){
+            if( item.match(patternsList[i]) ){
+                return true
+            }
+        }
+        return false
     }
 
     /**
