@@ -18,12 +18,26 @@ nav:
         - Declare service: ./start/declare.md
 
     - Events: 
-        - Principle: ./events/principle.md
+        - Introduction : ./events/principle.md
         - Service events: ./events/service_events.md
         - View events: ./events/view_events.md
         - Group events: ./events/group_events.md
 
-    - Core settings: ./core/core.md
+    # - Core settings: ./core/core.md
 
     - Services : 
-        - Add a service: './services/index.md'
+        - Introduction : ./services/index.md
+        - Create a reusable service: './services/create.md'
+        - Service methods : './services/methods.md'
+
+    - Templates : 
+        - Introduction : ./templates/index.md
+        - Create a template: './templates/create.md'
+        - Template methods : './templates/methods.md'
+
+    - Groups : 
+        - Introduction : ./groups/index.md
+
+    - Translations:
+        - Introdution: ./translations/index.md
+    
