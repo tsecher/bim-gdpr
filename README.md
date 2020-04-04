@@ -2,6 +2,9 @@
 
 Easy-GDPR is a javascript tool allowing users to manage their personal data services according to the General Data Protection Regulation (GDPR). Easy-GDPR is highly customizable and allows you to integrate it easily in your website.
 
+## Documentation 
+
+You can find documentation on [https://easy-gdpr.readthedocs.io/](https://easy-gdpr.readthedocs.io/)
 
 ## Installation 
 
