@@ -1,6 +1,8 @@
 export const ViewEvents = {
     needsRebuild: 'needs-rebuild',
     hasRebuild: 'has-rebuild',
-    showView: 'show-view',
-    hideView: 'hide-view'
+    beforeShowView: 'before-show-view',
+    afterShowView: 'after-show-view',
+    beforeHideView: 'before-hide-view',
+    afterHideView: 'after-hide-view',
 }

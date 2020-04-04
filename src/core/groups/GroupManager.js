@@ -71,7 +71,7 @@ class GroupManagerClass{
         this.groups = this.groups.sort((a,b) => sortByWeight(a,b))
 
         // Needs rebuild.
-        Core.trigger(ViewEvents.needsRebuild)
+        Core.trigger(ViewEvents.needsRebuild, {type:'all'})
 
         return this
     }

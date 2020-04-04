@@ -86,7 +86,7 @@ class ViewManagerClass{
     show(){
         if( !this.isDisplayed() ){
             this.body.append(this.view.getViewElement())
-            Core.trigger(ViewEvents.showView, {})
+            Core.trigger(ViewEvents.beforeShowView, {})
             try {
                 this.getView().getTemplate().getShowPromise().then(() => {
                     this._doShow()
@@ -94,6 +94,7 @@ class ViewManagerClass{
             } catch (error) {
                 this._doShow()
             }
+            
         }
     }
 
@@ -102,6 +103,7 @@ class ViewManagerClass{
      */
     _doShow(){
         this.body.classList.add(ID+'-on')
+        Core.trigger(ViewEvents.afterShowView, {})
     }
 
     /**
@@ -116,7 +118,7 @@ class ViewManagerClass{
                 Core.getServiceManager().enableService(Core.getServiceManager().getMandatoryServicesList())
                 Core.getServiceManager().disableService(Core.getServiceManager().getPendingServices())
             }
-            Core.trigger(ViewEvents.hideView, {})
+            Core.trigger(ViewEvents.beforeHideView, {})
 
             // Remove classes
             this.body.classList.remove(ID+'-on')
@@ -140,6 +142,7 @@ class ViewManagerClass{
      */
     _doHide(){
         this.body.removeChild(this.view.getViewElement())
+        Core.trigger(ViewEvents.afterHideView, {})
     }
 
     /**

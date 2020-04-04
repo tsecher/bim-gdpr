@@ -1,9 +1,4 @@
-
-
-## What is Easy-GDPR
-Easy-GDPR is a javascript tool allowing website visitors to manage the services using their personal data according to the General Data Protection Regulation (GDPR). Easy-GDPR is highly customizable and allows you to integrate it easily in your website. 
-
-## Why should you care about customization ?
+# Why should you care about customization ?
 When you build a website, you may use some services that use cookies that can require personal data (like IP address) such as tracking services. According to GDPR, you are not allowed to activate these services untill the user explicitly enables it. So, if you don't want to let your tracking service vain, you should propose the activation of this service as soon as possible. That's why you should use a service manager that shows an interface where the user would be able to activate your service. There are many tools on the web that do so, but are not easily customizable. And you should not underestimate the graphic integration of your service manager.
 
 ### Your service manager should not look like an ad !
@@ -29,12 +24,3 @@ It is important to consider that the service manager is part of your website. It
 | What is the priority of the services for the user ? | Easily ordering services | You don't have choice |
 | Can services be grouped to facilitate the user understanding ? | Easily grouping services | You don't have choice |
 | What is the importance of the user's choice ? Should he access the content before he make an explicit choice | Easily define behaviors | You don't have choice |
-
-
-## Take advantage of the highly customization of Easy-GDPR
-
-### Choose / create your Template
-
-### Choose / create your Services
-
-### Define your own text

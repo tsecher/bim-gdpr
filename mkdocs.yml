@@ -1,0 +1,29 @@
+site_name: Easy-gdpr
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+
+nav:
+    - Home: './index.md'
+    - General :
+        - Why should you care about customization : './general/about.md'
+        - Structure: './general/structure.md'
+
+    - Getting started:
+        - Installation: ./start/install.md
+        - Initialisation: ./start/init.md
+        - Declare service: ./start/declare.md
+
+    - Events: 
+        - Principle: ./events/principle.md
+        - Service events: ./events/service_events.md
+        - View events: ./events/view_events.md
+        - Group events: ./events/group_events.md
+
+    - Core settings: ./core/core.md
+
+    - Services : 
+        - Add a service: './services/index.md'
