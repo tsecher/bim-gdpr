@@ -10,10 +10,10 @@ Google Tag tracking service
 ### Declare service
 You can add the service passing your Google Tag Manager Id.
 ```javascript
-    import { YoutubeService } from "../easy-gdpr/services/googletagmanager/googletagmanager"
+    import { YoutubeService } from "../bim-gdpr/services/googletagmanager/googletagmanager"
 
     const gtmService = new GoogleTagManagerService('GTM-******')
-    eGDPR
+    bGDPR
         .addService(gtmService)
 
 ```
@@ -23,10 +23,10 @@ You can add the service passing your Google Tag Manager Id.
 You can use the service to push data to GoogleTagManager using the `push` method. It deals with the service activation by the user.
 
 ```javascript
-    import { YoutubeService } from "../easy-gdpr/services/googletagmanager/googletagmanager"
+    import { YoutubeService } from "../bim-gdpr/services/googletagmanager/googletagmanager"
 
     const gtmService = new GoogleTagManagerService('GTM-******')
-    eGDPR
+    bGDPR
         .addService(gtmService)
 
         // {...}

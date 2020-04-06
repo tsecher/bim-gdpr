@@ -130,8 +130,8 @@
 }
 
 // Enable / Disable
-[data-egdpr-group], [data-egdpr-service]{
-    &[data-egdpr-status="1"]{
+[data-bgdpr-group], [data-bgdpr-service]{
+    &[data-bgdpr-status="1"]{
         .enable{
             display: none;
         }

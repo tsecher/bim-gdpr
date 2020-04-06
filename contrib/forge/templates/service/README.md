@@ -9,11 +9,11 @@
 ## How to use
 
 ### Declare service
-Add the service as you normally do with easy-gdpr
+Add the service as you normally do with bim-gdpr
 ```javascript
-    import { {ServiceClass} } from "../easy-gdpr/services/{ServiceId}/{ServiceId}"
+    import { {ServiceClass} } from "../bim-gdpr/services/{ServiceId}/{ServiceId}"
 
     const {ServiceId} = new {ServiceClass}()
-    eGDPR
+    bGDPR
         .addService({ServiceId})
 ```

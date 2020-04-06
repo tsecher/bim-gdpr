@@ -137,7 +137,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
                     <div class="${ID}-view-service-description">${html(service.description)}</div>
                 </div>
                 <div>
-                    <button data-egdpr-service-toggle="${service.id}">
+                    <button data-bgdpr-service-toggle="${service.id}">
                         <span class="enable">${html('Activer')}</span>
                         <span class="disable">${html('Désactiver')}</span>
                     </button>  
@@ -159,11 +159,11 @@ export class TemplateAbstract extends LocalizedElementAbstract{
                     <div class="${ID}-view-group-name">${group.name} ${group.isMandatory() ? `<span class='mandatory'>${html(`(nécessaire au fonctionnement du site)`)}</span>` : ''}</div>
                     <div class="${ID}-view-group-description">${group.description}</div>
                     <div class="${ID}-view-group-detail">
-                        <a class="more" href="Javascript:void();" data-egdpr-group-toggle-detail="${group.id}">Detail</a>  
+                        <a class="more" href="Javascript:void();" data-bgdpr-group-toggle-detail="${group.id}">Detail</a>  
                     </div>
                 </div>
                 <div class="${ID}-view-group-quick question">
-                    <button data-egdpr-group-toggle="${group.id}">
+                    <button data-bgdpr-group-toggle="${group.id}">
                         <span class="enable">${html('Tout activer')}</span>
                         <span class="disable">${html('Tout désactiver')}</span>
                     </button>

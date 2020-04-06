@@ -11,10 +11,10 @@ Google user tracking services
 ### Declare service
 You can add the service passing your Google Tag Id.
 ```javascript
-    import { GTAGService } from "../easy-gdpr/services/gtag/gtag"
+    import { GTAGService } from "../bim-gdpr/services/gtag/gtag"
 
     const gtagService = new GTAGService('UA-******')
-    eGDPR
+    bGDPR
         .addService(gtagService)
 
 ```

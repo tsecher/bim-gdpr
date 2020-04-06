@@ -7,32 +7,32 @@ Allow you to access the Youtube Embed videos
 ## How to use
 
 ### Declare service
-Add the service as you normally do with easy-gdpr
+Add the service as you normally do with bim-gdpr
 ```javascript
-    import { YoutubeEmbedService } from "../easy-gdpr/services/youtube_embed/youtube_embed"
+    import { YoutubeEmbedService } from "../bim-gdpr/services/youtube_embed/youtube_embed"
 
     const youtube_embed = new YoutubeEmbedService()
-    eGDPR
+    bGDPR
         .addService(youtube_embed)
 ```
 
 ### Use the place holders to disable youtube iframes.
 
-Easy-gdpr allows you to manage the DOM content depending on a service. For example, you want to add an iframe that should be visible only when a specific service has been enabled by the user. In this case, you can use the power of the `noscript` tag and the attribute `data-egdpr-visible-if-enabled`. 
+Easy-gdpr allows you to manage the DOM content depending on a service. For example, you want to add an iframe that should be visible only when a specific service has been enabled by the user. In this case, you can use the power of the `noscript` tag and the attribute `data-bgdpr-visible-if-enabled`. 
 The content of the noscript tag will not be played because javascript is enabled. Easy-gdpr will turn this tag into a div when the related service will be enabled. Then the content will be display.
 
 In the following example, we add a youtube embed iframe. In this case, the iframe will only be displayed when the `youtube` service runs. : 
 ```html
 <body>
     <!-- the hidden content until the youtube service is not enabled -->
-    <noscript data-egdpr-visible-if-enabled="youtube_embed">
+    <noscript data-bgdpr-visible-if-enabled="youtube_embed">
         <iframe width="90%" height="315" src="https://www.youtube.com/embed/YOUTUBE_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </noscript>
 
 <!-- the visible content used as a placeholder until the youtube service is not enabled -->
-    <div data-egdpr-hidden-if-enabled="youtube_embed">
+    <div data-bgdpr-hidden-if-enabled="youtube_embed">
         Please enable the youtube service to play this video.
-        <div data-egdpr-service-enable="youtube_embed">Enable</div>
+        <div data-bgdpr-service-enable="youtube_embed">Enable</div>
     </div>
 </body>
 ```

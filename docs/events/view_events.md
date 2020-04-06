@@ -1,13 +1,13 @@
 # View events list
 
-You can use events importing them with `import { ViewEvents } from 'easy-gdpr/src/view/ViewEvents'
+You can use events importing them with `import { ViewEvents } from 'bim-gdpr/src/view/ViewEvents'
 `
 
 Each event can be listened with the core `on` method
 ```javascript
-import { ViewEvents } from 'easy-gdpr/src/view/ViewEvents'
+import { ViewEvents } from 'bim-gdpr/src/view/ViewEvents'
 
-eGDPR.on(ViewEvents.beforeShowView).subscribe( data => {
+bGDPR.on(ViewEvents.beforeShowView).subscribe( data => {
         console.log('data', data);
     })
 ```

@@ -1,17 +1,17 @@
 import { Core } from "./core/Core";
 import { Service } from "./core/services/Service";
 
-export const eGDPR = Core
-export const eGDPRService = Service
+export const bGDPR = Core
+export const bGDPRService = Service
 
 // Accessibility out of webpack
-if( window[eGDPR] ){
-    const tmp = window[eGDPR]
-    window[eGDPR] = Core
+if( window[bGDPR] ){
+    const tmp = window[bGDPR]
+    window[bGDPR] = Core
     for(let i in tmp){
-        window[eGDPR][i] = tmp[i]
+        window[bGDPR][i] = tmp[i]
     }
 }
 else{
-    window[eGDPR] = Core
+    window[bGDPR] = Core
 }

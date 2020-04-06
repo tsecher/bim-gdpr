@@ -1,8 +1,8 @@
 {
-    "name": "easy-gdpr",
+    "name": "bim-gdpr",
     "version": "1.1.0",
-    "description": "Easy GDPR tools",
-    "main": "./src/egdpr.js",
+    "description": "Easy way to propose personal data services (like cookie) manager",
+    "main": "./src/bgdpr.js",
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -10,24 +10,25 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "egdpr": "node ./contrib/forge/forge.js",
+        "bgdpr": "node ./contrib/forge/forge.js",
         "postinstall": "node ./contrib/post_install.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/tsecher/easy-gdpr.git"
+        "url": "git+https://github.com/tsecher/bim-gdpr.git"
     },
     "keywords": [
         "gdpr",
         "cookies",
-        "rgpd"
+        "rgpd",
+        "personal data manager"
     ],
     "author": "Thomas Sécher",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/tsecher/easy-gdpr/issues"
+        "url": "https://github.com/tsecher/bim-gdpr/issues"
     },
-    "homepage": "https://github.com/tsecher/easy-gdpr#readme",
+    "homepage": "https://github.com/tsecher/bim-gdpr#readme",
     "dependencies": {
         "glob": "^7.1.6",
         "js-cookie": "^2.2.1",

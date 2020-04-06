@@ -236,11 +236,11 @@ export class {TemplateClass}{
                         <div class="${ID}-view-group-name">${group.name}${this.getMandatoryText(group)}</div>
                         <div class="${ID}-view-group-description">${group.description}</div>
                         <div class="${ID}-view-group-detail">
-                            <a class="more" href="Javascript:void(0);" data-egdpr-group-toggle-detail="${group.id}">${this.html('Detail')}</a>  
+                            <a class="more" href="Javascript:void(0);" data-bgdpr-group-toggle-detail="${group.id}">${this.html('Detail')}</a>  
                         </div>
                     </div>
                     <div class="${ID}-view-group-quick">
-                        <button data-egdpr-group-toggle="${group.id}">
+                        <button data-bgdpr-group-toggle="${group.id}">
                             <span class="enable">${this.html('Enable all')}</span>
                             <span class="disable">${this.html('Disable all')}</span>
                         </button>
@@ -275,7 +275,7 @@ export class {TemplateClass}{
                     ${doc}
                 </div>
                 <div>
-                    <button data-egdpr-service-toggle="${service.id}">
+                    <button data-bgdpr-service-toggle="${service.id}">
                         <span class="enable">${this.html('Enable')}</span>
                         <span class="disable">${this.html('Disable')}</span>
                     </button>  
@@ -301,7 +301,7 @@ export class {TemplateClass}{
      * @param {Service} service 
      */
     initDefaultPlaceholder(element, service){
-        element.classList.add('egdpr-placeholder')
+        element.classList.add('bgdpr-placeholder')
         const stringData = {
             '@serviceName': this.html(service.name),
         }

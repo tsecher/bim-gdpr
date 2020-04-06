@@ -59,8 +59,8 @@ class TemplateForge{
         let to =  `./src/templates/${data['{TemplateId}']}/`
 
         if( !this.sharedType ){
-            to = to.replace('/src/', '/easy-gdpr/')
-            from = './node_modules/easy-gdpr/' + from
+            to = to.replace('/src/', '/bim-gdpr/')
+            from = './node_modules/bim-gdpr/' + from
         }
 
         this.tpl = new TplManager()
@@ -68,7 +68,7 @@ class TemplateForge{
                 from,
                 to,
                 {...{
-                    '{ImportPath}': this.sharedType ? '../../' : 'easy-gdpr/src/',
+                    '{ImportPath}': this.sharedType ? '../../' : 'bim-gdpr/src/',
                     '{CommentCDN}': this.sharedType ? '' : '//',
                     },
                     ...data

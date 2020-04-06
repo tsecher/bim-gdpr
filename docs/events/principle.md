@@ -3,7 +3,7 @@
 Events are managed with rxjs subjects. You can find further information on [the officiel website of rxjs](https://rxjs-dev.firebaseapp.com/guide/subject)
 
 ## Principle
-The eGDPR is an event manager. You can listen and dispatch events using it. 
+The bGDPR is an event manager. You can listen and dispatch events using it. 
 
 Only listened events are dispatched. So no event is dispatched until a related event is declared.
 
@@ -11,9 +11,9 @@ Only listened events are dispatched. So no event is dispatched until a related e
 To listen an event, you can use the `on` method. It returns a RXJS subject that has to be subscribed. The subscription function get a parameters that contains the name of the event and contetual data.
 
 ```javascript
-import { ServiceEvents } from 'easy-gdpr/src/services/ServiceEvents'
+import { ServiceEvents } from 'bim-gdpr/src/services/ServiceEvents'
 
-eGDPR.on(ServiceEvents.serviceStart).subscribe( data => {
+bGDPR.on(ServiceEvents.serviceStart).subscribe( data => {
         console.log('data', data);
     })
 ```
@@ -31,8 +31,8 @@ You can dispatch your own events using the `trigger` method. This methods needs 
 For better use, please export the name of your custom event. By this way, you facilitate the use of your event by third-party users.
 
 ```javascript
-    export const MY_OWN_EVENT='egdpr-my-own-event'
-    eGDPR.trigger(
+    export const MY_OWN_EVENT='bgdpr-my-own-event'
+    bGDPR.trigger(
         MY_OWN_EVENT, 
         { 
             my_own_data_1: 'my_own_value_1',

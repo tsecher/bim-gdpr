@@ -69,8 +69,8 @@ class ServiceForge{
         let to =  `./src/services/${data['{ServiceId}']}/`
 
         if( !this.sharedType ){
-            to = to.replace('/src/', '/easy-gdpr/')
-            from = './node_modules/easy-gdpr/' + from
+            to = to.replace('/src/', '/bim-gdpr/')
+            from = './node_modules/bim-gdpr/' + from
         }       
 
         this.tpl = new TplManager()
@@ -78,7 +78,7 @@ class ServiceForge{
                 from,
                 to,
                 {...{
-                    '{ImportPath}': this.sharedType ? '../../' : 'easy-gdpr/src/',
+                    '{ImportPath}': this.sharedType ? '../../' : 'bim-gdpr/src/',
                     '{CommentCDN}': this.sharedType ? '' : '//',
                     },
                     ...data

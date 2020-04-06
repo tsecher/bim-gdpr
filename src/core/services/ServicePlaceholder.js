@@ -1,7 +1,7 @@
 import { PREFIX } from '../tools/Tools'
 import { Core } from '../Core'
 import { ServiceEvents } from './ServiceEvents'
-import { Service } from 'easy-gdpr/src/core/services/Service';
+import { Service } from 'bim-gdpr/src/core/services/Service';
 
 export class ServicePlaceholder{
 

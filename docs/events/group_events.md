@@ -1,13 +1,13 @@
 # Group events list
 
-You can use events importing them with `import { GroupEvents } from 'easy-gdpr/src/groups/GroupEvents'
+You can use events importing them with `import { GroupEvents } from 'bim-gdpr/src/groups/GroupEvents'
 `
 
 Each event can be listened with the core `on` method
 ```javascript
-import { GroupEvents } from 'easy-gdpr/src/groups/GroupEvents'
+import { GroupEvents } from 'bim-gdpr/src/groups/GroupEvents'
 
-eGDPR.on(GroupEvents.groupHasChanged).subscribe( data => {
+bGDPR.on(GroupEvents.groupHasChanged).subscribe( data => {
         console.log('data', data);
     })
 ```

@@ -21,10 +21,10 @@ You have to install [www.npmjs.com/package/matomo-tracker](https://www.npmjs.com
 ### Declare service
 You can add the service passing your Matomo url and your site Id (optional).
 ```javascript
-    import { MatomoService } from "../easy-gdpr/services/matomo/matomo"
+    import { MatomoService } from "../bim-gdpr/services/matomo/matomo"
 
     const matomoService = new MatomoService('https://my-matomo-site.com',1)
-    eGDPR
+    bGDPR
         .addService(matomoService)
 
 ```
@@ -34,10 +34,10 @@ You can add the service passing your Matomo url and your site Id (optional).
 You can use the service to track data to Matomo using the `track` method. It deals with the service activation by the user.
 
 ```javascript
-     import { MatomoService } from "../easy-gdpr/services/matomo/matomo"
+     import { MatomoService } from "../bim-gdpr/services/matomo/matomo"
 
     const matomoService = new MatomoService('https://my-matomo-site.com',1)
-    eGDPR
+    bGDPR
         .addService(matomoService)
 
         // {...}

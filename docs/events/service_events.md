@@ -1,13 +1,13 @@
 # Service events list
 
-You can use events importing them with `import { ServiceEvents } from 'easy-gdpr/src/services/ServiceEvents'
+You can use events importing them with `import { ServiceEvents } from 'bim-gdpr/src/services/ServiceEvents'
 `
 
 Each event can be listened with the core `on` method
 ```javascript
-import { ServiceEvents } from 'easy-gdpr/src/services/ServiceEvents'
+import { ServiceEvents } from 'bim-gdpr/src/services/ServiceEvents'
 
-eGDPR.on(ServiceEvents.serviceStart).subscribe( data => {
+bGDPR.on(ServiceEvents.serviceStart).subscribe( data => {
         console.log('data', data);
     })
 ```

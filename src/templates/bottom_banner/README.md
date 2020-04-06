@@ -10,12 +10,12 @@
 ## How to use
 
 ### Install
-Install the template as you normally do with easy-gdpr
+Install the template as you normally do with bim-gdpr
 ```javascript
-    import { BottomBanner } from "easy-gdpr/templates/bottom_banner/bottom_banner"
+    import { BottomBanner } from "bim-gdpr/templates/bottom_banner/bottom_banner"
 
     const bottom_banner = new BottomBanner()
-    eGDPR
+    bGDPR
         .setTemplate(bottom_banner)
         .init()
 ```
@@ -24,13 +24,13 @@ Install the template as you normally do with easy-gdpr
 You can reinit the css using the `setCssLinks` method.
 
 ```javascript
-    import { DefaultTemplate } from "easy-gdpr/templates/bottom_banner/bottom_banner"
+    import { DefaultTemplate } from "bim-gdpr/templates/bottom_banner/bottom_banner"
 
     const bottom_banner = new BottomBanner()
     bottom_banner.setCssLinks(['./your_own.css'])
 
     // Reinit default css.
-    eGDPR
+    bGDPR
         .setTemplate(bottom_banner)
         .init()
 ```

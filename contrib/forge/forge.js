@@ -4,8 +4,8 @@ let forge;
 
 // Identify the context.
 let sharedType = true;
-if( process.env.npm_package_scripts_egdpr 
-    && process.env.npm_package_scripts_egdpr.indexOf('node_modules/easy-gdpr') > -1 ){
+if( process.env.npm_package_scripts_bgdpr
+    && process.env.npm_package_scripts_bgdpr.indexOf('node_modules/bim-gdpr') > -1 ){
     sharedType = false
 }
 
