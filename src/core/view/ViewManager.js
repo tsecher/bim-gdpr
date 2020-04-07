@@ -16,7 +16,6 @@ class ViewManagerClass{
      * REturn the wrapper element.
      */
     get parentElement(){
-        debugger
         return this.getView().getTemplate().getParentElement()
     }
 
@@ -82,7 +81,6 @@ class ViewManagerClass{
      * Show interface
      */
     show(){
-        debugger
         if( !this.isDisplayed() ){
 
             this.parentElement.append(this.view.getViewElement())
