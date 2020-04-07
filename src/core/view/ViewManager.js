@@ -6,20 +6,18 @@ import { ViewEvents } from "./ViewEvents";
 class ViewManagerClass{
 
     /**
-     * 
+     *
      */
     constructor(){
         this.view = View
     }
 
     /**
-     * REturn body element.
+     * REturn the wrapper element.
      */
-    get body(){
-        if( !this._body ){
-            this._body = document.querySelector('body')    
-        }
-        return this._body
+    get parentElement(){
+        debugger
+        return this.getView().getTemplate().getParentElement()
     }
 
     /**
@@ -31,16 +29,16 @@ class ViewManagerClass{
         this.initActions()
     }
 
-     /**
+    /**
      * Init behaviors
      */
     initActions(){
         // All
-        this.addAction('all-enable', () => { 
+        this.addAction('all-enable', () => {
             Core.getServiceManager().enableAll()
             this.hide()
         })
-        this.addAction('all-disable', () => { 
+        this.addAction('all-disable', () => {
             Core.getServiceManager().disableAll()
             this.hide()
         })
@@ -66,7 +64,7 @@ class ViewManagerClass{
 
     /**
      * Return the template manager
-     * 
+     *
      * @returns {View}
      */
     getView(){
@@ -84,8 +82,10 @@ class ViewManagerClass{
      * Show interface
      */
     show(){
+        debugger
         if( !this.isDisplayed() ){
-            this.body.append(this.view.getViewElement())
+
+            this.parentElement.append(this.view.getViewElement())
             Core.trigger(ViewEvents.beforeShowView, {})
             try {
                 this.getView().getTemplate().getShowPromise().then(() => {
@@ -94,7 +94,7 @@ class ViewManagerClass{
             } catch (error) {
                 this._doShow()
             }
-            
+
         }
     }
 
@@ -102,7 +102,7 @@ class ViewManagerClass{
      * Add class that show the element.
      */
     _doShow(){
-        this.body.classList.add(ID+'-on')
+        this.parentElement.classList.add(ID+'-on')
         Core.trigger(ViewEvents.afterShowView, {})
     }
 
@@ -112,7 +112,7 @@ class ViewManagerClass{
     hide(){
         if( this.isDisplayed() ){
 
-            // Considering that pending elements are now disabled, because no explicit consentment but 
+            // Considering that pending elements are now disabled, because no explicit consentment but
             // user has been prompted.
             if( !Core.testMode ){
                 Core.getServiceManager().enableService(Core.getServiceManager().getMandatoryServicesList())
@@ -121,9 +121,9 @@ class ViewManagerClass{
             Core.trigger(ViewEvents.beforeHideView, {})
 
             // Remove classes
-            this.body.classList.remove(ID+'-on')
-            this.body.classList.remove(ID + '-detail')
-            this.body.querySelectorAll('.'+ID + '-detail').forEach( item => {
+            this.parentElement.classList.remove(ID+'-on')
+            this.parentElement.classList.remove(ID + '-detail')
+            this.parentElement.querySelectorAll('.'+ID + '-detail').forEach( item => {
                 item.classList.remove(ID + '-detail')
             })
 
@@ -141,15 +141,15 @@ class ViewManagerClass{
      * Remove view from dom.
      */
     _doHide(){
-        this.body.removeChild(this.view.getViewElement())
+        this.parentElement.removeChild(this.view.getViewElement())
         Core.trigger(ViewEvents.afterHideView, {})
     }
 
     /**
      * Add actions callback.
      *
-     * @param {string} type 
-     * @param {*} callback 
+     * @param {string} type
+     * @param {*} callback
      */
     addAction(type, callback){
         // Init actions list.
@@ -160,10 +160,10 @@ class ViewManagerClass{
     }
 
     /**
-     * Add action to element 
+     * Add action to element
      */
     initBehaviors(attribute, callback){
-        document.addEventListener('click', (evt)=>{    
+        document.addEventListener('click', (evt)=>{
             this.initEventOnItem(evt.target, attribute, callback)
         })
     }
@@ -203,15 +203,15 @@ class ViewManagerClass{
     /**
      * Call the list of attached action.
      *
-     * @param {string} type 
-     * @param {*} data 
+     * @param {string} type
+     * @param {*} data
      */
     callAction(type, data){
         this.actions = this.actions || []
         // Init action type liste
         this.actions[type] = this.actions[type] || []
 
-        this.actions[type].map( callback => { 
+        this.actions[type].map( callback => {
             callback(data)
         })
     }
@@ -220,14 +220,14 @@ class ViewManagerClass{
      * Toggle detail.
      */
     toggleDetailPanel(){
-        this.body.classList.toggle(ID + '-detail')
+        this.parentElement.classList.toggle(ID + '-detail')
     }
 
     /**
      * Return true if the detail panel is open.
      */
     detailPanelIsOpen(){
-        return this.body.classList.contains(ID + '-detail')
+        return this.parentElement.classList.contains(ID + '-detail')
     }
 
     /**
@@ -239,14 +239,14 @@ class ViewManagerClass{
             document.querySelectorAll(`[${PREFIX}service][${PREFIX}status]`).forEach(item => {
                 const service = Core.getServiceManager().getServiceById(item.getAttribute(PREFIX + 'service'))
                 if( service ){
-                    item.setAttribute(`${PREFIX}status`, service.status)    
-                }            
+                    item.setAttribute(`${PREFIX}status`, service.status)
+                }
             })
             document.querySelectorAll(`[${PREFIX}group][${PREFIX}status]`).forEach(item => {
                 const service = Core.getGroupManager().getGroupById(item.getAttribute(PREFIX + 'group'))
                 if( service ){
-                    item.setAttribute(`${PREFIX}status`, service.status)    
-                }            
+                    item.setAttribute(`${PREFIX}status`, service.status)
+                }
             })
         }, 10)
     }

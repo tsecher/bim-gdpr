@@ -17,7 +17,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     initTemplate(){
         super.initTranslations()
         this.getCssList().map( css => Core.addCss(css) )
-        
+
     }
 
     /**
@@ -37,7 +37,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     /**
      * Update css urls list.
      *
-     * @param {*} css 
+     * @param {*} css
      */
     setCssList(css){
         this.css = css
@@ -47,7 +47,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
 
     /**
      * Wrap the content
-     * @param {*} content 
+     * @param {*} content
      */
     wrapper(content){
         return `
@@ -60,10 +60,10 @@ export class TemplateAbstract extends LocalizedElementAbstract{
             </div>
         </div>`
     }
-    
+
     /**
      * Return the content when no service is declared.
-     * 
+     *
      * @returns {string}
      */
     getNoServiceMarkup(){
@@ -81,7 +81,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     /**
      * Return the wrapper content.
      *
-     * @param {string} content 
+     * @param {string} content
      */
     getContent(markup){
         return `
@@ -103,12 +103,12 @@ export class TemplateAbstract extends LocalizedElementAbstract{
             ${markup}
         </div>`
     }
-    
-     /**
+
+    /**
      * Returns the markup of the view.
      */
     getViewMarkup(content){
-        let markup = ''   
+        let markup = ''
 
         switch(content.type){
             case 'groups':
@@ -122,14 +122,14 @@ export class TemplateAbstract extends LocalizedElementAbstract{
         return this.wrapper(this.getContent(markup))
     }
 
-    
+
 
     /**
      * Return the markup of a single service.
      *
-     * @param {*} service 
+     * @param {*} service
      */
-    getServiceMarkup(service){        
+    getServiceMarkup(service){
         return `
             <div class="${ID}-view-service line"  ${PREFIX}service="${service.id}" ${PREFIX}status="${service.status}">
                 <div>
@@ -149,7 +149,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     /**
      * Return the markup of a group
      *
-     * @param {Group} group 
+     * @param {Group} group
      */
     getGroupMarkup(group, serviceMarkupList){
         return `
@@ -180,8 +180,8 @@ export class TemplateAbstract extends LocalizedElementAbstract{
     /**
      * Element to translate.
      *
-     * @param {string} id 
-     * @param {*} data 
+     * @param {string} id
+     * @param {*} data
      */
     html(id, data){
         return html(id, data)
@@ -204,5 +204,17 @@ export class TemplateAbstract extends LocalizedElementAbstract{
      * Temp dom remove.
      */
     getHidePromise(){
+    }
+
+    /**
+     * Return the parent element that should contain the view.
+     *
+     * @returns {HTMLBodyElement}
+     */
+    getParentElement(){
+        if( !this.parent ){
+            this.parent = document.querySelector('body');
+        }
+        return this.parent
     }
 }
