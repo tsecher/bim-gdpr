@@ -212,6 +212,7 @@ export class DefaultTemplate{
             </div>
             <div class="${ID}-view-detail">
                 ${markup}
+                <button class="${ID}-view-detail-save" ${PREFIX}view-hide>${this.html('Save')}</button>
             </div>`
 
         return this.wrapper(content)

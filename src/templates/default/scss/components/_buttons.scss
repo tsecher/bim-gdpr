@@ -20,6 +20,15 @@
     }
 }
 
+%_button-primary{
+    background: $color-main;
+    color: $color-text-on;
+    font-size: 1rem;
+    &:hover{
+        color: $color-text;
+    }
+}
+
 .#{$ID}-view{
     button{
         @extend %_button;

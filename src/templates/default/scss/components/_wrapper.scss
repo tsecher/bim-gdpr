@@ -112,11 +112,12 @@
         align-items: flex-end;
 
         [data-bgdpr-all-enable="accept_all"]{
+            @extend %_button-primary;
+
             font-size: 1rem;
             padding: 1rem 2rem 1rem 4rem;
             position: relative;
-            background: $color-main;
-            color: $color-text-on;
+
 
             svg{
                 position: absolute;
@@ -129,8 +130,8 @@
                 }
             }
 
+
             &:hover{
-                color: $color-text;
                 svg rect{
                     fill: $color-text;
                 }       
@@ -152,6 +153,13 @@
 
         transition:  max-width $time $inOutTime, opacity #{$time / 2} $inOutTime, padding .3s $inOutTime, border-left .3s $inOutTime;
         transition-delay: 0s, 0s;
+
+        & &-save{
+            @extend %_button-primary;
+            display: block;
+            margin: 2rem auto;
+            padding: .7rem 2rem;
+        }
 
         .#{$ID}-detail &{
             max-width: $max-width;
