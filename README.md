@@ -34,7 +34,7 @@ Using a es2015 packager like wepback
 _(if you use a CDN, bim-gdpr core is available with the global variable `bGDPR`.)_
 ```javascript
 // Import the core.
-import { bGDPR } from "bim-gdpr"
+import bGDPR from "bim-gdpr"
 // Import the default template
 import { DefaultTemplate } from "bim-gdpr/src/templates/default/Default"
 
@@ -109,11 +109,9 @@ By default, the services are ordered according to the order of their declaration
 
 
 ```javascript
-import { GTAGService } from "bim-gdpr/src/services/gtag/gtag"
 import { MatomoService } from "bim-gdpr/src/services/matomo/matomo"
 
 // Create services :
-const gta = bGDPR.createService( new GTAGService('U-*******') )
 const matomo = bGDPR.createService( new MatomoService('//matomo.php') )
 matomo.setWeight( -1 ) // Place matomo first.
 
@@ -135,13 +133,6 @@ The text ID can be found in the dom in the attribute `data-bgdpr-l`.
 
 So you can override translation using `bGDPR.addTranslation` : 
 ```javascript
-import { GTAGService } from "bim-gdpr/src/services/gtag/gtag"
-import { MatomoService } from "bim-gdpr/src/services/matomo/matomo"
-
-// Create services :
-const gta = bGDPR.createService( new GTAGService('U-*******') )
-const matomo = bGDPR.createService( new MatomoService('//matomo.php') )
-
 // Then initialize
 bGDPR
     .addTranslations({
