@@ -18,8 +18,8 @@ Add the service as you normally do with bim-gdpr
 
 ### Use the place holders to disable youtube iframes.
 
-Easy-gdpr allows you to manage the DOM content depending on a service. For example, you want to add an iframe that should be visible only when a specific service has been enabled by the user. In this case, you can use the power of the `noscript` tag and the attribute `data-bgdpr-visible-if-enabled`. 
-The content of the noscript tag will not be played because javascript is enabled. Easy-gdpr will turn this tag into a div when the related service will be enabled. Then the content will be display.
+Bim-GDPR allows you to manage the DOM content depending on a service. For example, you want to add an iframe that should be visible only when a specific service has been enabled by the user. In this case, you can use the power of the `noscript` tag and the attribute `data-bgdpr-visible-if-enabled`. 
+The content of the noscript tag will not be played because javascript is enabled. Bim-GDPR will turn this tag into a div when the related service will be enabled. Then the content will be display.
 
 In the following example, we add a youtube embed iframe. In this case, the iframe will only be displayed when the `youtube` service runs. : 
 ```html

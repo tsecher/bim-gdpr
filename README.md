@@ -167,7 +167,7 @@ bGDPR
 
 #### Reusable service
 You can also create a service class. This class will be added in a single file and will be totally independant to bim-gdpr and your website as the bim-gdpr philosphy. This modular way allows you to reuse and import the service only when you need it.
-Easy-gdpr brings you some tools to generate this class. To create a new service you can use this command : 
+Bim-GDPR brings you some tools to generate this class. To create a new service you can use this command : 
 
 ```npm run bgdpr new service```
 
@@ -192,8 +192,8 @@ This will parse your template class and extract the strings called by `this.html
 
 
 ## Placeholders
-Easy-gdpr allows you to manage the DOM content depending on a service. For example, you want to add an iframe that should be visible only when a specific service has been enabled by the user. In this case, you can use the power of the `noscript` tag and the attribute `data-bgdpr-visible-if-enabled`. 
-The content of the noscript tag will not be played because javascript is enabled. Easy-gdpr will turn this tag into a div when the related service will be enabled. Then the content will be display.
+Bim-GDPR allows you to manage the DOM content depending on a service. For example, you want to add an iframe that should be visible only when a specific service has been enabled by the user. In this case, you can use the power of the `noscript` tag and the attribute `data-bgdpr-visible-if-enabled`. 
+The content of the noscript tag will not be played because javascript is enabled. Bim-GDPR will turn this tag into a div when the related service will be enabled. Then the content will be display.
 
 In the following example, we add a youtube embed iframe. In this case, the iframe will only be displayed when the `youtube` service runs. : 
 ```html

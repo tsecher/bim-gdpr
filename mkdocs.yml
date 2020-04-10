@@ -1,4 +1,4 @@
-site_name: Easy-gdpr
+site_name: bim-GDPR
 theme:
     name: readthedocs
     highlightjs: true
@@ -40,4 +40,7 @@ nav:
 
     - Translations:
         - Introdution: ./translations/index.md
+
+    - How to ...:
+        - Force the displayed language: './how/force-language.md'
     
