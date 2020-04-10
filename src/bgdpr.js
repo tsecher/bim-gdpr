@@ -1,15 +1,16 @@
 import { Core } from "./core/Core";
+import { ID } from "./core/tools/Tools";
 
 export default Core
 
 // Accessibility out of webpack
-if( window['bGDPR'] ){
-    const tmp = window['bGDPR']
-    window['bGDPR'] = Core
+if( window[ID] ){
+    const tmp = window[ID]
+    window[ID] = Core
     for(let i in tmp){
-        window['bGDPR'][i] = tmp[i]
+        window[ID][i] = tmp[i]
     }
 }
 else{
-    window['bGDPR'] = Core
+    window[ID] = Core
 }
