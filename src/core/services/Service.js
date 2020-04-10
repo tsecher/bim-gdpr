@@ -1,148 +1,152 @@
-import { Core } from "../Core";
-import { ServiceEvents } from "./ServiceEvents";
-import { ServiceStatusManager, ServiceStatus } from "./ServiceStatusManager";
-import { LocalizedElementAbstract } from "../local/LocalizedElementAbstract";
+import {Core} from "../Core";
+import {ServiceEvents} from "./ServiceEvents";
+import {ServiceStatusManager, ServiceStatus} from "./ServiceStatusManager";
+import {LocalizedElementAbstract} from "../local/LocalizedElementAbstract";
 
-export class Service extends LocalizedElementAbstract{
-    
-    constructor(id, name, description){
-        super(id)
-        this._id = id
-        this._name = name
-        this._description = description
-    }
+export class Service extends LocalizedElementAbstract {
 
-    get id(){
-        return this._id
-    }
+	constructor(id, name, description) {
+		super(id)
+		this._id = id
+		this._name = name
+		this._description = description
+	}
 
-    get name(){
-        return this._name
-    }
+	get id() {
+		return this._id
+	}
 
-    get description(){
-        return this._description
-    }
+	get name() {
+		return this._name
+	}
 
-    get status(){
-        return ServiceStatusManager.getServiceStatus(this)
-    }
+	get description() {
+		return this._description
+	}
 
-    set id(id){
-        this._id = id
-        Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
-    }
+	get status() {
+		return ServiceStatusManager.getServiceStatus(this)
+	}
 
-    set name(name){
-        this._name = name
-        Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
-    }
+	set id(id) {
+		this._id = id
+		Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
+	}
 
-    set description(description){
-        this._description = description
-        Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
-    }
+	set name(name) {
+		this._name = name
+		Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
+	}
 
-    /**
-     * Init the element
-     */
-    init(){
-        super.initTranslations()
-        return this;
-    }
+	set description(description) {
+		this._description = description
+		Core.trigger(ServiceEvents.serviceHasChanged, {service: this})
+	}
 
-    /**
-     * Return the cookie patterns.
-     * 
-     * Cookies with an id matching with this pattern will be removed when
-     * when service will stop.
-     */
-    getCookiePatterns(){
-        return []
-    }
+	/**
+	 * Init the element
+	 */
+	init() {
+		super.initTranslations()
+		return this;
+	}
 
-    /**
-     * Return the list of scripts path to add.
-     */
-    getRelatedScripts(){
-        return []
-    }
+	/**
+	 * Return the cookie patterns.
+	 *
+	 * Cookies with an id matching with this pattern will be removed when
+	 * when service will stop.
+	 */
+	getCookiePatterns() {
+		return []
+	}
 
-    /**
-     * Return the list of css path to add.
-     */
-    getRelatedCss(){
-        return []
-    }
+	/**
+	 * Return the list of scripts path to add.
+	 */
+	getRelatedScripts() {
+		return []
+	}
 
-    /**
-     * Action when service is enabled.
-     */
-    onEnable(){ 
-    }
+	/**
+	 * Return the list of css path to add.
+	 */
+	getRelatedCss() {
+		return []
+	}
 
-    /**
-     * Action when service is disabled.
-     */
-    onDisable(){ 
-    }
+	/**
+	 * Action when service is enabled.
+	 */
+	onEnable() {
+	}
 
-    /**
-     * Service run
-     */
-    start(){
-        console.log(`Start ${this.name} (${this.id})`) 
-    }
+	/**
+	 * Action when service is disabled.
+	 */
+	onDisable() {
+	}
 
-    /**
-     * Service stop
-     */
-    stop(){
-        console.log(`Stop ${this.name} (${this.id})`) 
-    }
+	/**
+	 * Service run
+	 */
+	start() {
+		if (Core.logsAreEnabled()) {
+			console.log(`Start ${this.name} (${this.id})`)
+		}
+	}
 
-    /**
-     * Is Mandatory
-     */
-    isMandatory(){
-        return false 
-    }
+	/**
+	 * Service stop
+	 */
+	stop() {
+		if (Core.logsAreEnabled()) {
+			console.log(`Stop ${this.name} (${this.id})`)
+		}
+	}
 
-    /**
-     * Is Enabled
-     */
-    isEnabled(){
-        return this.status === ServiceStatus.enabled
-    }
+	/**
+	 * Is Mandatory
+	 */
+	isMandatory() {
+		return false
+	}
 
-    /**
-     * Is disabled
-     */
-    isDisabled(){
-        return this.status === ServiceStatus.disabled
-    }
-    
-    /**
-     * Is Pending
-     */
-    isPending(){
-        return this.status === ServiceStatus.pending
-    }
+	/**
+	 * Is Enabled
+	 */
+	isEnabled() {
+		return this.status === ServiceStatus.enabled
+	}
 
-    /**
-     * Set weiught
-     */
-    setWeight(weight){
-        this.weight = weight
+	/**
+	 * Is disabled
+	 */
+	isDisabled() {
+		return this.status === ServiceStatus.disabled
+	}
 
-        // If the service is already in the added services
-        // we sort the services list
-        if( Core.getServiceManager().getServiceById(this.id) ){
-            Core.trigger(ServiceEvents.serviceListHasChanged, {
-                    serviceManager: Core.getServiceManager()
-                })
-        }
+	/**
+	 * Is Pending
+	 */
+	isPending() {
+		return this.status === ServiceStatus.pending
+	}
 
-        return this
-    }
+	/**
+	 * Set weiught
+	 */
+	setWeight(weight) {
+		this.weight = weight
+
+		// If the service is already in the added services
+		// we sort the services list
+		if (Core.getServiceManager().getServiceById(this.id)) {
+			Core.trigger(ServiceEvents.serviceListHasChanged, {
+				serviceManager: Core.getServiceManager()
+			})
+		}
+
+		return this
+	}
 }
