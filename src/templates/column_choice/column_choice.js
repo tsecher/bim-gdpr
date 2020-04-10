@@ -69,7 +69,7 @@ export class ColumnChoiceTemplate{
      */
     getDefaultCssList(){
         return [
-            //CDN + `src/templates/column_choice/dist/column_choice.css`
+            CDN + `src/templates/column_choice/dist/column_choice.css`
         ]
     }
     
@@ -84,7 +84,7 @@ export class ColumnChoiceTemplate{
      */
     getDefaultTranslations(){
         return [
-            //CDN + `src/templates/column_choice/translations/${LANGUAGE_TOKEN}.json`
+            CDN + `src/templates/column_choice/translations/${LANGUAGE_TOKEN}.json`
         ]
     }
 

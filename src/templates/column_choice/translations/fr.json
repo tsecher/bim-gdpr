@@ -1,7 +1,7 @@
 {
   "This site does not declare any service that could use your personal data": "Ce site ne déclare pas de services qui pourraient requérir et exploiter des données personnelles.",
   "Your personal data": "Vos données personnelles",
-  "This site uses some services that enhance your user experience and add external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment. You can also manage them by clicking on <strong @attributes>Detail</strong>.": "This site uses some services that enhance your user experience and add external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment. You can also manage them by clicking on <strong @attributes>Détail</strong>.",
+  "This site uses some services that enhance your user experience and add external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment. You can also manage them by clicking on <strong @attributes>Detail</strong>.": "Ce site utilise des services pour améliorer votre expérience utilisateur ou vous proposer des contenus externes. Certains d'entre eux peuvent requérir et exploiter des données personnelles. Vous pouvez gérer leur activation via ce panneau accessible à tout moment en placant votre souris en bas à droite de la fenêtre.<br/>Vous pouvez également gérer en détail l'ensemble des services que le site propose en cliquant sur <strong @attributes>Détail</strong>.",
   "Enable only essential services": "Activer uniquement les services nécessaires au fonctionnement",
   "Enable all personal services": "Activer tous les services",
   "OK": "OK",
