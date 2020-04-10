@@ -15,21 +15,21 @@ class TranslationForge{
         this.destination = destination;
         this.askForType()
     }
-    
+
     askForType(){
         prompts([
             {
-              type: 'multiselect',
-              name: 'type',
-              message: 'Type of element to translate ?',
-              choices: [
-                { value: 'services', title: 'Service' },
-                { value: 'templates', title: 'Template' },
-              ],
+                type: 'multiselect',
+                name: 'type',
+                message: 'Type of element to translate ?',
+                choices: [
+                    { value: 'services', title: 'Service' },
+                    { value: 'templates', title: 'Template' },
+                ],
             }
-        ]).then( result => {            
-            this.getElementList(result.type[0]).then( listOfElements => {       
-                this.askForElement(listOfElements)         
+        ]).then( result => {
+            this.getElementList(result.type[0]).then( listOfElements => {
+                this.askForElement(listOfElements)
             })
         })
     }
@@ -37,30 +37,31 @@ class TranslationForge{
     askForElement(listOfElements){
         prompts([
             {
-              type: 'multiselect',
-              name: 'element',
-              message: 'Element to translate ?',
-              choices: listOfElements.map( element => {
-                  return {
-                      title: element.split('/').slice(-1),
-                      value: element 
-                  }
-              }),
+                type: 'multiselect',
+                name: 'element',
+                message: 'Element to translate ?',
+                choices: listOfElements.map( element => {
+                    return {
+                        title: element.split('/').slice(-1),
+                        value: element
+                    }
+                }),
             }
         ]).then( result => this.createTranslation(result.element[0]) )
     }
 
     getElementList(type){
         return new Promise( resolve => {
-            
-            glob.glob(this.getSrcDir(type), (er, files)=>{                
+
+            glob.glob(this.getSrcDir(type), (er, files)=>{
                 resolve(files)
             })
-        }) 
+        })
     }
 
     getSrcDir(type){
-        return `./src/${type}/*`
+
+        return this.sharedType ? `./src/${type}/*` : `./bim-gdpr/${type}/*`
     }
 
     createTranslation(dir){
@@ -71,9 +72,9 @@ class TranslationForge{
                 this.treatFile(fs.readFileSync(file, 'utf8'));
             } )
             fs.writeFile(dir+'/translations/'+ this.destination +'.json', JSON.stringify(this.translation, null, 2), (err)=>{
-                'OK mec'
+
             })
-        } )   
+        } )
     }
 
     treatFile(data){
@@ -91,7 +92,7 @@ class TranslationForge{
 
         do {
             m = reg.exec(string);
-            
+
             if (m) {
                 result.push( m[1] )
             }

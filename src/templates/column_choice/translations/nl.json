@@ -1,0 +1,16 @@
+{
+    "This site does not declare any service that could use your personal data": "Deze site vermeldt geen services die persoonlijke gegevens kunnen vereisen en exploiteren.",
+    "Your personal data": "Uw persoonlijke gegevens",
+    "This site uses some services that enhance your user experience and add external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment. You can also manage them by clicking on <strong @attributes>Detail</strong>.": "Deze site maakt gebruik van een aantal diensten die uw gebruikerservaring verbeteren en externe inhoud toevoegen. Sommigen van hen kunnen persoonlijke gegevens nodig hebben en gebruiken. U kunt hun activering via dit paneel op elk moment beheren. U kunt ze ook beheren door op <strong @attributes> Detail </strong>. ",
+    "Enable only essential services": "Activeer alleen de services die nodig zijn voor gebruik",
+    "Enable all personal services": "Activeer alle diensten",
+    "OK": "OK",
+    "Detail": "Detail",
+    "Enable all": "Activeer alles",
+    "Disable all": "Alles uitschakelen",
+    "Enable": "Activeren",
+    "Disable": "Deactiveren",
+    "(mandatory for the basic feature)": "(noodzakelijk voor de werking van de site)",
+    "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.": "Voor deze inhoud is mogelijk het gebruik van persoonlijke gegevens vereist. U moet de activering van de service \"@serviceName\" accepteren voordat u toegang krijgt tot de inhoud.",
+    "Enable @serviceName": "Activeer @serviceName"
+}

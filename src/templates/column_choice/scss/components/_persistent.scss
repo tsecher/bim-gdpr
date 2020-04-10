@@ -1,0 +1,57 @@
+$width: 3.5rem;
+
+.#{$ID}{
+    &-persistent{
+        display: block;
+        background: $color-main;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 99999;
+        border-radius: 6rem 0 0 0;
+        width: $width;
+        height: $width;
+        font-size: 0;
+        opacity: 0;
+        box-shadow: 0 0 0rem 0rem rgba(0,0,0,.2);
+        cursor: pointer;
+
+        @include transitionIn(width, height, opacity, box-shadow);
+        transition-delay: 1s;
+        overflow: hidden;
+
+        &:hover, .#{$ID}-on &{
+            transition-delay: 0s;
+            $width: 4rem;
+            opacity: 1;
+            width: $width;
+            height: $width;
+            box-shadow: 0 0 5rem 1rem rgba(0,0,0,.2);
+
+            .#{$ID}-persistent-logo{
+                transition-delay: 0s;
+                right: .5rem;
+                bottom: .5rem;
+            } 
+        }
+
+        .#{$ID}-on &{
+            transition-delay: 0s;
+        }
+
+        &-logo{
+            
+            height: 2.5rem;
+            position: absolute;
+            right: 0rem;
+            bottom: 0rem;
+            
+            @include transitionIn(right, bottom);
+            transition-delay: 1s;
+
+            path{
+                fill: $color-text;
+            }
+        }
+    }
+}

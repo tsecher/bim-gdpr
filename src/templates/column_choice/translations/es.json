@@ -1,0 +1,16 @@
+{
+    "This site does not declare any service that could use your personal data": "Este sitio no declara servicios que puedan requerir y explotar datos personales",
+    "Your personal data": "Sus datos personales",
+    "This site uses some services that enhance your user experience and add external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment. You can also manage them by clicking on <strong @attributes>Detail</strong>.": "Este sitio utiliza algunos servicios que mejoran su experiencia de usuario y agregan contenido externo. Algunos de ellos pueden requerir y usar datos personales. Puede administrar su activación a través de este panel en cualquier momento. También puede administrarlos haciendo clic en <strong @attributes > Detalles </strong>. ",
+    "Enable only essential services": "Activar solo los servicios necesarios para la operación",
+    "Enable all personal services": "Activar todos los servicios",
+    "OK": "OK",
+    "Detail": "Detalle",
+    "Enable all": "Activar todo",
+    "Disable all": "Deshabilitar todo",
+    "Enable": "Activar",
+    "Disable": "Desactivar",
+    "(mandatory for the basic feature)": "(necesario para el funcionamiento del sitio)",
+    "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.": "Este contenido puede requerir el uso de datos personales. Debe aceptar la activación del servicio \"@serviceName\" antes de acceder al contenido.",
+    "Enable @serviceName": "Activar @serviceName"
+}
