@@ -83,7 +83,7 @@ class ViewManagerClass{
     show(){
         if( !this.isDisplayed() ){
 
-            this.parentElement.append(this.view.getViewElement())
+            this.parentElement.appendChild(this.view.getViewElement())
             Core.trigger(ViewEvents.beforeShowView, {})
             try {
                 this.getView().getTemplate().getShowPromise().then(() => {

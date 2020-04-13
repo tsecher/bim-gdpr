@@ -1,4 +1,5 @@
 import {PREFIX, ID, LANGUAGE_TOKEN} from '../tools/Tools'
+import {PseudoPromise} from "../tools/PseudoPromise";
 
 class LocalManagerClass {
 
@@ -122,23 +123,35 @@ class LocalManagerClass {
      * @param {string} path
      */
     _doLoadFile(path, language) {
-        const success = (data) => {
-            this.loadFileContent(data)
-        }
-        const error = (data) => {
-            console.error(`Cannot load translation file ${data.path}`)
+        const reject = (data) => {
+            // On test en mode pas de regionalisation.
+            if (data.language.indexOf('-') > -1 && this.tryRegionalisation) {
+                this.loadFile(path)
+            } else {
+                console.error(`Cannot load translation file ${data.path}`)
+            }
         }
 
-        this.loadTranslationFile(path, language)
-            .then(success)
-            .catch((data) => {
-                // On test en mode pas de regionalisation.
-                if (data.language.indexOf('-') > -1 && this.tryRegionalisation) {
-                    this.loadFile(path)
-                } else {
-                    error(data)
-                }
-            })
+        let xhr = new XMLHttpRequest();
+        const data = {
+            path: path,
+            language: language,
+        }
+
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                data.result = xhr.response
+                this.loadFileContent(data)
+            } else {
+                reject(data)
+            }
+        };
+
+        xhr.onerror = () => {
+            reject(data)
+        };
+        xhr.open('get', data.path)
+        xhr.send()
     }
 
     /**
@@ -225,34 +238,6 @@ class LocalManagerClass {
             return storedLanguages[path]
         }
         return false
-    }
-
-    /**
-     * Load a po file.
-     */
-    loadTranslationFile(path, language) {
-        return new Promise((resolve, reject) => {
-            let xhr = new XMLHttpRequest();
-            const data = {
-                path: path,
-                language: language,
-            }
-
-            xhr.onload = () => {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    data.result = xhr.response
-                    resolve(data)
-                } else {
-                    reject(data)
-                }
-            };
-
-            xhr.onerror = () => {
-                reject(data)
-            };
-            xhr.open('get', data.path)
-            xhr.send()
-        })
     }
 
     /**

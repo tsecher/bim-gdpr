@@ -125,6 +125,9 @@ export class ServicePlaceholder{
      * @param {*} element 
      */
     showElement(element){
-        element.outerHTML = element.outerHTML.replace(/noscript/g,"div");
+        element.outerHTML = element.outerHTML.replace(/noscript/g,"div")
+                                .replace(/&lt;/g,"<")
+                                .replace(/&gt;/g,">")
+
     }
 }
