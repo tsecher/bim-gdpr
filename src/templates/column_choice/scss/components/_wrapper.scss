@@ -84,8 +84,9 @@
     &-hide{
         height: 2rem;
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 2rem;
         transform: scale(1);
         @include transitionInOut(transform, top);
         cursor: pointer;
@@ -160,6 +161,7 @@
                 top: calc( 50% - 1rem );
                 left: 1rem;
                 height: 2rem;
+                width: 2rem;
                 rect{
                     fill: $color-text-on;
                     @include transition(fill);
