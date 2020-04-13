@@ -7,7 +7,7 @@ Each event can be listened with the core `on` method
 ```javascript
 import { GroupEvents } from 'bim-gdpr/src/groups/GroupEvents'
 
-bGDPR.on(GroupEvents.groupHasChanged).subscribe( data => {
+bGDPR.on(GroupEvents.groupHasChanged).then( data => {
         console.log('data', data);
     })
 ```

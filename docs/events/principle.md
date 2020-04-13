@@ -1,19 +1,17 @@
 # Events
 
-Events are managed with rxjs subjects. You can find further information on [the officiel website of rxjs](https://rxjs-dev.firebaseapp.com/guide/subject)
-
 ## Principle
 The bGDPR is an event manager. You can listen and dispatch events using it. 
 
 Only listened events are dispatched. So no event is dispatched until a related event is declared.
 
 ## How to listen an event
-To listen an event, you can use the `on` method. It returns a RXJS subject that has to be subscribed. The subscription function get a parameters that contains the name of the event and contetual data.
+To listen an event, you can use the `on` method. It returns a PseudoPromise that has to be subscribed. The subscription function get a parameters that contains the name of the event and contextual data.
 
 ```javascript
 import { ServiceEvents } from 'bim-gdpr/src/services/ServiceEvents'
 
-bGDPR.on(ServiceEvents.serviceStart).subscribe( data => {
+bGDPR.on(ServiceEvents.serviceStart).then( data => {
         console.log('data', data);
     })
 ```

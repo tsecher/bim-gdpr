@@ -7,7 +7,7 @@ Each event can be listened with the core `on` method
 ```javascript
 import { ViewEvents } from 'bim-gdpr/src/view/ViewEvents'
 
-bGDPR.on(ViewEvents.beforeShowView).subscribe( data => {
+bGDPR.on(ViewEvents.beforeShowView).then( data => {
         console.log('data', data);
     })
 ```

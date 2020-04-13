@@ -7,7 +7,7 @@ Each event can be listened with the core `on` method
 ```javascript
 import { ServiceEvents } from 'bim-gdpr/src/services/ServiceEvents'
 
-bGDPR.on(ServiceEvents.serviceStart).subscribe( data => {
+bGDPR.on(ServiceEvents.serviceStart).then( data => {
         console.log('data', data);
     })
 ```

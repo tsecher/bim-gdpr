@@ -33,7 +33,6 @@
         "glob": "^7.1.6",
         "js-cookie": "^2.2.1",
         "prompts": "^2.3.2",
-        "rxjs": "^6.5.4",
         "scriptjs": "^2.5.9"
     },
     "devDependencies": {

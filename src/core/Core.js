@@ -6,7 +6,7 @@ import {Group} from './groups/Group';
 import {ServiceEvents} from './services/ServiceEvents';
 import {LocalManager} from './local/LocalManager';
 import {TemplateAbstract} from './view/TemplateAbstract';
-import {PseudoPromise} from "bim-gdpr/src/core/tools/PseudoPromise";
+import {PseudoPromise} from "./tools/PseudoPromise";
 
 const $scriptjs = require('scriptjs')
 
