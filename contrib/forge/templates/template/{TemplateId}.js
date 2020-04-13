@@ -234,8 +234,8 @@ export class {TemplateClass}{
                         </svg>
                     </div>
                     <div class="line-content">
-                        <div class="${ID}-view-group-name">${group.name}${this.getMandatoryText(group)}</div>
-                        <div class="${ID}-view-group-description">${group.description}</div>
+                        <div class="${ID}-view-group-name">${this.html(group.name)}${this.getMandatoryText(group)}</div>
+                        <div class="${ID}-view-group-description">${this.html(group.description)}</div>
                         <div class="${ID}-view-group-detail">
                             <a class="more" href="Javascript:void(0);" data-bgdpr-group-toggle-detail="${group.id}">${this.html('Detail')}</a>  
                         </div>
