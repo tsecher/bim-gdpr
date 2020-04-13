@@ -27,7 +27,7 @@ nav:
 
     - Services : 
         - Introduction : ./services/index.md
-        - Create a reusable service: './services/create.md'
+        - Create a service: './services/create.md'
         - Service methods : './services/methods.md'
 
     - Templates : 
