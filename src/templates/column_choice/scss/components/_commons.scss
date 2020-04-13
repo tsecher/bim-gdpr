@@ -12,10 +12,10 @@
     }
 
     &-accept{
-
         position: relative;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: flex-start;
         align-items: center;
 
 
@@ -27,6 +27,8 @@
             border-radius: 50%;
             position: absolute;
             z-index: 0;
+            left: 0;
+            top: 0;
 
             @include transition(background);
 
@@ -38,9 +40,14 @@
         & > svg{
             opacity: 0;
             width: 0rem;
+            height: 2rem;
             @include transitionInOut(width);
             z-index: 1;
             cursor: pointer;
+            left: auto;
+            right: .3rem;
+            position: absolute;
+
 
             path{
                 fill: $color-text;
@@ -67,6 +74,8 @@
                 background: none;
                 border: 1px solid $color-main;
                 opacity: 1;
+                left: auto;
+                right: 0;
 
                 .mandatory &{
                     border: none;
