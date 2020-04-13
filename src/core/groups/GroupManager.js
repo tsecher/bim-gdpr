@@ -88,7 +88,14 @@ class GroupManagerClass{
         })
 
         // Disctinct services.
-        groupedServices = [...new Set(groupedServices)]
+        try {
+            groupedServices = [...new Set(groupedServices)]
+        }
+        catch (e) {
+            groupedServices.filter((value, index, self) =>{
+                self.indexOf(value) === index
+            })
+        }
 
         // unGroupedServices
         let unGroupedServices = 
