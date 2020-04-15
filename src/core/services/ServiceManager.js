@@ -216,22 +216,25 @@ class ServiceManagerClass {
      * @param {Service} service
      */
     startService(service) {
-        service.getRelatedScripts().map(script => {
-            if (typeof (script) === 'string') {
-                Core.addScript(script)
-            } else {
-                try {
-                    if (script.path) {
-                        Core.addScript(script.path, script.callback)
+        if( !service.isRuning ){
+            service.isRuning = true
+            service.getRelatedScripts().map(script => {
+                if (typeof (script) === 'string') {
+                    Core.addScript(script)
+                } else {
+                    try {
+                        if (script.path) {
+                            Core.addScript(script.path, script.callback)
+                        }
+                    } catch (error) {
+                        console.error(error);
                     }
-                } catch (error) {
-                    console.error(error);
                 }
-            }
-        })
+            })
 
-        service.start()
-        Core.trigger(ServiceEvents.serviceStart, {service: service})
+            service.start()
+            Core.trigger(ServiceEvents.serviceStart, {service: service})
+        }
     }
 
     /**
@@ -280,24 +283,28 @@ class ServiceManagerClass {
      * @param {Service} service
      */
     stopService(service) {
-        service.stop()
+        if( service.isRuning ){
+            service.isRuning = false
+            service.stop()
 
-        // Delete cookies.
-        this.deleteCookies(service)
+            // Delete cookies.
+            this.deleteCookies(service)
 
-        // Delete local storage
-        this.deleteLocalStorage(service)
+            // Delete local storage
+            this.deleteLocalStorage(service)
 
-        // Delete scripts.
-        service.getRelatedScripts().map(script => {
-            if (typeof (script) === 'string') {
-                Core.removeScript(script)
-            } else if (script.path) {
-                Core.removeScript(script.path)
-            }
-        })
+            // Delete scripts.
+            service.getRelatedScripts().map(script => {
+                if (typeof (script) === 'string') {
+                    Core.removeScript(script)
+                } else if (script.path) {
+                    Core.removeScript(script.path)
+                }
+            })
 
-        Core.trigger(ServiceEvents.serviceStop, {service: service})
+            Core.trigger(ServiceEvents.serviceStop, {service: service})
+        }
+
     }
 
 

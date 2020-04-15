@@ -96,6 +96,40 @@ export class MatomoService {
             this.matomoTracker.track(data);
         }
     }
+
+    /**
+     * shortcut to track events.
+     *
+     * @param category
+     * @param action
+     * @param name
+     * @param value
+     */
+    trackEvent(category, action, name, value) {
+        this.track(
+            {
+                ...this._getDefaultData(),
+                ...{
+                    e_c: category,
+                    e_a: action,
+                    e_n: name,
+                    e_v: value
+                }
+            })
+    }
+
+    /**
+     * Return default data for events.
+     * @returns {{idsite: (*|number), rec: number, url: string}}
+     * @private
+     */
+    _getDefaultData() {
+        return {
+            idsite: this.siteId,
+            rec: 1,
+            url: window.location.href,
+        }
+    }
 }
 
 // Accessibility out of webpack
