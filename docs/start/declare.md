@@ -12,7 +12,7 @@ import { GTAGService } from "bim-gdpr/src/services/gtag/gtag"
 import { MatomoService } from "bim-gdpr/src/services/matomo/matomo"
 
 
-bGDPR
+bgdpr
     // ----- Add services : 
     .addService( new GTAGService('U-*******') )
     .addService( new MatomoService('//matomo.php') )

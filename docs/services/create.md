@@ -119,7 +119,7 @@ Here we redefine the start method that will be called every page load if the ser
         n.push=n;
         n.loaded=!0;n.version='2.0';
         n.queue=[]
-
+        this.fbq = window.fbq
 
         this.fbq('init', this.facebookId);
         this.fbq('track', 'PageView');

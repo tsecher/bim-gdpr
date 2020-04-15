@@ -4,7 +4,7 @@ Bim-GDPR is a javascript tool allowing users to manage their personal data servi
 
 ## Documentation 
 
-You can find documentation on [https://bim-gdpr.readthedocs.io/](https://bim-gdpr.readthedocs.io/)
+You can find documentation on [https://bim-gdpr.readthedocs.io/](https://bim-gdpr.readthedocs.io/) and project page on [https://gdpr.bim-web.site](https://gdpr.bim-web.site)
 
 ## Installation 
 

@@ -13,9 +13,9 @@ nav:
         - Structure: './general/structure.md'
 
     - Getting started:
-        - Installation: ./start/install.md
-        - Initialisation: ./start/init.md
-        - Declare service: ./start/declare.md
+        - Use NPM: ./start/npm.md
+        - Use CDN: ./start/cdn.md
+        - Declare services: ./start/declare.md
 
     - Events: 
         - Introduction : ./events/principle.md
