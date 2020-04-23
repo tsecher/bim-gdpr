@@ -62,6 +62,16 @@ export class Service extends LocalizedElementAbstract {
 	}
 
 	/**
+	 * Return the local storage patterns.
+	 *
+	 * Local storage with an id matching with this pattern will be removed when
+	 * when service will stop.
+	 */
+	getLocalStoragePatterns(){
+		return []
+	}
+
+	/**
 	 * Return the list of scripts path to add.
 	 */
 	getRelatedScripts() {
