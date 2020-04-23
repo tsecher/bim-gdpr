@@ -1,5 +1,4 @@
 import { ID, PREFIX, CDN, LANGUAGE_TOKEN } from "../../core/tools/Tools";
-// import {PseudoPromise} from "bim-gdpr/src/core/tools/PseudoPromise";
 
 /**
  * Class for the column_choice template.

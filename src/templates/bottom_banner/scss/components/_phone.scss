@@ -1,5 +1,5 @@
 @include less-than($widthPhone){
-    .#{$ID}-view{
+    .bottom_banner .#{$ID}-view{
 
         &-wrapper{
             // View on
