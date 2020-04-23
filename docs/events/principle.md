@@ -1,7 +1,7 @@
 # Events
 
 ## Principle
-The bGDPR is an event manager. You can listen and dispatch events using it. 
+The bGDPR core object is an event manager. You can listen and dispatch events using it. 
 
 Only listened events are dispatched. So no event is dispatched until a related event is declared.
 

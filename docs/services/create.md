@@ -102,6 +102,7 @@ Here we only add the facebookId property.
 
 #### Example of start process
 Here we redefine the start method that will be called every page load if the service is enabled.
+In this example we redefine the start script of the facebook pixel.
 ```javascript
     /**
      * What to do when the service is enabled and is starting.
@@ -110,16 +111,9 @@ Here we redefine the start method that will be called every page load if the ser
         // Already define.
         if (window.fbq) return
 
-        // Queue events
-        let n;
-        n=window.fbq=function(){
-            n.callMethod? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
-        };
-        if(!window._fbq)window._fbq=n;
-        n.push=n;
-        n.loaded=!0;n.version='2.0';
-        n.queue=[]
-        this.fbq = window.fbq
+        // {
+        // 	...
+        // }
 
         this.fbq('init', this.facebookId);
         this.fbq('track', 'PageView');
