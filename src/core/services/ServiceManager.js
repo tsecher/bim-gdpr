@@ -253,7 +253,7 @@ class ServiceManagerClass {
         if (Array.isArray(service)) {
             // Treat only enabled services.
             const servicesToDisable = service.filter(s => {
-                return s.isEnabled()
+                return !s.isDisabled()
             })
 
             if (servicesToDisable.length > 0) {
