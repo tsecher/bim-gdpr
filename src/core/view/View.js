@@ -127,6 +127,7 @@ class ViewClass{
         }
 
         this.template = template
+        this.view = null
 
         return this
     }
@@ -240,6 +241,7 @@ class ViewClass{
         if( !this.view ){
             this.view = document.createElement('div')
             this.view.setAttribute( PREFIX+'view', '')
+            this.view.classList.add(this.getTemplate().id)
             this.rebuild()
         }
         return this.view
