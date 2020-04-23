@@ -1,4 +1,4 @@
-.line{
+.column_choice  .line{
     display: flex;
     color: $color-text-disabled;
     @include transition(color);

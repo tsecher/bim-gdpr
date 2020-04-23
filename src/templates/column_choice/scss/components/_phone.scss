@@ -1,5 +1,5 @@
 @include less-than($widthPhone){
-    .#{$ID}-view{
+    .column_choice  .#{$ID}-view{
 
         &-wrapper{
             // View on
