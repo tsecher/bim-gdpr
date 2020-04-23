@@ -1,37 +1,40 @@
-import { Core } from "../Core";
-import { PREFIX, ID } from "../tools/Tools";
-import { View } from "./View";
-import { ViewEvents } from "./ViewEvents";
+import {Core} from "../Core";
+import {PREFIX, ID} from "../tools/Tools";
+import {View} from "./View";
+import {ViewEvents} from "./ViewEvents";
 
-class ViewManagerClass{
+class ViewManagerClass {
 
     /**
      *
      */
-    constructor(){
+    constructor() {
         this.view = View
     }
 
     /**
      * REturn the wrapper element.
      */
-    get parentElement(){
+    get parentElement() {
         return this.getView().getTemplate().getParentElement()
     }
 
     /**
      * Init.
      */
-    init(){
+    init() {
         this.view.init();
-        this.initBehaviors()
-        this.initActions()
+        if( !this.actions ){
+            this.initBehaviors()
+            this.initActions()
+        }
+
     }
 
     /**
      * Init behaviors
      */
-    initActions(){
+    initActions() {
         // All
         this.addAction('all-enable', () => {
             Core.getServiceManager().enableAll()
@@ -49,16 +52,22 @@ class ViewManagerClass{
 
         // Group
         this.addAction('group-toggle-detail', (data) => {
-            this.view.view.querySelector(`[${PREFIX}view-group="${data.elemId}"]`).classList.toggle(ID+'-detail')
+            this.view.view.querySelector(`[${PREFIX}view-group="${data.elemId}"]`).classList.toggle(ID + '-detail')
         })
         this.addAction('group-toggle', (data) => {
             data.group.toggleAll()
         })
 
         // Service.
-        this.addAction( 'service-enable', (data) => { Core.getServiceManager().enableService(data.service) })
-        this.addAction( 'service-disable', (data) => { Core.getServiceManager().disableService(data.service) })
-        this.addAction( 'service-toggle', (data) => { Core.getServiceManager().toggleService(data.service) })
+        this.addAction('service-enable', (data) => {
+            Core.getServiceManager().enableService(data.service)
+        })
+        this.addAction('service-disable', (data) => {
+            Core.getServiceManager().disableService(data.service)
+        })
+        this.addAction('service-toggle', (data) => {
+            Core.getServiceManager().toggleService(data.service)
+        })
     }
 
     /**
@@ -66,22 +75,22 @@ class ViewManagerClass{
      *
      * @returns {View}
      */
-    getView(){
+    getView() {
         return this.view
     }
 
     /**
      * Return true if is displayed.
      */
-    isDisplayed(){
+    isDisplayed() {
         return document.querySelector(`[${PREFIX}view]`)
     }
 
     /**
      * Show interface
      */
-    show(){
-        if( !this.isDisplayed() ){
+    show() {
+        if (!this.isDisplayed()) {
 
             this.parentElement.appendChild(this.view.getViewElement())
             Core.trigger(ViewEvents.beforeShowView, {})
@@ -99,29 +108,29 @@ class ViewManagerClass{
     /**
      * Add class that show the element.
      */
-    _doShow(){
-        this.parentElement.classList.add(ID+'-on')
+    _doShow() {
+        this.parentElement.classList.add(ID + '-on')
         Core.trigger(ViewEvents.afterShowView, {})
     }
 
     /**
      * Hide interface
      */
-    hide(){
-        if( this.isDisplayed() ){
+    hide() {
+        if (this.isDisplayed()) {
 
             // Considering that pending elements are now disabled, because no explicit consentment but
             // user has been prompted.
-            if( !Core.testMode ){
+            if (!Core.testMode) {
                 Core.getServiceManager().enableService(Core.getServiceManager().getMandatoryServicesList())
                 Core.getServiceManager().disableService(Core.getServiceManager().getPendingServices())
             }
             Core.trigger(ViewEvents.beforeHideView, {})
 
             // Remove classes
-            this.parentElement.classList.remove(ID+'-on')
+            this.parentElement.classList.remove(ID + '-on')
             this.parentElement.classList.remove(ID + '-detail')
-            this.parentElement.querySelectorAll('.'+ID + '-detail').forEach( item => {
+            this.parentElement.querySelectorAll('.' + ID + '-detail').forEach(item => {
                 item.classList.remove(ID + '-detail')
             })
 
@@ -138,7 +147,7 @@ class ViewManagerClass{
     /**
      * Remove view from dom.
      */
-    _doHide(){
+    _doHide() {
         this.parentElement.removeChild(this.view.getViewElement())
         Core.trigger(ViewEvents.afterHideView, {})
     }
@@ -149,7 +158,7 @@ class ViewManagerClass{
      * @param {string} type
      * @param {*} callback
      */
-    addAction(type, callback){
+    addAction(type, callback) {
         // Init actions list.
         this.actions = this.actions || []
         // Init action type liste
@@ -160,40 +169,46 @@ class ViewManagerClass{
     /**
      * Add action to element
      */
-    initBehaviors(attribute, callback){
-        document.addEventListener('click', (evt)=>{
+    initBehaviors(attribute, callback) {
+        callback = (evt) => {
             this.initEventOnItem(evt.target, attribute, callback)
-        })
+        }
+        document.removeEventListener('click', callback)
+        document.addEventListener('click', callback)
     }
 
-    initEventOnItem(item, attribute, callback){
+    initEventOnItem(item, attribute, callback) {
+        let done = false
         // Parse all attributes
-        for (let att, i = 0, atts = item.attributes, n = (atts ? atts.length : 0 ); i < n; i++){
+        for (let att, i = 0, atts = item.attributes, n = (atts ? atts.length : 0); i < n; i++) {
             att = atts[i];
             // If attributes has matching prefix
-            if( att.nodeName.indexOf(PREFIX) === 0 ){
+            if (att.nodeName.indexOf(PREFIX) === 0) {
                 let attrData = att.nodeName.split('-'),
                     type = attrData.slice(2).join('-')
 
-                switch( attrData[2] ){
+                switch (attrData[2]) {
                     case 'service':
                         const service = Core.getServiceManager().getServiceById(att.nodeValue)
-                        this.callAction(type, {service:service, elemId:att.nodeValue})
+                        this.callAction(type, {service: service, elemId: att.nodeValue})
+                        done = true
                         break
                     case 'group':
                         const group = Core.getGroupManager().getGroupById(att.nodeValue)
-                        this.callAction(type, {group:group, elemId:att.nodeValue})
+                        this.callAction(type, {group: group, elemId: att.nodeValue})
+                        done = true
                         break
                     case 'view':
                     case 'all':
-                        this.callAction(type, {} )
+                        this.callAction(type, {})
+                        done = true
                         break
                 }
             }
         }
 
         // Look up into fathers.
-        if( item.parentNode ){
+        if (item.parentNode && !done) {
             this.initEventOnItem(item.parentNode, attribute, callback)
         }
     }
@@ -204,12 +219,12 @@ class ViewManagerClass{
      * @param {string} type
      * @param {*} data
      */
-    callAction(type, data){
+    callAction(type, data) {
         this.actions = this.actions || []
         // Init action type liste
         this.actions[type] = this.actions[type] || []
 
-        this.actions[type].map( callback => {
+        this.actions[type].map(callback => {
             callback(data)
         })
     }
@@ -217,32 +232,32 @@ class ViewManagerClass{
     /**
      * Toggle detail.
      */
-    toggleDetailPanel(){
+    toggleDetailPanel() {
         this.parentElement.classList.toggle(ID + '-detail')
     }
 
     /**
      * Return true if the detail panel is open.
      */
-    detailPanelIsOpen(){
+    detailPanelIsOpen() {
         return this.parentElement.classList.contains(ID + '-detail')
     }
 
     /**
      * Init dom data.
      */
-    initDomData(){
+    initDomData() {
         // Service
-        window.setTimeout( () => {
+        window.setTimeout(() => {
             document.querySelectorAll(`[${PREFIX}service][${PREFIX}status]`).forEach(item => {
                 const service = Core.getServiceManager().getServiceById(item.getAttribute(PREFIX + 'service'))
-                if( service ){
+                if (service) {
                     item.setAttribute(`${PREFIX}status`, service.status)
                 }
             })
             document.querySelectorAll(`[${PREFIX}group][${PREFIX}status]`).forEach(item => {
                 const service = Core.getGroupManager().getGroupById(item.getAttribute(PREFIX + 'group'))
-                if( service ){
+                if (service) {
                     item.setAttribute(`${PREFIX}status`, service.status)
                 }
             })
