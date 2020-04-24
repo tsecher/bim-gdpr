@@ -1,13 +1,13 @@
-.default .#{$ID}{
-    &-view-group{
+.default {
+    .#{$ID}-view-group{
 
         margin-bottom: 2rem;
 
-        &-name{
+        .#{$ID}-view-group-name{
             font-size: 1.4rem;
         }
 
-        &-detail{
+        .#{$ID}-view-group-detail{
             .more{
                 color: $color-text-link;
                 font-style: italic;
@@ -15,8 +15,8 @@
                 display: inline-block;
             }
         }
-        
-        &-services{
+
+        .#{$ID}-view-group-services{
             opacity: 0;
             max-height: 0;
             overflow: hidden;
