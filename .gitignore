@@ -6,4 +6,5 @@ webpack.mix.local.js
 src/services/*/dev
 src/templates/*/dev
 
-/**/old_*
+/**/old_*# Ignore local configuration files.
+webpack.mix.local.js

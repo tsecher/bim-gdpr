@@ -1,3 +1,4 @@
 {
-    "/dist/bgdpr.js": "/dist/bgdpr.js"
+    "/src/templates/bottom_banner/dist/bottom_banner.js": "/src/templates/bottom_banner/dist/bottom_banner.js",
+    "/src/templates/bottom_banner/dist/bottom_banner.css": "/src/templates/bottom_banner/dist/bottom_banner.css"
 }

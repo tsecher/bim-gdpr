@@ -1,5 +1,5 @@
-const mixEasy = require('laravel-mix-easy-structure');
-const mix = mixEasy.getMix()
+const bimMix = require('bim-mix');
+const mix = bimMix.getMix()
 
 class MixConfigurationInitializer{
 
@@ -9,7 +9,7 @@ class MixConfigurationInitializer{
 	 * @param {string} serviceId 
 	 */
 	initMixServiceConfiguration(serviceId){
-		const serviceConfiguration = new mixEasy.config('service')
+		const serviceConfiguration = new bimMix.config('service')
 			.setMixCallbackName('js')
 			.setExtension('js')
 			.setPattern([
@@ -20,13 +20,13 @@ class MixConfigurationInitializer{
 				const output = src.replace(`/${serviceId}.js`, `/${rep}/${serviceId}.js`)
 				return output
 			})
-		mixEasy.addProcessConfig(serviceConfiguration);
+		bimMix.addProcessConfig(serviceConfiguration);
 
 		// Add the built item in the src.
-		mixEasy.setDestination('./','./')
+		bimMix.setDestination('./','./')
 
 		// Launch porcess configuration.
-		mixEasy.process();
+		bimMix.process();
 	}
 
 	/**
@@ -37,7 +37,7 @@ class MixConfigurationInitializer{
 	initMixTemplateConfiguration(templateId){
 		
 		// Sass configuration.
-		const cssConf = new mixEasy.config('templateSass')
+		const cssConf = new bimMix.config('templateSass')
 			.setMixCallbackName('sass')
 			.setExtension('css')
 			.setPattern([
@@ -49,10 +49,10 @@ class MixConfigurationInitializer{
 				const output = `./src/templates/${templateId}/${rep}/${templateId}.css`
 				return output
 			})
-		mixEasy.addProcessConfig(cssConf);
+		bimMix.addProcessConfig(cssConf);
 
 		// Js configuration.
-		const jsConf = new mixEasy.config('templateJs')
+		const jsConf = new bimMix.config('templateJs')
 			.setMixCallbackName('js')
 			.setExtension('js')
 			.setPattern([
@@ -64,37 +64,37 @@ class MixConfigurationInitializer{
 				const output = `./src/templates/${templateId}/${rep}/${templateId}.js`
 				return output
 			})
-		mixEasy.addProcessConfig(jsConf);
+		bimMix.addProcessConfig(jsConf);
 
 		// Add the built item in the src.
-		mixEasy.setDestination('./','./')
+		bimMix.setDestination('./','./')
 
 		// Launch porcess configuration.
-		mixEasy.process();
+		bimMix.process();
 	}
 
 	/**
 	 * Init default mix configuration.
 	 */
 	initMixDefaultConfiguration(){
-		const servicesConfiguration = new mixEasy.config(mix.inProduction() ? 'dist': 'dev')
+		const servicesConfiguration = new bimMix.config(mix.inProduction() ? 'dist': 'dev')
 			.setMixCallbackName('js')
 			.setExtension('js')
 			.setPattern([
 				`./src/*.js`
 			])
 			// .setOutputCallback((src, out, option, conf) => {
-				// const rep = mixEasy.getMix().inProduction() ? 'dist': 'dev' 
+				// const rep = bimMix.getMix().inProduction() ? 'dist': 'dev'
 				// const output = src.replace(`/${serviceId}.js`, `/${rep}/${serviceId}.js`)
 				// return output
 			// })
-		mixEasy.addProcessConfig(servicesConfiguration);
+		bimMix.addProcessConfig(servicesConfiguration);
 
 		// Add the built item in the src.
-		mixEasy.setDestination('./','./')
+		bimMix.setDestination('./','./')
 
 		// Launch porcess configuration.
-		mixEasy.process();
+		bimMix.process();
 	}
 }
 
