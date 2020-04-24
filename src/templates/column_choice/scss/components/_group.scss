@@ -27,12 +27,12 @@
             @include less-than($widthPhone){
                 margin: 1rem 0 1rem 1rem;
             }
-
-            .#{$ID}-detail[data-#{$ID}-view-group] &{
-                opacity: 1;
-                max-height: 100vh;
-                overflow: auto;
-            }
         }
+    }
+
+    .#{$ID}-detail[data-#{$ID}-view-group] .#{$ID}-view-group-services{
+        opacity: 1;
+        max-height: 100vh;
+        overflow: auto;
     }
 }
