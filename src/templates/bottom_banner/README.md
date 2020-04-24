@@ -1,4 +1,4 @@
-# Default Template
+# Bottom Banner Template
 
 ## Features
 |Features|Status|Comment|
@@ -12,9 +12,9 @@
 ### Install
 Install the template as you normally do with bim-gdpr
 ```javascript
-    import { BottomBanner } from "bim-gdpr/templates/bottom_banner/bottom_banner"
+    import { BottomBannerTemplate } from "bim-gdpr/templates/bottom_banner/bottom_banner"
 
-    const bottom_banner = new BottomBanner()
+    const bottom_banner = new BottomBannerTemplate()
     bGDPR
         .setTemplate(bottom_banner)
         .init()
@@ -24,9 +24,9 @@ Install the template as you normally do with bim-gdpr
 You can reinit the css using the `setCssLinks` method.
 
 ```javascript
-    import { DefaultTemplate } from "bim-gdpr/templates/bottom_banner/bottom_banner"
+    import { BottomBannerTemplate } from "bim-gdpr/templates/bottom_banner/bottom_banner"
 
-    const bottom_banner = new BottomBanner()
+    const bottom_banner = new BottomBannerTemplate()
     bottom_banner.setCssLinks(['./your_own.css'])
 
     // Reinit default css.
