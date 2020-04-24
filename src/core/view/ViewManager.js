@@ -148,7 +148,10 @@ class ViewManagerClass {
      * Remove view from dom.
      */
     _doHide() {
-        this.parentElement.removeChild(this.view.getViewElement())
+        try {
+            this.parentElement.removeChild(this.view.getViewElement())
+        }
+        catch(e){}
         Core.trigger(ViewEvents.afterHideView, {})
     }
 
