@@ -1,6 +1,6 @@
 {
     "name": "bim-gdpr",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Easy way to propose personal data services (like cookie) manager",
     "main": "./src/bgdpr.js",
     "scripts": {
@@ -28,15 +28,15 @@
     "bugs": {
         "url": "https://github.com/tsecher/bim-gdpr/issues"
     },
-    "homepage": "https://github.com/tsecher/bim-gdpr#readme",
+    "homepage": "https://gdpr.bim-web.site",
     "dependencies": {
-        "bim-mix": "^1.0.1",
-        "glob": "^7.1.6",
         "js-cookie": "^2.2.1",
-        "prompts": "^2.3.2",
         "scriptjs": "^2.5.9"
     },
     "devDependencies": {
+        "bim-mix": "^1.0.1",
+        "glob": "^7.1.6",
+        "prompts": "^2.3.2",
         "matomo-tracker": "^2.2.1",
         "prompt-choices": "^5.0.0",
         "resolve-url-loader": "^3.1.0",
