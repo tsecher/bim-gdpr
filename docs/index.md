@@ -2,6 +2,10 @@
 
 Bim-GDPR is a javascript tool allowing users to manage their personal data services according to the General Data Protection Regulation (GDPR). Bim-GDPR is highly customizable and allows you to integrate it easily in your website.
 
+## Project pages
+- Github : [https://github.com/tsecher/bim-gdpr](https://github.com/tsecher/bim-gdpr)  
+- homepage : [https://gdpr.bim-web.site/](https://gdpr.bim-web.site/) 
+
 ## Customization
 We believe in the contextual integration of the personal data services manager on your websote. That's why Bim-GDPR gives a great importance is made around customization. And according to [this article](./general/about.md), you should care about customization.
 
