@@ -96,6 +96,52 @@ class MixConfigurationInitializer{
 		// Launch porcess configuration.
 		bimMix.process();
 	}
+
+	/**
+	 * Init
+	 */
+	initMixAllConfiguration(){
+		// Sass configuration.
+		const cssConf = new bimMix.config('templateSass')
+			.setMixCallbackName('sass')
+			.setExtension('css')
+			.setPattern([
+				`./src/*/*/scss/*.scss`,
+				`!./src/*/*/scss/_*.scss`
+			])
+			.setOutputCallback((src, out, option, conf) => {
+				const rep = mix.inProduction() ? 'dist': 'dev'
+				let path = src.split('/src/')[1].split('/scss/')[0],
+					templateId = path.split('/')[1]
+				const output = `./src/${path}/${rep}/${templateId}.css`
+				return output
+			})
+		bimMix.addProcessConfig(cssConf);
+
+		// Js configuration.
+		const jsConf = new bimMix.config('templateJs')
+			.setMixCallbackName('js')
+			.setExtension('js')
+			.setPattern([
+				`./src/{templates,services}/*/*.js`,
+				`!./src/*/*/_*.js`
+			])
+			.setOutputCallback((src, out, option, conf) => {
+				const rep = mix.inProduction() ? 'dist': 'dev'
+				let pathData = src.split('/src/')[1].split('/'),
+					path = pathData[0],
+					templateId = pathData[1]
+				const output = `./src/${path}/${templateId}/${rep}/${ pathData.slice(-1)[0]}`
+				return output
+			})
+		bimMix.addProcessConfig(jsConf);
+
+		// Add the built item in the src.
+		bimMix.setDestination('./','./')
+
+		// Launch porcess configuration.
+		bimMix.process();
+	}
 }
 
 
