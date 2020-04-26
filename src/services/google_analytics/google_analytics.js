@@ -88,7 +88,7 @@ export class GoogleAnalyticsService {
      */
     push(...data){
         if( this.isEnabled() ){
-            this.push(...data)
+            this.ga(...data)
         }
     }
 }

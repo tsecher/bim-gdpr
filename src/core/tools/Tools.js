@@ -3,7 +3,7 @@
  */
 export const ID = 'bgdpr'
 export const PREFIX = 'data-' + ID + '-'
-export const CDN = 'https://cdn.jsdelivr.net/gh/tsecher/bim-gdpr@1.x-dev/'
+export const CDN = 'https://cdn.jsdelivr.net/gh/tsecher/bim-gdpr@master/'
 // export const CDN = '/src/node_modules/bim-gdpr/'
 export const LANGUAGE_TOKEN = '%'
 

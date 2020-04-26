@@ -32,9 +32,16 @@ export class GTAGService {
     start(){
         // GA script
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', this.guaid);
+        window.gtag = function(){window.dataLayer.push(arguments);}
+        this._gtag = window.gtag;
+        this.gtag('js', new Date());
+        this.gtag('config', this.guaid);
+    }
+
+    gtag(...data){
+        if( this.isEnabled() ){
+            this._gtag(...data)
+        }
     }
 }
 
