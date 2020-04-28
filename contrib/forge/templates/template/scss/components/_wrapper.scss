@@ -1,4 +1,8 @@
-.#{$ID}-view{
+.{TemplateId} .#{$ID}-on.#{$ID}-detail{
+    overflow: hidden;
+}
+
+.{TemplateId} .#{$ID}-view{
     
     a{
         color: $color-text-link;
