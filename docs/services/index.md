@@ -4,6 +4,18 @@ Services are external or internal libraries that potentially use personal data. 
   
 # Service principle
 
+Services are created from object that match the ServiceInterface.
+Object that matches the ServicesInterface should not be confused with Services. Services are create by the ServiceManager within the `addService` or `createService`.
+For example: 
+```javascript
+const notAService = new GoogleAnalyticsService()
+const aService = bgdpr.creaeService(notAService)
+``` 
+
+In this case you cannot call services methods on the object `notAService`.
+You can only call them on the `aService` object. Of course, all the mehtods of the object `notAService` are merged into the service `aService`
+
+
 
 # More than a simple declaration
 Unlike many of other tools that only declare services, bim-GDPR aims to be a centralisation tool for external services. 
