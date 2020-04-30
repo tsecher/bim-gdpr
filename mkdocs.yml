@@ -41,6 +41,9 @@ nav:
     - Translations:
         - Introdution: ./translations/index.md
 
+    - Placeholders :
+          - Introdution: ./placeholders/index.md
+
     - How to ...:
         - Force the displayed language: './how/force-language.md'
     

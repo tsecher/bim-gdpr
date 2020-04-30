@@ -191,7 +191,7 @@ export class TemplateAbstract extends LocalizedElementAbstract{
      * Return the pseudo group text.
      */
     getUngroupedTitle(){
-        return html('Autre')
+        return html('Other')
     }
 
     /**
