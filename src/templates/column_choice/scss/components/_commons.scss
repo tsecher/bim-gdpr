@@ -1,158 +1,161 @@
-.column_choice  .line{
-    display: flex;
-    color: $color-text-disabled;
-    @include transition(color);
-    @include less-than($widthPhone){
-        margin: 1rem;
-        flex-direction: row-reverse;
+.column_choice {
+    .line{
+        display: flex;
+        color: $color-text-disabled;
+        @include transition(color);
+        @include less-than($widthPhone){
+            margin: 1rem;
+            flex-direction: row-reverse;
+        }
+
+        &.mandatory{
+            color: $color-text-mandatory;
+        }
+
+        &-accept{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+
+            &:before{
+                content: '';
+                display: block;
+                height: 2rem;
+                width: 2rem;
+                border-radius: 50%;
+                position: absolute;
+                z-index: 0;
+                left: 0;
+                top: 0;
+
+                @include transition(background);
+
+                .mandatory &{
+                    background: rgba( $color-main, .4 );
+                }
+            }
+
+            & > svg{
+                opacity: 0;
+                width: 0rem;
+                height: 2rem;
+                @include transitionInOut(width);
+                z-index: 1;
+                cursor: pointer;
+                left: auto;
+                right: .3rem;
+                position: absolute;
+
+
+                path{
+                    fill: $color-text;
+                }
+            }
+
+
+            @include more-than($widthPhone){
+
+                width: 0;
+                @include transition(width);
+
+                &:before{
+                    background: $color-main;
+                    opacity: 0;
+                    @include transition(opacity);
+                }
+            }
+
+            @include less-than($widthPhone){
+                width: 2rem;
+
+                &:before{
+                    background: none;
+                    border: 1px solid $color-main;
+                    opacity: 1;
+                    left: auto;
+                    right: 0;
+
+                    .mandatory &{
+                        border: none;
+                        background: rgba( $color-main, .4 ) !important;
+                    }
+                }
+            }
+        }
+
+        & > .line-content{
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding-left: 0;
+            @include transitionInOut(padding-left);
+
+            @include less-than($widthPhone){
+                padding: 1rem;
+            }
+        }
+        & > *:last-child{
+            flex-shrink: 0;
+            flex-grow: 0;
+
+            @include less-than($widthPhone){
+                display: none;
+            }
+        }
+
+
+        &[data-#{$ID}-status="1"]{
+            color: $color-text;
+
+            .line-accept{
+                width: 2rem;
+                & > svg{
+                    opacity: 1;
+                    width: 1.5rem;
+                }
+
+                &:before{
+                    opacity: 1;
+
+                    @include less-than($widthPhone){
+                        background: $color-main;
+                    }
+                }
+            }
+
+
+            &> .line-content{
+                padding-left: 1rem;
+            }
+        }
     }
 
-    &.mandatory{
+    // Mandatory
+    .mandatory-mention{
+        font-style: italic;
+        font-size: 1rem;
         color: $color-text-mandatory;
     }
 
-    &-accept{
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-
-
-        &:before{
-            content: '';
-            display: block;
-            height: 2rem;
-            width: 2rem;
-            border-radius: 50%;
-            position: absolute;
-            z-index: 0;
-            left: 0;
-            top: 0;
-
-            @include transition(background);
-
-            .mandatory &{
-                background: rgba( $color-main, .4 );
+    // Enable / Disable
+    [data-bgdpr-group], [data-bgdpr-service]{
+        &[data-bgdpr-status="1"]{
+            .enable{
+                display: none;
+            }
+            .disable{
+                display: inline;
             }
         }
 
-        & > svg{
-            opacity: 0;
-            width: 0rem;
-            height: 2rem;
-            @include transitionInOut(width);
-            z-index: 1;
-            cursor: pointer;
-            left: auto;
-            right: .3rem;
-            position: absolute;
-
-
-            path{
-                fill: $color-text;
-            }
-        }
-
-
-        @include more-than($widthPhone){
-            
-            width: 0;
-            @include transition(width);
-
-            &:before{
-                background: $color-main;
-                opacity: 0;
-                @include transition(opacity);
-            }
-        }
-
-        @include less-than($widthPhone){
-            width: 2rem;
-
-            &:before{
-                background: none;
-                border: 1px solid $color-main;
-                opacity: 1;
-                left: auto;
-                right: 0;
-
-                .mandatory &{
-                    border: none;
-                    background: rgba( $color-main, .4 ) !important;
-                }
-            }
-        }
-    }
-
-    & > .line-content{
-        flex-grow: 1;
-        flex-shrink: 1;
-        padding-left: 0;
-        @include transitionInOut(padding-left);
-
-        @include less-than($widthPhone){
-            padding: 1rem;
-        }
-    }
-    & > *:last-child{
-        flex-shrink: 0;
-        flex-grow: 0;
-
-        @include less-than($widthPhone){
-            display: none;
-        }
-    }
-
-
-    &[data-#{$ID}-status="1"]{
-        color: $color-text;
-        
-        .line-accept{
-            width: 2rem;
-            & > svg{
-                opacity: 1;
-                width: 1.5rem;
-            }
-    
-            &:before{
-                opacity: 1;
-
-                @include less-than($widthPhone){
-                    background: $color-main;
-                }
-            }
-        }
-        
-
-        &> .line-content{
-            padding-left: 1rem;
-        }
-    }
-}
-
-// Mandatory
-.mandatory-mention{
-    font-style: italic;
-    font-size: 1rem;
-    color: $color-text-mandatory;
-}
-
-// Enable / Disable
-[data-bgdpr-group], [data-bgdpr-service]{
-    &[data-bgdpr-status="1"]{
         .enable{
-            display: none;
-        }
-        .disable{
             display: inline;
         }
+        .disable{
+            display: none;
+        }
     }
 
-    .enable{
-        display: inline;
-    }
-    .disable{
-        display: none;
-    }
 }

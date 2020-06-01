@@ -7,3 +7,4 @@ webpack.mix.local.js
 /dev
 src/services/*/dev
 src/templates/*/dev
+/node_modules/

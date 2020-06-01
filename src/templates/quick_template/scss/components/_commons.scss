@@ -1,114 +1,115 @@
-.#{$ID}-view {
-    .line {
-        $phoneiconWidth: 1.5rem;
-        $iconWidth: 2.5rem;
+.quick_template{
+    .#{$ID}-view {
+        .line {
+            $phoneiconWidth: 1.5rem;
+            $iconWidth: 2.5rem;
 
-
-        position: relative;
-
-        &-accept {
-            @include transitionInOut(transform);
-            right: .3rem;
-            top: .3rem;
-            border: 1px solid $color-main;
-            background: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            @include transitionInOut($color-main);
-
-            .enable {
-                height: 0;
-                @include transitionInOut(height);
-            }
-        }
-
-
-        body.#{$ID}-detail &{
-            min-height: calc(#{$iconWidth} + .7rem);
-            padding-right: calc(#{$iconWidth} + 1.1rem);
-
-            &-content{
-                padding-right: 3rem;
-            }
-
-
-            .title{
-                transform-origin: bottom left;
-                @include transitionInOut(transform);
-            }
+            position: relative;
 
             &-accept {
                 @include transitionInOut(transform);
                 right: .3rem;
                 top: .3rem;
-                width: $iconWidth;
-                height: $iconWidth;
                 border: 1px solid $color-main;
-                position: absolute;
+                background: none;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 @include transitionInOut($color-main);
 
                 .enable {
+                    height: 0;
                     @include transitionInOut(height);
                 }
             }
 
-            &:hover{
-                .line-accept {
-                    transform: scale(1.2);
+
+            body.#{$ID}-detail &{
+                min-height: calc(#{$iconWidth} + .7rem);
+                padding-right: calc(#{$iconWidth} + 1.1rem);
+
+                &-content{
+                    padding-right: 3rem;
+                }
+
+
+                .title{
+                    transform-origin: bottom left;
+                    @include transitionInOut(transform);
+                }
+
+                &-accept {
+                    @include transitionInOut(transform);
+                    right: .3rem;
+                    top: .3rem;
+                    width: $iconWidth;
+                    height: $iconWidth;
+                    border: 1px solid $color-main;
+                    position: absolute;
+                    @include transitionInOut($color-main);
+
+                    .enable {
+                        @include transitionInOut(height);
+                    }
+                }
+
+                &:hover{
+                    .line-accept {
+                        transform: scale(1.2);
+                    }
                 }
             }
-        }
 
-        body:not(.#{$ID}-detail) &{
-            display: flex;
-            flex-direction: row-reverse;
+            body:not(.#{$ID}-detail) &{
+                display: flex;
+                flex-direction: row-reverse;
 
-            &-accept{
-                width: $iconWidth;
-                height: $iconWidth;
-                margin: .2rem .7rem;
-                @include less-than($widthPhone){
-                    width: $phoneiconWidth;
-                    height: $phoneiconWidth;
-                    margin: .5rem .7rem;
+                &-accept{
+                    width: $iconWidth;
+                    height: $iconWidth;
+                    margin: .2rem .7rem;
+                    @include less-than($widthPhone){
+                        width: $phoneiconWidth;
+                        height: $phoneiconWidth;
+                        margin: .5rem .7rem;
+                    }
                 }
+
+
             }
 
-
         }
 
+        //.#{$ID}-view-group-services .line{
+        //    $phoneiconWidth: 1.5rem;
+        //    min-height: calc(#{$phoneiconWidth} + .5rem);
+        //    padding-left: calc(#{$phoneiconWidth} + 1rem);
+        //    &-accept  {
+        //        top: .5rem;
+        //        width: $phoneiconWidth;
+        //        height: $phoneiconWidth;
+        //    }
+        //}
     }
 
-    //.#{$ID}-view-group-services .line{
-    //    $phoneiconWidth: 1.5rem;
-    //    min-height: calc(#{$phoneiconWidth} + .5rem);
-    //    padding-left: calc(#{$phoneiconWidth} + 1rem);
-    //    &-accept  {
-    //        top: .5rem;
-    //        width: $phoneiconWidth;
-    //        height: $phoneiconWidth;
-    //    }
-    //}
-}
+    // Mandatory
+    .mandatory-mention {
+        font-style: italic;
+        font-size: 1rem;
+        color: $color-text-mandatory;
+    }
 
-// Mandatory
-.mandatory-mention {
-    font-style: italic;
-    font-size: 1rem;
-    color: $color-text-mandatory;
-}
+    // Enable / Disable
+    [data-bgdpr-group], [data-bgdpr-service] {
+        &[data-bgdpr-status="1"] {
+            .line-accept {
+                background: $color-main;
+            }
 
-// Enable / Disable
-[data-bgdpr-group], [data-bgdpr-service] {
-    &[data-bgdpr-status="1"] {
-        .line-accept {
-            background: $color-main;
-        }
-
-        .enable {
-            height: 2rem;
+            .enable {
+                height: 2rem;
+            }
         }
     }
 }
