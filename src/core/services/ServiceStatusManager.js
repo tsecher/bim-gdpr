@@ -11,6 +11,7 @@ export const ServiceStatus = {
 class ServiceStatusManagerClass {
 
 	constructor() {
+		this.useLocalStorage = true
 	}
 
 	getServiceStatus(service, retry = true) {
@@ -31,7 +32,7 @@ class ServiceStatusManagerClass {
 	setServiceStatus(service, status) {
 		const allStatus = this.getData()
 		allStatus[service.id] = status
-		if (localStorage) {
+		if (this.useLocalStorage && localStorage) {
 			localStorage.setItem(ID, JSON.stringify(allStatus));
 		} else {
 			Cookies.set(ID, allStatus)
@@ -40,7 +41,11 @@ class ServiceStatusManagerClass {
 
 	getData() {
 		// Check localstorage first.
-		let data = localStorage.getItem(ID) || Cookies.get(ID) || {}
+		let storage = null
+		if(  this.useLocalStorage ){
+			storage = localStorage.getItem(ID);
+		}
+		let data = storage || Cookies.get(ID) || {}
 		try {
 			data = JSON.parse(data)
 		} catch (error) {

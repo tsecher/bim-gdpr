@@ -1,0 +1,92 @@
+@include less-than($widthPhone) {
+    .quick_template {
+        .#{$ID}-view {
+
+            &-hide {
+                display: none;
+            }
+
+            .#{$ID}-on &-wrapper, &-main, & {
+                height: 30vh;
+                min-height: 20rem;
+            }
+
+            &-wrapper {
+                // View on
+                .#{$ID}-on & {
+                    max-height: 100vh;
+                }
+
+                padding: 0;
+                bottom: 0;
+            }
+
+            & {
+                padding: 0;
+                width: 100%;
+            }
+
+            &-main {
+                flex-direction: column;
+                justify-content: flex-end;
+                max-height: 30rem;
+                overflow: hidden;
+
+                .#{$ID}-on.#{$ID}-detail & {
+                    max-height: none;
+                    overflow: auto;
+                }
+            }
+
+            &-head {
+                flex-shrink: 1;
+                flex-grow: 1;
+                overflow: auto;
+                padding: 1rem 1rem 0 1rem;
+
+                .#{$ID}-detail.#{$ID}-on & {
+                    width: calc( 100% - 1rem);
+                }
+
+                button {
+                    width: calc(100% - 4rem);
+                    margin: 1rem 2rem;
+                }
+
+                .#{$ID}-on.#{$ID}-detail & {
+                    flex-shrink: unset;
+                }
+            }
+
+            &-quick {
+                width: 100%;
+                flex-shrink: 0;
+                margin: 0;
+                flex-wrap: wrap-reverse;
+                display: flex;
+
+                flex-direction: row-reverse;
+
+                .action{
+                    width: 100%;
+                    display: flex;
+                    margin:  0 1rem 1rem 1rem;
+                }
+                [data-bgdpr-all-enable="accept_all"], [data-bgdpr-view-hide] {
+                    width: calc(50% - 1.2rem);
+                    margin: .5rem;
+                }
+
+                @include less-than(360px){
+                    [data-bgdpr-all-enable="accept_all"]{
+                        padding: 1rem;
+                        svg{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

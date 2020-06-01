@@ -1,0 +1,218 @@
+.quick_template{
+    .#{$ID}-view {
+
+        a {
+            color: $color-text-link;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+
+        $wrapper-height-min: 11rem;
+
+        &-wrapper {
+
+            position: fixed;
+            z-index: 99999;
+            max-height: 0;
+            min-height: 0;
+            width: 0;
+            overflow: hidden;
+            right: 0;
+            bottom: 0;
+            border-radius: 100vw 0 0 0;
+
+            padding: 2rem 0;
+            background: $color-bg;
+            opacity: 1;
+            box-shadow: 0 0 10rem 1rem rgba(0, 0, 0, .2);
+
+
+            @include transitionInOut(border-radius, width, max-height, min-height, height);
+
+            // View on
+            .#{$ID}-on & {
+                right: 0;
+                bottom: 0;
+                opacity: 1;
+                border-radius: 0;
+                width: 100%;
+                max-height: 30%;
+                min-height: $wrapper-height-min;
+            }
+
+            // Detail on
+            .#{$ID}-on.#{$ID}-detail & {
+                min-height: calc(100% - 4rem);
+                max-height: calc(100% - 4rem);
+            }
+
+        }
+
+        & {
+            height: calc(30vh - 4rem);
+            min-height: $wrapper-height-min;
+
+            padding: 0 2rem;
+            width: calc(100% - 4rem);
+
+            overflow: hidden;
+            color: $color-text;
+            background: $color-bg;
+
+            opacity: 0;
+            @include transitionInOut(max-height, opacity);
+            transition-delay: 0s;
+
+            // View on.
+            .#{$ID}-on & {
+                transition-delay: .3s;
+                opacity: 1;
+            }
+
+            // Detail on
+            .#{$ID}-on.#{$ID}-detail & {
+                max-height: calc(100vh - 4rem);
+                height: auto;
+            }
+        }
+
+
+        &-hide {
+            height: 2rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            transform: scale(1);
+            @include transitionInOut(transform, top);
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+
+        &-content {
+            max-width: 60rem;
+            margin: 0 auto;
+
+            &-title {
+                font-size: 2rem;
+                margin: 0 2rem 1rem 0;
+            }
+
+
+        }
+
+        &-main {
+            display: flex;
+            align-items: center;
+
+            height: calc(30vh - 4rem);
+            min-height: $wrapper-height-min;
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                flex-shrink: 0;
+            }
+        }
+
+        &-head {
+            overflow: auto;
+            max-height: 100%;
+            padding-right: 2rem;
+            button {
+                display: block;
+                margin: 1rem 0 0 0;
+                white-space: nowrap;
+            }
+        }
+
+        &-quick {
+            margin: 0 2rem;
+            flex-grow: 1;
+
+            button {
+                margin: .5rem 2rem;
+                width: calc(100% - 4rem);
+                white-space: nowrap;
+            }
+
+
+            [data-bgdpr-view-toggle-detail] {
+                border: none;
+
+                &:hover {
+                    box-shadow: none;
+                    background: none;
+                    text-decoration: underline;
+                }
+            }
+
+            [data-bgdpr-all-enable="accept_all"] {
+                @extend %_button-primary;
+                font-size: 1rem;
+                padding: 1rem 2rem 1rem 4rem;
+                position: relative;
+
+                svg {
+                    position: absolute;
+                    top: calc(50% - 1rem);
+                    left: 1rem;
+                    height: 2rem;
+
+                    rect {
+                        fill: $color-text-on;
+                        @include transition(fill);
+                    }
+                }
+
+                &:hover {
+                    svg rect {
+                        fill: $color-text;
+                    }
+                }
+            }
+        }
+
+        &-detail {
+            $time: .3s;
+            border-top: 0px solid transparent;
+            height: auto;
+            overflow: hidden;
+            opacity: 1;
+            margin: 1rem auto 1rem -2rem;
+            padding-top: 0rem;
+            max-width: 40rem;
+
+            display: flex;
+            flex-wrap: wrap;
+
+            @include transitionInOut(margin-top, padding-top, border-top, opacity);
+            transition-delay: 0s, 0s, 0s, $time;
+
+             .line-content {
+                .title {
+                    font-size: 1.2rem;
+                    padding: .8rem 0 .5rem 2rem;
+                    margin: 0;
+                    cursor: pointer;
+                }
+
+                .sec {
+                    display: none;
+                }
+            }
+
+            & &-save {
+                @extend %_button-primary;
+                display: block;
+                margin: 2rem auto;
+                padding: .7rem 2rem;
+            }
+        }
+    }
+}

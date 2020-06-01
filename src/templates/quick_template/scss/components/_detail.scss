@@ -1,0 +1,171 @@
+.#{$ID}-on.#{$ID}-detail {
+    overflow: hidden;
+
+    .quick_template {
+
+        .#{$ID}-view {
+            &-wrapper {
+                height: 100vh;
+                max-height: 100vh;
+                padding: 0;
+                bottom: 0;
+                min-height: 0;
+                @include transitionInOut(height, max-height, min-height);
+            }
+
+            & {
+                height: 100vh;
+                max-height: 100vh;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                @include transitionInOut(height, max-height);
+            }
+
+            &-content {
+                max-width: none;
+            }
+
+            &-main {
+                flex-direction: column !important;
+                max-height: calc(100vh);
+                min-height: 100vh;
+                width: 100%;
+                max-width: none;
+
+                @include transitionInOut(min-height);
+            }
+
+            &-head {
+                flex-shrink: 1;
+                flex-grow: 1;
+                overflow: auto;
+                padding: 0;
+                width: 100%;
+
+                .head-wrapper {
+                    padding: 2rem;
+                    max-width: 60rem;
+                    margin: auto;
+                    @include less-than($widthPhone){
+                        padding: 3rem 1rem 0 1rem;
+                    }
+                }
+            }
+
+            &-detail {
+                border-top: 1px solid $color-text;
+                opacity: 1;
+                height: auto;
+
+                margin: 2rem auto;
+                width: calc(100% - 2rem);
+                padding-top: 2rem;
+                display: block;
+
+                .line {
+                    padding: 1rem;
+
+                    &:hover {
+                        //background: $color-quat;
+                    }
+
+                    &-accept {
+                        right: 1rem;
+                        top: 1rem;
+                    }
+                }
+
+                .line-content {
+                    .title {
+                        padding: .5rem 0;
+                    }
+
+                    .sec {
+                        display: block;
+                    }
+                }
+            }
+
+            &-quick {
+                display: flex;
+                flex-direction: row-reverse;
+                flex-wrap: wrap-reverse;
+                flex-grow: 0;
+                flex-shrink: 0;
+
+                .action {
+                    width: 100%;
+                    display: flex;
+                }
+
+                [data-bgdpr-all-enable="accept_all"], [data-bgdpr-view-hide] {
+                    width: calc(50% - 1.2rem);
+                    margin: .5rem;
+                }
+            }
+
+            &-group {
+                &-name {
+                    font-size: 1.4rem;
+
+                    &:after {
+                        content: '';
+                        display: block;
+                        width: 3rem;
+                        margin-top: 1rem;
+                        border-bottom: 1px solid $color-secondary;
+                    }
+                }
+
+                &-description {
+                    font-size: .9rem;
+                }
+            }
+
+
+
+            &-group-services {
+
+                .line {
+                    position: relative;
+                    padding-left: 2rem;
+                    @include transitionInOut(padding);
+
+                    &:before {
+                        content: '';
+                        width: .5rem;
+                        border-top: 1px solid $color-secondary;
+                        height: calc(100% - 1rem);
+                        position: absolute;
+                        left: 1rem;
+                        top: 2rem;
+                        @include transitionInOut(width);
+                    }
+
+                    &:hover {
+                        //background: darken($color-quat, 5);
+                        padding-left: 3rem;
+                        &:before{
+                            width: 1.5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        [data-bgdpr-view-group] {
+            padding: 1rem;
+            margin-bottom: 2rem;
+            @include less-than($widthPhone){
+                padding: 1rem 0;
+            }
+
+            &:hover {
+                //background: $color-quat;
+            }
+        }
+
+
+    }
+}

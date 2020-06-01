@@ -1,0 +1,10 @@
+.#{$ID}{
+    &-view-service{
+        @include transition(background);
+
+        &-name{
+            font-size: 1.2rem;
+            margin-bottom: .4rem;
+        }
+    }
+}
