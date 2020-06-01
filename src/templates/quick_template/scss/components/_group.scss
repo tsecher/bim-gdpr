@@ -1,0 +1,31 @@
+.#{$ID} {
+    &-view-group-services {
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        @include transition(opacity);
+        display: none;
+
+        .line-content {
+            .title {
+                font-size: 1rem;
+
+                @include less-than($widthPhone) {
+                    font-size: .2rem;
+                }
+            }
+
+            .description, .doc {
+                font-size: .9rem;
+            }
+        }
+
+        .#{$ID}-detail & {
+            opacity: 1;
+            height: auto;
+
+            transition-delay: .3s;
+            display: block;
+        }
+    }
+}

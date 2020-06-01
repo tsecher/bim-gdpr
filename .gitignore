@@ -1,10 +1,9 @@
 # Ignore local configuration files.
 webpack.mix.local.js
 
+./node_modules/
+
 # Do not version dev build of services.
 /dev
 src/services/*/dev
 src/templates/*/dev
-
-/**/old_*# Ignore local configuration files.
-webpack.mix.local.js
