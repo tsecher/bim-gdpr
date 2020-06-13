@@ -4,4 +4,5 @@ export const ServiceEvents = {
     serviceStatusHasChanged: 'service-status-has-changed',
     serviceStart: 'service-start',
     serviceStop: 'service-stop',
+    serviceHasBeenAdded: 'service-has-been-added',
 }

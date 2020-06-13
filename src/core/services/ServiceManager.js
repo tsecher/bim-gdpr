@@ -105,6 +105,11 @@ class ServiceManagerClass {
             }
 
             // Dispatch event.
+            Core.trigger(ServiceEvents.serviceHasBeenAdded, {
+                service: service
+            })
+
+            // Dispatch event.
             Core.trigger(ServiceEvents.serviceListHasChanged, {
                 services: this.services
             })
