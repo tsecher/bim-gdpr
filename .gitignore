@@ -8,3 +8,5 @@ webpack.mix.local.js
 src/services/*/dev
 src/templates/*/dev
 /node_modules/
+# Ignore local configuration files.
+webpack.mix.local.js
