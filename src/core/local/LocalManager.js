@@ -85,8 +85,29 @@ class LocalManagerClass {
             }
             throw `The translation path does not have a "${LANGUAGE_TOKEN}" to replace`
         } else {
-            this._doAddTranslation(id, data, true)
+            this._doAddTranslation(id, this.getCleanLocalisationData(data), true)
         }
+    }
+
+    /**
+     * Return a clean object with loalisation.
+     *
+     * @param data
+     *
+     * @return {}
+     */
+    getCleanLocalisationData(data){
+        const result = {};
+        Object.keys(data).forEach( key => {
+            const item = data[key];
+            if (typeof(item) === 'string'){
+                result[key] = item;
+            }
+            else if(item.value && typeof(item.value) === 'string'){
+                result[key] = item.value;
+            }
+        })
+        return result;
     }
 
     /**
@@ -316,4 +337,4 @@ export const l = function (id, replaceData) {
 export const html = function (id, replaceData) {
     return LocalManager.html(id, replaceData)
 }
-    
+
