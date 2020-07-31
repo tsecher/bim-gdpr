@@ -1,0 +1,79 @@
+{
+  "Your personal data": {
+    "value": "Your personal data",
+    "id":"title-main",
+    "description": "Main title.",
+    "type": "short"
+  },
+  "Close": {
+    "value": "Close",
+    "description": "Close button label.",
+    "type":  "short"
+  },
+  "This site does not declare any service that could use your personal data": {
+    "value": "This site does not declare any service that could use your personal data",
+    "description": "Message displayed when no service is available.",
+    "type":  "long"
+  },
+  "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.": {
+    "value": "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.",
+    "description": "Main message.",
+    "type":  "long"
+  },
+  "Enable all": {
+    "value": "Enable all",
+    "description": "Label used on the button enabling all services",
+    "type":  "short"
+  },
+  "Disable all": {
+    "value": "Disable all",
+    "description": "Label used on the button disabling all services",
+    "type":  "short"
+  },
+  "Save": {
+    "value": "Save",
+    "description": "Label used on the button saving preferences",
+    "type":  "short"
+  },
+  "Detail": {
+    "value": "Detail",
+    "description": "Label used on the detail access button",
+    "type":  "short"
+  },
+  "Enable": {
+    "value": "Enable",
+    "description": "Label used on the button enabling a service",
+    "type":  "short"
+  },
+  "Disable": {
+    "value": "Disable",
+    "description": "Label used on the button disabling a service",
+    "type":  "short"
+  },
+  "(mandatory for the basic features)": {
+    "value": "(mandatory for the basic features)",
+    "description": "Label for mandatory services",
+    "type":  "short"
+  },
+  "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.": {
+    "value": "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.",
+    "description": "Placeholder message",
+    "type":  "long",
+    "args": [
+      {
+        "name": "@serviceName",
+        "description": "The service"
+      }
+    ]
+  },
+  "Enable @serviceName": {
+    "value": "Enable @serviceName",
+    "type":  "short",
+    "args": [
+      {
+        "name": "@serviceName",
+        "description": "The service to enable"
+      }
+    ]
+  }
+}
