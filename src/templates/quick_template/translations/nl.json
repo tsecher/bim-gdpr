@@ -1,15 +1,79 @@
 {
-    "Your personal data": "Uw persoonlijke gegevens",
-    "Close": "Sluiten",
-    "This site does not declare any service that could use your personal data": "Deze site vermeldt geen services die persoonlijke gegevens kunnen verzamelen en exploiteren.",
-    "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.": "Deze site gebruikt services om uw gebruikerservaring te verbeteren of om u externe inhoud aan te bieden. Sommigen van hen kunnen persoonlijke gegevens verzamelen en gebruiken. U kunt hun activering beheren via dit paneel, dat op elk moment toegankelijk is. <br/> U kunt beheer ook in detail alle diensten die de site aanbiedt door op <strong> Detail </strong> te klikken. ",
-    "Enable all": "Activeer alles",
-    "Disable all": "Alles uitschakelen",
-    "Save": "Sparen",
-    "Detail": "Detail",
-    "Enable": "Activeren",
-    "Disable": "Deactiveren",
-    "(mandatory for the basic features)": "(noodzakelijk voor de werking van de site)",
-    "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.":"Voor deze inhoud zijn mogelijk persoonlijke gegevens vereist. U moet de service @serviceName accepteren om deze te gebruiken voordat u toegang krijgt tot die inhoud.",
-    "Enable @serviceName":"Schakel @serviceName in"
+  "Your personal data": {
+    "value": "Uw persoonlijke gegevens",
+    "id":"title-main",
+    "description": "Main title.",
+    "type": "short"
+  },
+  "Close": {
+    "value": "Sluiten",
+    "description": "Close button label.",
+    "type":  "short"
+  },
+  "This site does not declare any service that could use your personal data": {
+    "value": "Deze site vermeldt geen services die persoonlijke gegevens kunnen verzamelen en exploiteren.",
+    "description": "Message displayed when no service is available.",
+    "type":  "long"
+  },
+  "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.": {
+    "value": "Deze site gebruikt services om uw gebruikerservaring te verbeteren of om u externe inhoud aan te bieden. Sommigen van hen kunnen persoonlijke gegevens verzamelen en gebruiken. U kunt hun activering beheren via dit paneel, dat op elk moment toegankelijk is. <br/> U kunt beheer ook in detail alle diensten die de site aanbiedt door op <strong> Detail </strong> te klikken. ",
+    "description": "Main message.",
+    "type":  "long"
+  },
+  "Enable all": {
+    "value": "Activeer alles",
+    "description": "Label used on the button enabling all services",
+    "type":  "short"
+  },
+  "Disable all": {
+    "value": "Alles uitschakelen",
+    "description": "Label used on the button disabling all services",
+    "type":  "short"
+  },
+  "Save": {
+    "value": "Sparen",
+    "description": "Label used on the button saving preferences",
+    "type":  "short"
+  },
+  "Detail": {
+    "value": "Detail",
+    "description": "Label used on the detail access button",
+    "type":  "short"
+  },
+  "Enable": {
+    "value": "Activeren",
+    "description": "Label used on the button enabling a service",
+    "type":  "short"
+  },
+  "Disable": {
+    "value": "Deactiveren",
+    "description": "Label used on the button disabling a service",
+    "type":  "short"
+  },
+  "(mandatory for the basic features)": {
+    "value": "(noodzakelijk voor de werking van de site)",
+    "description": "Label for mandatory services",
+    "type":  "short"
+  },
+  "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.": {
+    "value": "Voor deze inhoud zijn mogelijk persoonlijke gegevens vereist. U moet de service @serviceName accepteren om deze te gebruiken voordat u toegang krijgt tot die inhoud.",
+    "description": "Placeholder message",
+    "type":  "long",
+    "args": [
+      {
+        "name": "@serviceName",
+        "description": "The service"
+      }
+    ]
+  },
+  "Enable @serviceName": {
+    "value": "Schakel @serviceName in",
+    "type":  "short",
+    "args": [
+      {
+        "name": "@serviceName",
+        "description": "The service to enable"
+      }
+    ]
+  }
 }

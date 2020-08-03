@@ -1,15 +1,79 @@
 {
-    "Your personal data": "Sus datos personales",
-    "Close": "Cerrar",
-    "This site does not declare any service that could use your personal data": "Este sitio no declara servicios que puedan recopilar y explotar datos personales.",
-    "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.": "Este sitio utiliza servicios para mejorar su experiencia de usuario u ofrecerle contenido externo. Algunos de ellos pueden recopilar y utilizar datos personales. Puede administrar su activación a través de este panel accesible en cualquier momento. <br/> También puede administrar en detalle todos los servicios que ofrece el sitio haciendo clic en <strong>Detalles</strong>.",
-    "Enable all": "Activar todo",
-    "Disable all": "Deshabilitar todo",
-    "Save": "Salvar",
-    "Detail": "Detalle",
-    "Enable": "Activar",
-    "Disable": "Deshabilitar",
-    "(mandatory for the basic features)": "(necesario para el funcionamiento del sitio)",
-    "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.":"Este contenido puede requerir datos personales. Debe aceptar el servicio @serviceName para usarlo antes de acceder a ese contenido",
-    "Enable @serviceName":"Habilitar @serviceName"
+  "Your personal data": {
+    "value": "Sus datos personales",
+    "id":"title-main",
+    "description": "Main title.",
+    "type": "short"
+  },
+  "Close": {
+    "value": "Cerrar",
+    "description": "Close button label.",
+    "type":  "short"
+  },
+  "This site does not declare any service that could use your personal data": {
+    "value": "Este sitio no declara servicios que puedan recopilar y explotar datos personales.",
+    "description": "Message displayed when no service is available.",
+    "type":  "long"
+  },
+  "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.": {
+    "value": "Este sitio utiliza servicios para mejorar su experiencia de usuario u ofrecerle contenido externo. Algunos de ellos pueden recopilar y utilizar datos personales. Puede administrar su activación a través de este panel accesible en cualquier momento. <br/> También puede administrar en detalle todos los servicios que ofrece el sitio haciendo clic en <strong>Detalles</strong>.",
+    "description": "Main message.",
+    "type":  "long"
+  },
+  "Enable all": {
+    "value": "Activar todo",
+    "description": "Label used on the button enabling all services",
+    "type":  "short"
+  },
+  "Disable all": {
+    "value": "Deshabilitar todo",
+    "description": "Label used on the button disabling all services",
+    "type":  "short"
+  },
+  "Save": {
+    "value": "Salvar",
+    "description": "Label used on the button saving preferences",
+    "type":  "short"
+  },
+  "Detail": {
+    "value": "Detalle",
+    "description": "Label used on the detail access button",
+    "type":  "short"
+  },
+  "Enable": {
+    "value": "Activar",
+    "description": "Label used on the button enabling a service",
+    "type":  "short"
+  },
+  "Disable": {
+    "value": "Deshabilitar",
+    "description": "Label used on the button disabling a service",
+    "type":  "short"
+  },
+  "(mandatory for the basic features)": {
+    "value": "(necesario para el funcionamiento del sitio)",
+    "description": "Label for mandatory services",
+    "type":  "short"
+  },
+  "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.": {
+    "value": "Este contenido puede requerir datos personales. Debe aceptar el servicio @serviceName para usarlo antes de acceder a ese contenido",
+    "description": "Placeholder message",
+    "type":  "long",
+    "args": [
+      {
+        "name": "@serviceName",
+        "description": "The service"
+      }
+    ]
+  },
+  "Enable @serviceName": {
+    "value": "Habilitar @serviceName",
+    "type":  "short",
+    "args": [
+      {
+        "name": "@serviceName",
+        "description": "The service to enable"
+      }
+    ]
+  }
 }
