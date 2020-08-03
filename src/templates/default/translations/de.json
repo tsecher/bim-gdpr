@@ -1,15 +1,79 @@
 {
-    "Your personal data": "Ihre persönlichen Daten",
-    "Close": "Schließen",
-    "This site does not declare any service that could use your personal data": "Diese Website deklariert keine Dienste, die personenbezogene Daten sammeln und nutzen könnten.",
-    "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage them by clicking on <strong>Detail</strong>.": "Diese Website verwendet Dienste, um Ihre Benutzererfahrung zu verbessern oder Ihnen externe Inhalte anzubieten. Einige von ihnen sammeln und verwenden möglicherweise persönliche Daten. Sie können ihre Aktivierung über dieses Panel verwalten, auf das Sie jederzeit zugreifen können. <br/> Sie können Verwalten Sie außerdem alle auf der Website angebotenen Dienste im Detail, indem Sie auf <strong> Detail </ strong> klicken. ",
-    "Enable all": "Alle aktivieren",
-    "Disable all": "Alle deaktivieren",
-    "Save": "Speichern",
-    "Detail": "Detail",
-    "Enable": "Aktivieren",
-    "Disable": "Deaktivieren",
-    "(mandatory for the basic features)": "(notwendig für den Betrieb der Website)",
-    "This content may require personal data. You have to accept the service @serviceName to use it before accessing that content.":"Für diesen Inhalt sind möglicherweise personenbezogene Daten erforderlich. Sie müssen den Dienst @serviceName akzeptieren, um ihn verwenden zu können, bevor Sie auf diesen Inhalt zugreifen können.",
-    "Enable @serviceName":"@ServiceName aktivieren"
+    "Your personal data": {
+        "value": "Ihre persönlichen Daten",
+        "description": "Main title",
+        "type": "short"
+    },
+    "Close": {
+        "value": "Schließen",
+        "description": "Close button label.",
+        "type":  "short"
+    },
+    "This site does not declare any service that could use your personal data": {
+        "value": "Diese Website deklariert keine Dienste, die personenbezogene Daten sammeln und nutzen könnten.",
+        "description": "Close button label",
+        "type": "short"
+    },
+    "This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.<br/>You can also manage them by clicking on <strong>Detail</strong>.": {
+        "value": "Diese Website verwendet Dienste, um Ihre Benutzererfahrung zu verbessern oder Ihnen externe Inhalte anzubieten. Einige von ihnen sammeln und verwenden möglicherweise persönliche Daten. Sie können ihre Aktivierung über dieses Panel verwalten, auf das Sie jederzeit zugreifen können. <br/> Sie können Verwalten Sie außerdem alle auf der Website angebotenen Dienste im Detail, indem Sie auf <strong> Detail </ strong> klicken. ",
+        "description": "Message displayed when no service is available.",
+        "type": "long"
+    },
+    "Detail": {
+        "value": "Detail",
+        "description": "Label used on the detail access button",
+        "type": "short"
+    },
+    "Enable all": {
+        "value": "Alle aktivieren",
+        "description": "Label used on the button enabling all services",
+        "type": "short"
+    },
+    "Disable all": {
+        "value": "Alle deaktivieren",
+        "description": "Label used on the button disabling all services",
+        "type": "short"
+    },
+    "Save": {
+        "value": "Speichern",
+        "description": "Label used on the button saving preferences",
+        "type": "short"
+    },
+    "Enable": {
+        "value": "Aktivieren",
+        "description": "Label used on the button enabling a service",
+        "type": "short"
+    },
+    "Disable": {
+        "value": "Deaktivieren",
+        "description": "Label used on the button disabling a service",
+        "type": "short"
+    },
+    "(mandatory for the basic feature)": {
+        "value": "(notwendig für den Betrieb der Website)",
+        "description": "Label for mandatory services",
+        "type": "short"
+    },
+    "This content may require your personal data. You have to accept the service @serviceName to use it before accessing that content.": {
+        "value": "Für diesen Inhalt sind möglicherweise personenbezogene Daten erforderlich. Sie müssen den Dienst @serviceName akzeptieren, um ihn verwenden zu können, bevor Sie auf diesen Inhalt zugreifen können.",
+        "description": "Placeholder message",
+        "type": "long",
+        "args": [
+            {
+                "name": "@serviceName",
+                "description": "The service"
+            }
+        ]
+    },
+    "Enable @serviceName": {
+        "value": "@ServiceName aktivieren",
+        "description": "Placeholder button",
+        "type": "short",
+        "args": [
+            {
+                "name": "@serviceName",
+                "description": "The service to enable"
+            }
+        ]
+    }
 }
