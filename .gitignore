@@ -2,11 +2,14 @@
 webpack.mix.local.js
 
 ./node_modules/
+.idea/
 
 # Do not version dev build of services.
 /dev
 src/services/*/dev
 src/templates/*/dev
 /node_modules/
+# Ignore local configuration files.
+webpack.mix.local.js
 # Ignore local configuration files.
 webpack.mix.local.js
