@@ -1,6 +1,6 @@
 {
     "name": "bim-gdpr",
-    "version": "1.3.6",
+    "version": "1.3.7",
     "description": "Easy way to propose personal data services (like cookie) manager",
     "main": "./src/bgdpr.js",
     "scripts": {

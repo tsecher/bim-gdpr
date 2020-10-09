@@ -93,6 +93,9 @@
                 flex-wrap: wrap-reverse;
                 flex-grow: 0;
                 flex-shrink: 0;
+                max-width: 100%;
+                width: $width-content;
+                margin: auto;
 
                 .action {
                     width: 100%;

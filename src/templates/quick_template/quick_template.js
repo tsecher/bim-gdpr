@@ -194,7 +194,7 @@ export class QuickTemplate{
                         <div class="${ID}-view-content-title">${this.html('Your personal data')}</div>      
                         <div>${this.html(`This site uses some services that enhance your user experience and adds external content. Some of them can require and use personal data. You can manage their activation through this pannel at any moment.`)}</div>
                     </div>
-                  
+
                     <div class="${ID}-view-detail">
                         ${markup}
                     </div>
@@ -213,7 +213,7 @@ export class QuickTemplate{
                         </button>
                         <button ${PREFIX}view-hide="deny_all">${this.html('Save')}</button>
                     </div>
-                    
+
                     <button ${PREFIX}view-toggle-detail>${this.html('Detail')}</button>
                 </div>
             </div>
