@@ -116,7 +116,9 @@ export class ServicePlaceholder{
      * @param {*} element 
      */
     hideElement(element){
-        element.outerHTML = element.outerHTML.replace(/div/g,"noscript");
+        const wrapper = document.createElement('noscript');
+        element.parentNode.insertBefore(wrapper, element);
+        wrapper.appendChild(element);
     }
 
     /**
@@ -125,9 +127,9 @@ export class ServicePlaceholder{
      * @param {*} element 
      */
     showElement(element){
-        element.outerHTML = element.outerHTML.replace(/noscript/g,"div")
-                                .replace(/&lt;/g,"<")
-                                .replace(/&gt;/g,">")
-
+        const wrapper = element.parentNode;
+        if( wrapper.tagName.toLowerCase() === 'noscript' ){
+            wrapper.parentNode.replaceChild(element, wrapper)
+        }
     }
 }
