@@ -29,7 +29,7 @@
     }
 }
 
-.#{$ID}-view{
+.{TemplateId} .#{$ID}-view{
     button{
         @extend %_button
     }

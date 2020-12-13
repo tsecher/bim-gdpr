@@ -1,4 +1,4 @@
-# Methods 
+# Service Methods 
 
 Here is the list of available methods of a Service 
 

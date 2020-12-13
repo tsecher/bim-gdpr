@@ -26,20 +26,23 @@ nav:
     # - Core settings: ./core/core.md
 
     - Services : 
-        - Introduction : ./services/index.md
+        - Introduction : './services/index.md'
         - Create a service: './services/create.md'
         - Service methods : './services/methods.md'
 
     - Templates : 
-        - Introduction : ./templates/index.md
-        - Create a template: './templates/create.md'
-        - Template methods : './templates/methods.md'
+        - Introduction : './template/index.md'
+        - Create a template: './template/create.md'
+        - Template methods : './template/methods.md'
 
     - Groups : 
         - Introduction : ./groups/index.md
 
     - Translations:
         - Introdution: ./translations/index.md
+
+    - Placeholders :
+          - Introdution: ./placeholders/index.md
 
     - How to ...:
         - Force the displayed language: './how/force-language.md'
