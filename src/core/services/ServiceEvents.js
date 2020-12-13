@@ -5,4 +5,6 @@ export const ServiceEvents = {
     serviceStart: 'service-start',
     serviceStop: 'service-stop',
     serviceHasBeenAdded: 'service-has-been-added',
+    placeholderHasBeenHidden: 'placeholder-has-been-hidden',
+    placeholderHasBeenShown: 'placeholder-has-been-shown',
 }

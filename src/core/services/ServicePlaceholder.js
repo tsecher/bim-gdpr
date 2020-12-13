@@ -119,6 +119,7 @@ export class ServicePlaceholder{
         const wrapper = document.createElement('noscript');
         element.parentNode.insertBefore(wrapper, element);
         wrapper.appendChild(element);
+        Core.trigger(ServiceEvents.placeholderHasBeenHidden, element);
     }
 
     /**
@@ -130,6 +131,7 @@ export class ServicePlaceholder{
         const wrapper = element.parentNode;
         if( wrapper.tagName.toLowerCase() === 'noscript' ){
             wrapper.parentNode.replaceChild(element, wrapper)
+            Core.trigger(ServiceEvents.placeholderHasBeenShown, element);
         }
     }
 }
