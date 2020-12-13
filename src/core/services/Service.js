@@ -10,6 +10,7 @@ export class Service extends LocalizedElementAbstract {
 		this._id = id
 		this._name = name
 		this._description = description
+		this._visible = true
 	}
 
 	get id() {
@@ -144,6 +145,13 @@ export class Service extends LocalizedElementAbstract {
 	}
 
 	/**
+	 * Is visible
+	 */
+	isVisible(){
+		return this._visible
+	}
+
+	/**
 	 * Set weiught
 	 */
 	setWeight(weight) {
@@ -157,6 +165,15 @@ export class Service extends LocalizedElementAbstract {
 			})
 		}
 
+		return this
+	}
+
+	/**
+	 * Hide the service in the view, but let it enabled and usable.
+	 */
+	setHidden(){
+		Core.getServiceManager().enableService(this, false)
+		this._visible = false
 		return this
 	}
 }

@@ -81,8 +81,17 @@ export class Group{
     /**
      * Return the list of services.
      */
-    getServicesList(){
+    getServicesList() {
         return this.services
+    }
+
+    /**
+     * Return visible services.
+     */
+    getVisibleServicesList() {
+        return this.services.filter(service => {
+            return service.isVisible()
+        })
     }
 
     /**

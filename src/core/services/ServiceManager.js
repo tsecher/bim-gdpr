@@ -70,6 +70,15 @@ class ServiceManagerClass {
     }
 
     /**
+     * Return the list of visible services
+     */
+    getVisibleServicesList() {
+        return this.services.filter(service => {
+            return service.isVisible()
+        })
+    }
+
+    /**
      * Init the default behaviors
      */
     init() {

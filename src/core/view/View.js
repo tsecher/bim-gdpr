@@ -196,7 +196,7 @@ class ViewClass{
         if( this._needsRebuildData && this.view ){
             // IF all is needed
             if( this.hasToRebuildAll() ){
-                if( Core.getServiceManager().getServicesList().length ){
+                if( Core.getServiceManager().getVisibleServicesList().length ){
                     this.view.innerHTML = this.getViewMarkup()
                 }
                 else{
@@ -214,7 +214,7 @@ class ViewClass{
                             content = this.template.getServiceMarkup(rebuildData.element);
                             break
                         case 'group': 
-                            content = this.template.getGroupMarkup(rebuildData.element, this.getServicesMarkupList(rebuildData.element.getServicesList()));
+                            content = this.template.getGroupMarkup(rebuildData.element, this.getServicesMarkupList(rebuildData.element.getVisibleServicesList()));
                             break
                     }
 
@@ -269,7 +269,7 @@ class ViewClass{
             data.data = {}
             data.data.groups = groups
             data.data.ungrouped_services = groupManager.getUnGroupedServices()
-            if( data.data.ungrouped_services.length !== serviceManager.getServicesList().length ){
+            if( data.data.ungrouped_services.length !== serviceManager.getVisibleServicesList().length ){
                 return data;
             }
         }
@@ -277,7 +277,7 @@ class ViewClass{
         // If no groups or no service in group :
         data.type = 'services'
         data.data = {}
-        data.data.services = Core.getServiceManager().getServicesList()
+        data.data.services = Core.getServiceManager().getVisibleServicesList()
 
         return data
     }
@@ -361,7 +361,7 @@ class ViewClass{
      * @param {*} group 
      */
     getGroupMarkup(group){
-        const servicesList = group.getServicesList();
+        const servicesList = group.getVisibleServicesList();
         if( servicesList.length ){
             const serviceMarkupList = this.getServicesMarkupList(servicesList)
             return `<div ${PREFIX}view-group="${group.id}">${this.template.getGroupMarkup(group, serviceMarkupList)}</div>`
